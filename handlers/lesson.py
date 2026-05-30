@@ -72,13 +72,13 @@ async def show_answer(
         reply_markup=continue_keyboard()
     )
 
-    await callback.message.answer(
-        f"Что означает:\n\n"
-        f"🇹🇷 {word['lemma']} ?",
-        reply_markup=quiz_keyboard(
-        word["quiz"]["options"]
-        )
-    )
+    # await callback.message.answer(
+      #  f"Что означает:\n\n"
+      #  f"🇹🇷 {word['lemma']} ?",
+      #  reply_markup=quiz_keyboard(
+      #  word["quiz"]["options"]
+      #  )
+    # )
 
     await callback.answer()
 
