@@ -68,7 +68,8 @@ async def show_answer(
         f"🇹🇷 {word['lemma']}\n\n"
         f"🇷🇺 {word['translation']}\n\n"
         f"{example['tr']}\n"
-        f"{example['ru']}"
+        f"{example['ru']}",
+        reply_markup=continue_keyboard()
     )
 
     await callback.message.answer(
