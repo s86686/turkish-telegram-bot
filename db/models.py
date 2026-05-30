@@ -1,22 +1,33 @@
-from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
-
-from sqlalchemy import BigInteger
-from sqlalchemy import Integer
-from sqlalchemy import String
-from sqlalchemy import Float
-from sqlalchemy import DateTime
 from datetime import datetime
+
+from sqlalchemy import (
+    Integer,
+    String,
+    Float,
+    BigInteger,
+    DateTime,
+    ForeignKey
+)
+
+from sqlalchemy.orm import (
+    DeclarativeBase,
+    mapped_column,
+    Mapped
+)
+
 
 class Base(DeclarativeBase):
     pass
 
 
 class User(Base):
+
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
 
     telegram_id: Mapped[int] = mapped_column(
         BigInteger,
@@ -28,31 +39,33 @@ class User(Base):
         nullable=True
     )
 
+    daily_new_words: Mapped[int] = mapped_column(
+        Integer,
+        default=15
+    )
 
-class Word(Base):
-    __tablename__ = "words"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-
-    lemma: Mapped[str] = mapped_column(String(255))
-
-    translation: Mapped[str] = mapped_column(String(255))
-
-    level: Mapped[str] = mapped_column(String(10))
-
-    topic: Mapped[str] = mapped_column(String(50))
-
-    frequency_rank: Mapped[int] = mapped_column(Integer)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow
+    )
 
 
 class UserWord(Base):
+
     __tablename__ = "user_words"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
 
-    user_id: Mapped[int] = mapped_column(Integer)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id")
+    )
 
-    word_id: Mapped[int] = mapped_column(Integer)
+    word_id: Mapped[int] = mapped_column(
+        Integer
+    )
 
     repetitions: Mapped[int] = mapped_column(
         Integer,
@@ -82,4 +95,31 @@ class UserWord(Base):
     next_review: Mapped[datetime | None] = mapped_column(
         DateTime,
         nullable=True
+    )
+
+
+class ReviewHistory(Base):
+
+    __tablename__ = "review_history"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id: Mapped[int] = mapped_column(
+        Integer
+    )
+
+    word_id: Mapped[int] = mapped_column(
+        Integer
+    )
+
+    quality: Mapped[int] = mapped_column(
+        Integer
+    )
+
+    reviewed_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow
     )
