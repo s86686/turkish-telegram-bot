@@ -118,31 +118,27 @@ async def rate_word(
 ):
 
     quality = int(
-    callback.data.split("_")[1]
-)
+        callback.data.split("_")[1]
+    )
 
-word = CURRENT_WORDS.get(
-    callback.from_user.id
-)
+    word = CURRENT_WORDS.get(
+        callback.from_user.id
+    )
 
-if not word:
-    return
+    if not word:
+        return
 
-save_review(
-    telegram_id=
-    callback.from_user.id,
+    save_review(
+        telegram_id=callback.from_user.id,
+        word_id=word["id"],
+        quality=quality
+    )
 
-    word_id=
-    word["id"],
+    await callback.message.edit_text(
+        "✅ Ответ сохранён"
+    )
 
-    quality=quality
-)
-
-await callback.message.edit_text(
-    "✅ Ответ сохранён"
-)
-
-await callback.answer()
+    await callback.answer()
 
 @router.callback_query(
     F.data.startswith("quiz_")
