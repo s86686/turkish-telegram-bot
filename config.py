@@ -1,4 +1,10 @@
 import os
 
+
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+
 DATABASE_URL = os.getenv("DATABASE_URL")
+
+DEFAULT_NEW_WORDS_PER_DAY = 15
+
+LESSON_TIME_HOUR = 19
