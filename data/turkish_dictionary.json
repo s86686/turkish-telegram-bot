@@ -1,554 +1,68 @@
 [
   {
     "id": 1,
-    "lemma": "ben",
-    "translation": "я",
-    "level": "A1",
-    "topic": "pronouns",
-    "frequency_rank": 1,
-    "examples": [
-      {
-        "tr": "Ben öğrenciyim.",
-        "ru": "Я студент."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["я", "ты", "он", "мы"],
-      "correct": 0
-    },
-    "audio": null
-  },
-
-  {
-    "id": 2,
-    "lemma": "sen",
-    "translation": "ты",
-    "level": "A1",
-    "topic": "pronouns",
-    "frequency_rank": 2,
-    "examples": [
-      {
-        "tr": "Sen nasılsın?",
-        "ru": "Как ты?"
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["он", "ты", "мы", "они"],
-      "correct": 1
-    },
-    "audio": null
-  },
-
-  {
-    "id": 3,
-    "lemma": "o",
-    "translation": "он, она, оно",
-    "level": "A1",
-    "topic": "pronouns",
-    "frequency_rank": 3,
-    "examples": [
-      {
-        "tr": "O öğretmen.",
-        "ru": "Он учитель."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["вы", "они", "он, она, оно", "мы"],
-      "correct": 2
-    },
-    "audio": null
-  },
-
-  {
-    "id": 4,
-    "lemma": "biz",
-    "translation": "мы",
-    "level": "A1",
-    "topic": "pronouns",
-    "frequency_rank": 4,
-    "examples": [
-      {
-        "tr": "Biz arkadaşız.",
-        "ru": "Мы друзья."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["они", "ты", "мы", "он"],
-      "correct": 2
-    },
-    "audio": null
-  },
-
-  {
-    "id": 5,
-    "lemma": "siz",
-    "translation": "вы",
-    "level": "A1",
-    "topic": "pronouns",
-    "frequency_rank": 5,
-    "examples": [
-      {
-        "tr": "Siz nerelisiniz?",
-        "ru": "Откуда вы?"
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["я", "вы", "мы", "они"],
-      "correct": 1
-    },
-    "audio": null
-  },
-
-  {
-    "id": 6,
-    "lemma": "onlar",
-    "translation": "они",
-    "level": "A1",
-    "topic": "pronouns",
-    "frequency_rank": 6,
-    "examples": [
-      {
-        "tr": "Onlar evde.",
-        "ru": "Они дома."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["они", "он", "мы", "ты"],
-      "correct": 0
-    },
-    "audio": null
-  },
-
-  {
-    "id": 7,
     "lemma": "ev",
     "translation": "дом",
     "level": "A1",
     "topic": "home",
-    "frequency_rank": 7,
     "examples": [
       {
         "tr": "Bu ev büyük.",
         "ru": "Этот дом большой."
       }
     ],
-    "forms": {
-      "plural": "evler",
-      "possessive": "evim",
-      "dative": "eve",
-      "locative": "evde",
-      "ablative": "evden"
-    },
     "quiz": {
-      "options": ["дом", "школа", "улица", "магазин"],
+      "options": [
+        "дом",
+        "школа",
+        "улица",
+        "магазин"
+      ],
       "correct": 0
-    },
-    "audio": null
+    }
   },
-
   {
-    "id": 8,
-    "lemma": "oda",
-    "translation": "комната",
+    "id": 2,
+    "lemma": "kitap",
+    "translation": "книга",
     "level": "A1",
-    "topic": "home",
-    "frequency_rank": 8,
+    "topic": "education",
     "examples": [
       {
-        "tr": "Odam temiz.",
-        "ru": "Моя комната чистая."
+        "tr": "Bu kitap çok ilginç.",
+        "ru": "Эта книга очень интересная."
       }
     ],
-    "forms": {
-      "plural": "odalar",
-      "possessive": "odam",
-      "locative": "odada"
-    },
     "quiz": {
-      "options": ["окно", "комната", "дверь", "стол"],
+      "options": [
+        "машина",
+        "книга",
+        "ручка",
+        "окно"
+      ],
       "correct": 1
-    },
-    "audio": null
+    }
   },
-
   {
-    "id": 9,
-    "lemma": "kapı",
-    "translation": "дверь",
+    "id": 3,
+    "lemma": "su",
+    "translation": "вода",
     "level": "A1",
-    "topic": "home",
-    "frequency_rank": 9,
+    "topic": "food",
     "examples": [
       {
-        "tr": "Kapıyı kapat.",
-        "ru": "Закрой дверь."
+        "tr": "Bir bardak su istiyorum.",
+        "ru": "Я хочу стакан воды."
       }
     ],
-    "forms": {
-      "plural": "kapılar",
-      "locative": "kapıda"
-    },
     "quiz": {
-      "options": ["дверь", "окно", "крыша", "комната"],
-      "correct": 0
-    },
-    "audio": null
-  },
-
-  {
-    "id": 10,
-    "lemma": "pencere",
-    "translation": "окно",
-    "level": "A1",
-    "topic": "home",
-    "frequency_rank": 10,
-    "examples": [
-      {
-        "tr": "Pencere açık.",
-        "ru": "Окно открыто."
-      }
-    ],
-    "forms": {
-      "plural": "pencereler",
-      "locative": "pencerede"
-    },
-    "quiz": {
-      "options": ["дверь", "стол", "окно", "стул"],
+      "options": [
+        "чай",
+        "кофе",
+        "вода",
+        "молоко"
+      ],
       "correct": 2
-    },
-    "audio": null
-  }
-]
-[
-  {
-    "id": 11,
-    "lemma": "aile",
-    "translation": "семья",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 11,
-    "examples": [
-      {
-        "tr": "Ailem çok büyük.",
-        "ru": "Моя семья очень большая."
-      }
-    ],
-    "forms": {
-      "plural": "aileler",
-      "possessive": "ailem"
-    },
-    "quiz": {
-      "options": ["семья", "друг", "ребенок", "родитель"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 12,
-    "lemma": "anne",
-    "translation": "мама",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 12,
-    "examples": [
-      {
-        "tr": "Annem evde.",
-        "ru": "Моя мама дома."
-      }
-    ],
-    "forms": {
-      "plural": "anneler",
-      "possessive": "annem"
-    },
-    "quiz": {
-      "options": ["мама", "бабушка", "тетя", "сестра"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 13,
-    "lemma": "baba",
-    "translation": "папа",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 13,
-    "examples": [
-      {
-        "tr": "Babam çalışıyor.",
-        "ru": "Мой папа работает."
-      }
-    ],
-    "forms": {
-      "plural": "babalar",
-      "possessive": "babam"
-    },
-    "quiz": {
-      "options": ["дедушка", "папа", "брат", "дядя"],
-      "correct": 1
-    },
-    "audio": null
-  },
-  {
-    "id": 14,
-    "lemma": "çocuk",
-    "translation": "ребенок",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 14,
-    "examples": [
-      {
-        "tr": "Çocuk parkta oynuyor.",
-        "ru": "Ребенок играет в парке."
-      }
-    ],
-    "forms": {
-      "plural": "çocuklar"
-    },
-    "quiz": {
-      "options": ["ребенок", "родитель", "друг", "ученик"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 15,
-    "lemma": "erkek",
-    "translation": "мужчина",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 15,
-    "examples": [
-      {
-        "tr": "O erkek doktor.",
-        "ru": "Этот мужчина врач."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["женщина", "мальчик", "мужчина", "отец"],
-      "correct": 2
-    },
-    "audio": null
-  },
-  {
-    "id": 16,
-    "lemma": "kadın",
-    "translation": "женщина",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 16,
-    "examples": [
-      {
-        "tr": "Kadın markette.",
-        "ru": "Женщина в магазине."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["женщина", "девочка", "мама", "сестра"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 17,
-    "lemma": "kardeş",
-    "translation": "брат, сестра",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 17,
-    "examples": [
-      {
-        "tr": "Bir kardeşim var.",
-        "ru": "У меня есть брат (сестра)."
-      }
-    ],
-    "forms": {
-      "plural": "kardeşler"
-    },
-    "quiz": {
-      "options": ["родитель", "брат, сестра", "ребенок", "друг"],
-      "correct": 1
-    },
-    "audio": null
-  },
-  {
-    "id": 18,
-    "lemma": "abi",
-    "translation": "старший брат",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 18,
-    "examples": [
-      {
-        "tr": "Abim üniversitede okuyor.",
-        "ru": "Мой старший брат учится в университете."
-      }
-    ],
-    "forms": {
-      "possessive": "abim"
-    },
-    "quiz": {
-      "options": ["дядя", "старший брат", "дедушка", "друг"],
-      "correct": 1
-    },
-    "audio": null
-  },
-  {
-    "id": 19,
-    "lemma": "abla",
-    "translation": "старшая сестра",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 19,
-    "examples": [
-      {
-        "tr": "Ablam öğretmen.",
-        "ru": "Моя старшая сестра учитель."
-      }
-    ],
-    "forms": {
-      "possessive": "ablam"
-    },
-    "quiz": {
-      "options": ["старшая сестра", "тетя", "мама", "дочь"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 20,
-    "lemma": "dede",
-    "translation": "дедушка",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 20,
-    "examples": [
-      {
-        "tr": "Dedem köyde yaşıyor.",
-        "ru": "Мой дедушка живет в деревне."
-      }
-    ],
-    "forms": {
-      "possessive": "dedem"
-    },
-    "quiz": {
-      "options": ["отец", "дядя", "дедушка", "брат"],
-      "correct": 2
-    },
-    "audio": null
-  },
-  {
-    "id": 21,
-    "lemma": "nine",
-    "translation": "бабушка",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 21,
-    "examples": [
-      {
-        "tr": "Ninem çok iyi yemek yapar.",
-        "ru": "Моя бабушка очень хорошо готовит."
-      }
-    ],
-    "forms": {
-      "possessive": "ninem"
-    },
-    "quiz": {
-      "options": ["бабушка", "тетя", "сестра", "мама"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 22,
-    "lemma": "amca",
-    "translation": "дядя (по отцу)",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 22,
-    "examples": [
-      {
-        "tr": "Amcam Ankara'da yaşıyor.",
-        "ru": "Мой дядя живет в Анкаре."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["дядя", "дедушка", "отец", "брат"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 23,
-    "lemma": "teyze",
-    "translation": "тетя",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 23,
-    "examples": [
-      {
-        "tr": "Teyzem İstanbul'da çalışıyor.",
-        "ru": "Моя тетя работает в Стамбуле."
-      }
-    ],
-    "forms": {},
-    "quiz": {
-      "options": ["тетя", "мама", "сестра", "бабушка"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 24,
-    "lemma": "oğul",
-    "translation": "сын",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 24,
-    "examples": [
-      {
-        "tr": "Oğlum okulda.",
-        "ru": "Мой сын в школе."
-      }
-    ],
-    "forms": {
-      "possessive": "oğlum"
-    },
-    "quiz": {
-      "options": ["сын", "дочь", "брат", "мальчик"],
-      "correct": 0
-    },
-    "audio": null
-  },
-  {
-    "id": 25,
-    "lemma": "kız",
-    "translation": "дочь, девочка",
-    "level": "A1",
-    "topic": "family",
-    "frequency_rank": 25,
-    "examples": [
-      {
-        "tr": "Kızım kitap okuyor.",
-        "ru": "Моя дочь читает книгу."
-      }
-    ],
-    "forms": {
-      "possessive": "kızım"
-    },
-    "quiz": {
-      "options": ["сын", "дочь", "сестра", "мама"],
-      "correct": 1
-    },
-    "audio": null
+    }
   }
 ]
