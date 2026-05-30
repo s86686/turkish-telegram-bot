@@ -25,6 +25,12 @@ def show_answer_keyboard():
                     text="👁 Показать перевод",
                     callback_data="show_answer"
                 )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔊 Слушать",
+                    callback_data="speak"
+                )
             ]
         ]
     )
