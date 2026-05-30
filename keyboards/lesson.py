@@ -1,5 +1,7 @@
-from aiogram.types import InlineKeyboardMarkup
-from aiogram.types import InlineKeyboardButton
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
 
 
 show_translation_keyboard = (
@@ -8,7 +10,7 @@ show_translation_keyboard = (
             [
                 InlineKeyboardButton(
                     text="👁 Показать перевод",
-                    callback_data="show_translation"
+                    callback_data="show"
                 )
             ]
         ]
