@@ -63,14 +63,20 @@ async def show_answer(
 
     example = word["examples"][0]
 
-    await callback.message.edit_text(
-        f"🇹🇷 {word['lemma']}\n\n"
-        f"🇷🇺 {word['translation']}\n\n"
-        f"{example['tr']}\n"
-        f"{example['ru']}",
-        reply_markup=
-        quality_keyboard()
+await callback.message.edit_text(
+    f"🇹🇷 {word['lemma']}\n\n"
+    f"🇷🇺 {word['translation']}\n\n"
+    f"{example['tr']}\n"
+    f"{example['ru']}"
+)
+
+await callback.message.answer(
+    f"Что означает:\n\n"
+    f"🇹🇷 {word['lemma']} ?",
+    reply_markup=quiz_keyboard(
+        word["quiz"]["options"]
     )
+)
 
     await callback.answer()
 
