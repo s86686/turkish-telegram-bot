@@ -23,8 +23,11 @@ from handlers.lesson import (
     router as lesson_router
 )
 
+from db.seed import create_tables
+
 async def main():
 
+    create_tables()
     bot = Bot(
         token=BOT_TOKEN
     )
