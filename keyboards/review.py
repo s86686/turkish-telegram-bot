@@ -3,6 +3,18 @@ from aiogram.types import (
     InlineKeyboardButton
 )
 
+def continue_keyboard():
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="➡ Продолжить",
+                    callback_data="start_quiz"
+                )
+            ]
+        ]
+    )
 
 def show_answer_keyboard():
 
