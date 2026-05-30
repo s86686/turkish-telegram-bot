@@ -61,7 +61,7 @@ async def handle_webhook(request):
 
 async def on_startup():
 
-    # create_tables()
+    create_tables()
 
     webhook_url = (
         f"{RENDER_EXTERNAL_URL}"
