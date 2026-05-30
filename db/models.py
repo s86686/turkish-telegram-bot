@@ -6,7 +6,8 @@ from sqlalchemy import BigInteger
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import Float
-
+from sqlalchemy import DateTime
+from datetime import datetime
 
 class Base(DeclarativeBase):
     pass
@@ -76,4 +77,9 @@ class UserWord(Base):
     wrong_count: Mapped[int] = mapped_column(
         Integer,
         default=0
+    )
+
+    next_review: Mapped[datetime | None] = mapped_column(
+        DateTime,
+        nullable=True
     )
