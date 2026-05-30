@@ -2,30 +2,90 @@
 
 import random
 
+from datetime import datetime
+
 from db.database import SessionLocal
-from db.models import Word
+from db.models import (
+    Word,
+    User,
+    UserWord
+)
 
 from services.quiz_service import (
     build_quiz
 )
 
 
-def get_random_word():
+def get_random_word(
+    telegram_id: int
+):
 
     db = SessionLocal()
 
     try:
 
-        words = db.query(
-            Word
-        ).all()
+        user = db.query(
+            User
+        ).filter(
+            User.telegram_id == telegram_id
+        ).first()
 
-        if not words:
+        if not user:
             return None
 
-        word = random.choice(
-            words
+        # 1. Слова к повторению
+
+        review_word = (
+            db.query(
+                UserWord
+            )
+            .filter(
+                UserWord.user_id == user.id,
+                UserWord.next_review <= datetime.utcnow()
+            )
+            .first()
         )
+
+        if review_word:
+
+            word = db.query(
+                Word
+            ).filter(
+                Word.id == review_word.word_id
+            ).first()
+
+        else:
+
+            learned_ids = [
+                uw.word_id
+                for uw in db.query(
+                    UserWord
+                ).filter(
+                    UserWord.user_id == user.id
+                ).all()
+            ]
+
+            new_words = (
+                db.query(
+                    Word
+                )
+                .filter(
+                    ~Word.id.in_(learned_ids)
+                )
+                .all()
+            )
+
+            if new_words:
+
+                word = random.choice(
+                    new_words
+                )
+
+            else:
+
+                word = random.choice(
+                    db.query(Word).all()
+                )
 
         result = {
             "id": word.id,
@@ -41,7 +101,9 @@ def get_random_word():
 
         all_words = []
 
-        for w in words:
+        for w in db.query(
+            Word
+        ).all():
 
             all_words.append(
                 {
