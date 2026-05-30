@@ -15,6 +15,12 @@ from keyboards.review import (
     quality_keyboard
 )
 
+from keyboards.review import (
+    show_answer_keyboard,
+    quality_keyboard,
+    quiz_keyboard
+)
+
 router = Router()
 
 CURRENT_WORDS = {}
