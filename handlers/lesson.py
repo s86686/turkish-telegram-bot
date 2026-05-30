@@ -82,7 +82,30 @@ async def show_answer(
 
     await callback.answer()
 
+@router.callback_query(
+    F.data == "start_quiz"
+)
+async def start_quiz(
+    callback: CallbackQuery
+):
 
+    word = CURRENT_WORDS.get(
+        callback.from_user.id
+    )
+
+    if not word:
+        return
+
+    await callback.message.edit_text(
+        f"Что означает?\n\n"
+        f"🇹🇷 {word['lemma']}",
+        reply_markup=quiz_keyboard(
+            word["quiz"]["options"]
+        )
+    )
+
+    await callback.answer()
+    
 @router.callback_query(
     F.data.startswith("q_")
 )
