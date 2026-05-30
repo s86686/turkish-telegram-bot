@@ -3,16 +3,20 @@ from aiogram import F
 
 from aiogram.types import (
     Message,
-    CallbackQuery
+    CallbackQuery,
+    FSInputFile
 )
 
 from services.word_service import (
     get_random_word
 )
 
-from keyboards.review import (
-    show_answer_keyboard,
-    quality_keyboard
+from services.review_service import (
+    save_review
+)
+
+from services.tts_service import (
+    generate_tts
 )
 
 from keyboards.review import (
@@ -20,10 +24,6 @@ from keyboards.review import (
     quality_keyboard,
     quiz_keyboard,
     continue_keyboard
-)
-
-from services.review_service import (
-    save_review
 )
 
 router = Router()
@@ -39,8 +39,16 @@ async def lesson(
 ):
 
     word = get_random_word(
-    message.from_user.id
-)
+        message.from_user.id
+    )
+
+    if not word:
+
+        await message.answer(
+            "Слова не найдены."
+        )
+
+        return
 
     CURRENT_WORDS[
         message.from_user.id
@@ -78,15 +86,8 @@ async def show_answer(
         reply_markup=continue_keyboard()
     )
 
-    # await callback.message.answer(
-      #  f"Что означает:\n\n"
-      #  f"🇹🇷 {word['lemma']} ?",
-      #  reply_markup=quiz_keyboard(
-      #  word["quiz"]["options"]
-      #  )
-    # )
-
     await callback.answer()
+
 
 @router.callback_query(
     F.data == "start_quiz"
@@ -111,36 +112,7 @@ async def start_quiz(
     )
 
     await callback.answer()
-    
-@router.callback_query(
-    F.data.startswith("q_")
-)
-async def rate_word(
-    callback: CallbackQuery
-):
 
-    quality = int(
-        callback.data.split("_")[1]
-    )
-
-    word = CURRENT_WORDS.get(
-        callback.from_user.id
-    )
-
-    if not word:
-        return
-
-    save_review(
-        telegram_id=callback.from_user.id,
-        word_id=word["id"],
-        quality=quality
-    )
-
-    await callback.message.edit_text(
-        "✅ Ответ сохранён"
-    )
-
-    await callback.answer()
 
 @router.callback_query(
     F.data.startswith("quiz_")
@@ -185,6 +157,66 @@ async def process_quiz(
     await callback.message.edit_text(
         text,
         reply_markup=quality_keyboard()
+    )
+
+    await callback.answer()
+
+
+@router.callback_query(
+    F.data.startswith("q_")
+)
+async def rate_word(
+    callback: CallbackQuery
+):
+
+    quality = int(
+        callback.data.split("_")[1]
+    )
+
+    word = CURRENT_WORDS.get(
+        callback.from_user.id
+    )
+
+    if not word:
+        return
+
+    save_review(
+        telegram_id=callback.from_user.id,
+        word_id=word["id"],
+        quality=quality
+    )
+
+    await callback.message.edit_text(
+        "✅ Ответ сохранён"
+    )
+
+    await callback.answer()
+
+
+@router.callback_query(
+    F.data == "speak"
+)
+async def speak_word(
+    callback: CallbackQuery
+):
+
+    word = CURRENT_WORDS.get(
+        callback.from_user.id
+    )
+
+    if not word:
+        return
+
+    filename = await generate_tts(
+        word["lemma"]
+    )
+
+    audio = FSInputFile(
+        filename
+    )
+
+    await callback.message.answer_voice(
+        audio
     )
 
     await callback.answer()
