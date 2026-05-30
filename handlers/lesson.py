@@ -207,8 +207,15 @@ async def speak_word(
     if not word:
         return
 
+    example = word["examples"][0]
+
+    text = (
+        f"{word['lemma']}. "
+        f"{example['tr']}"
+    )
+
     filename = await generate_tts(
-        word["lemma"]
+        text
     )
 
     audio = FSInputFile(
