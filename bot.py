@@ -1,12 +1,6 @@
 import asyncio
 import os
 
-site = web.TCPSite(
-    runner,
-    host="0.0.0.0",
-    port=int(os.getenv("PORT", "10000"))
-)
-
 from aiohttp import web
 
 from aiogram import Bot
@@ -105,11 +99,11 @@ async def main():
 
     await runner.setup()
 
-    site = web.TCPSite(
-        runner,
-        host="0.0.0.0",
-        port=10000
-    )
+site = web.TCPSite(
+    runner,
+    host="0.0.0.0",
+    port=int(os.getenv("PORT", "10000"))
+)
 
     await site.start()
 
