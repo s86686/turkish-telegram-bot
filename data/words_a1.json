@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "turkish": "kitap",
+    "russian": "книга",
+    "sentence_tr": "Bu kitap çok ilginç.",
+    "sentence_ru": "Эта книга очень интересная.",
+    "level": "A1"
+  },
+  {
+    "id": 2,
+    "turkish": "ev",
+    "russian": "дом",
+    "sentence_tr": "Evim şehir merkezinde.",
+    "sentence_ru": "Мой дом находится в центре города.",
+    "level": "A1"
+  },
+  {
+    "id": 3,
+    "turkish": "araba",
+    "russian": "машина",
+    "sentence_tr": "Yeni bir araba aldım.",
+    "sentence_ru": "Я купил новую машину.",
+    "level": "A1"
+  }
+]
