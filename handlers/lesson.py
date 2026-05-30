@@ -22,6 +22,10 @@ from keyboards.review import (
     continue_keyboard
 )
 
+from services.review_service import (
+    save_review
+)
+
 router = Router()
 
 CURRENT_WORDS = {}
@@ -113,16 +117,32 @@ async def rate_word(
     callback: CallbackQuery
 ):
 
-    quality = callback.data.split(
-        "_"
-    )[1]
+    quality = int(
+    callback.data.split("_")[1]
+)
 
-    await callback.message.answer(
-        f"Оценка сохранена: {quality}\n\n"
-        f"Нажмите 📚 Урок для следующего слова."
-    )
+word = CURRENT_WORDS.get(
+    callback.from_user.id
+)
 
-    await callback.answer()
+if not word:
+    return
+
+save_review(
+    telegram_id=
+    callback.from_user.id,
+
+    word_id=
+    word["id"],
+
+    quality=quality
+)
+
+await callback.message.edit_text(
+    "✅ Ответ сохранён"
+)
+
+await callback.answer()
 
 @router.callback_query(
     F.data.startswith("quiz_")
