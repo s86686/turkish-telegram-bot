@@ -123,3 +123,36 @@ class ReviewHistory(Base):
         DateTime,
         default=datetime.utcnow
     )
+
+class Word(Base):
+
+    __tablename__ = "words"
+
+    id = Column(
+        Integer,
+        primary_key=True
+    )
+
+    lemma = Column(
+        String(100),
+        nullable=False
+    )
+
+    translation = Column(
+        String(100),
+        nullable=False
+    )
+
+    level = Column(
+        String(10),
+        default="A1"
+    )
+
+    topic = Column(
+        String(50),
+        default="general"
+    )
+
+    example_tr = Column(Text)
+
+    example_ru = Column(Text)
