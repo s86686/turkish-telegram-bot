@@ -99,11 +99,11 @@ async def main():
 
     await runner.setup()
 
-site = web.TCPSite(
-    runner,
-    host="0.0.0.0",
-    port=int(os.getenv("PORT", "10000"))
-)
+    site = web.TCPSite(
+        runner,
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", "10000"))
+    )
 
     await site.start()
 
