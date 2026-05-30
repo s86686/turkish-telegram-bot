@@ -1,10 +1,13 @@
 import os
 
-
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-DEFAULT_NEW_WORDS_PER_DAY = 15
+WEBHOOK_SECRET = os.getenv(
+    "WEBHOOK_SECRET",
+    "turkish-secret"
+)
 
-LESSON_TIME_HOUR = 19
+RENDER_EXTERNAL_URL = os.getenv(
+    "RENDER_EXTERNAL_URL"
+)
