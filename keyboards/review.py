@@ -44,3 +44,27 @@ def quality_keyboard():
             ]
         ]
     )
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
+
+
+def quiz_keyboard(options):
+
+    keyboard = []
+
+    for index, option in enumerate(options):
+
+        keyboard.append(
+            [
+                InlineKeyboardButton(
+                    text=option,
+                    callback_data=f"quiz_{index}"
+                )
+            ]
+        )
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=keyboard
+    )
