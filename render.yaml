@@ -1,9 +1,16 @@
 services:
   - type: worker
-    name: turkish-bot
+    name: turkish-learning-bot
 
-    env: python
+    runtime: python
 
     buildCommand: pip install -r requirements.txt
 
     startCommand: python bot.py
+
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+
+      - key: DATABASE_URL
+        sync: false
