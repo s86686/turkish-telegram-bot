@@ -6,7 +6,7 @@ from aiogram.types import (
     CallbackQuery
 )
 
-from services.dictionary import (
+from services.word_service import (
     get_random_word
 )
 
