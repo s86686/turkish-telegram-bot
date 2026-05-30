@@ -1,6 +1,86 @@
 [
   {
     "id": 1,
+    "turkish": "ben",
+    "russian": "я",
+    "sentence_tr": "Ben öğrenciyim.",
+    "sentence_ru": "Я студент.",
+    "level": "A1"
+  },
+  {
+    "id": 2,
+    "turkish": "sen",
+    "russian": "ты",
+    "sentence_tr": "Sen çok çalışkansın.",
+    "sentence_ru": "Ты очень трудолюбивый.",
+    "level": "A1"
+  },
+  {
+    "id": 3,
+    "turkish": "o",
+    "russian": "он, она, оно",
+    "sentence_tr": "O öğretmen.",
+    "sentence_ru": "Он учитель.",
+    "level": "A1"
+  },
+  {
+    "id": 4,
+    "turkish": "biz",
+    "russian": "мы",
+    "sentence_tr": "Biz arkadaşız.",
+    "sentence_ru": "Мы друзья.",
+    "level": "A1"
+  },
+  {
+    "id": 5,
+    "turkish": "siz",
+    "russian": "вы",
+    "sentence_tr": "Siz nerelisiniz?",
+    "sentence_ru": "Откуда вы?",
+    "level": "A1"
+  },
+  {
+    "id": 6,
+    "turkish": "onlar",
+    "russian": "они",
+    "sentence_tr": "Onlar evde.",
+    "sentence_ru": "Они дома.",
+    "level": "A1"
+  },
+  {
+    "id": 7,
+    "turkish": "ev",
+    "russian": "дом",
+    "sentence_tr": "Bu ev çok büyük.",
+    "sentence_ru": "Этот дом очень большой.",
+    "level": "A1"
+  },
+  {
+    "id": 8,
+    "turkish": "oda",
+    "russian": "комната",
+    "sentence_tr": "Odam temiz.",
+    "sentence_ru": "Моя комната чистая.",
+    "level": "A1"
+  },
+  {
+    "id": 9,
+    "turkish": "kapı",
+    "russian": "дверь",
+    "sentence_tr": "Kapıyı kapat.",
+    "sentence_ru": "Закрой дверь.",
+    "level": "A1"
+  },
+  {
+    "id": 10,
+    "turkish": "pencere",
+    "russian": "окно",
+    "sentence_tr": "Pencere açık.",
+    "sentence_ru": "Окно открыто.",
+    "level": "A1"
+  },
+  {
+    "id": 11,
     "turkish": "kitap",
     "russian": "книга",
     "sentence_tr": "Bu kitap çok ilginç.",
@@ -8,19 +88,519 @@
     "level": "A1"
   },
   {
-    "id": 2,
-    "turkish": "ev",
-    "russian": "дом",
-    "sentence_tr": "Evim şehir merkezinde.",
-    "sentence_ru": "Мой дом находится в центре города.",
+    "id": 12,
+    "turkish": "defter",
+    "russian": "тетрадь",
+    "sentence_tr": "Defterimi bulamıyorum.",
+    "sentence_ru": "Не могу найти свою тетрадь.",
     "level": "A1"
   },
   {
-    "id": 3,
+    "id": 13,
+    "turkish": "kalem",
+    "russian": "ручка, карандаш",
+    "sentence_tr": "Kalem masada.",
+    "sentence_ru": "Ручка на столе.",
+    "level": "A1"
+  },
+  {
+    "id": 14,
+    "turkish": "masa",
+    "russian": "стол",
+    "sentence_tr": "Masa yeni.",
+    "sentence_ru": "Стол новый.",
+    "level": "A1"
+  },
+  {
+    "id": 15,
+    "turkish": "sandalye",
+    "russian": "стул",
+    "sentence_tr": "Sandalyeye otur.",
+    "sentence_ru": "Сядь на стул.",
+    "level": "A1"
+  },
+  {
+    "id": 16,
+    "turkish": "okul",
+    "russian": "школа",
+    "sentence_tr": "Okul bugün açık.",
+    "sentence_ru": "Школа сегодня открыта.",
+    "level": "A1"
+  },
+  {
+    "id": 17,
+    "turkish": "öğrenci",
+    "russian": "ученик, студент",
+    "sentence_tr": "Ben öğrenciyim.",
+    "sentence_ru": "Я студент.",
+    "level": "A1"
+  },
+  {
+    "id": 18,
+    "turkish": "öğretmen",
+    "russian": "учитель",
+    "sentence_tr": "Öğretmen sınıfta.",
+    "sentence_ru": "Учитель в классе.",
+    "level": "A1"
+  },
+  {
+    "id": 19,
+    "turkish": "arkadaş",
+    "russian": "друг",
+    "sentence_tr": "Ali benim arkadaşım.",
+    "sentence_ru": "Али мой друг.",
+    "level": "A1"
+  },
+  {
+    "id": 20,
+    "turkish": "aile",
+    "russian": "семья",
+    "sentence_tr": "Ailem büyük.",
+    "sentence_ru": "Моя семья большая.",
+    "level": "A1"
+  },
+  {
+    "id": 21,
+    "turkish": "anne",
+    "russian": "мама",
+    "sentence_tr": "Annem evde.",
+    "sentence_ru": "Моя мама дома.",
+    "level": "A1"
+  },
+  {
+    "id": 22,
+    "turkish": "baba",
+    "russian": "папа",
+    "sentence_tr": "Babam çalışıyor.",
+    "sentence_ru": "Мой папа работает.",
+    "level": "A1"
+  },
+  {
+    "id": 23,
+    "turkish": "çocuk",
+    "russian": "ребенок",
+    "sentence_tr": "Çocuk parkta oynuyor.",
+    "sentence_ru": "Ребенок играет в парке.",
+    "level": "A1"
+  },
+  {
+    "id": 24,
+    "turkish": "erkek",
+    "russian": "мужчина",
+    "sentence_tr": "O erkek doktor.",
+    "sentence_ru": "Этот мужчина врач.",
+    "level": "A1"
+  },
+  {
+    "id": 25,
+    "turkish": "kadın",
+    "russian": "женщина",
+    "sentence_tr": "Kadın markette.",
+    "sentence_ru": "Женщина в магазине.",
+    "level": "A1"
+  }
+]
+[
+  {
+    "id": 26,
+    "turkish": "adam",
+    "russian": "мужчина, человек",
+    "sentence_tr": "O adam çok nazik.",
+    "sentence_ru": "Этот мужчина очень вежливый.",
+    "level": "A1"
+  },
+  {
+    "id": 27,
+    "turkish": "kız",
+    "russian": "девочка, девушка",
+    "sentence_tr": "Kız kitap okuyor.",
+    "sentence_ru": "Девочка читает книгу.",
+    "level": "A1"
+  },
+  {
+    "id": 28,
+    "turkish": "oğlan",
+    "russian": "мальчик",
+    "sentence_tr": "Oğlan futbol oynuyor.",
+    "sentence_ru": "Мальчик играет в футбол.",
+    "level": "A1"
+  },
+  {
+    "id": 29,
+    "turkish": "iş",
+    "russian": "работа",
+    "sentence_tr": "Yeni bir iş buldum.",
+    "sentence_ru": "Я нашел новую работу.",
+    "level": "A1"
+  },
+  {
+    "id": 30,
+    "turkish": "ofis",
+    "russian": "офис",
+    "sentence_tr": "Ofisim şehir merkezinde.",
+    "sentence_ru": "Мой офис находится в центре города.",
+    "level": "A1"
+  },
+  {
+    "id": 31,
+    "turkish": "doktor",
+    "russian": "врач",
+    "sentence_tr": "Doktor hastayı muayene ediyor.",
+    "sentence_ru": "Врач осматривает пациента.",
+    "level": "A1"
+  },
+  {
+    "id": 32,
+    "turkish": "hasta",
+    "russian": "больной, пациент",
+    "sentence_tr": "Hasta bugün daha iyi.",
+    "sentence_ru": "Пациент сегодня чувствует себя лучше.",
+    "level": "A1"
+  },
+  {
+    "id": 33,
+    "turkish": "hastane",
+    "russian": "больница",
+    "sentence_tr": "Hastane çok büyük.",
+    "sentence_ru": "Больница очень большая.",
+    "level": "A1"
+  },
+  {
+    "id": 34,
+    "turkish": "market",
+    "russian": "магазин",
+    "sentence_tr": "Marketten süt aldım.",
+    "sentence_ru": "Я купил молоко в магазине.",
+    "level": "A1"
+  },
+  {
+    "id": 35,
+    "turkish": "para",
+    "russian": "деньги",
+    "sentence_tr": "Yanımda para yok.",
+    "sentence_ru": "У меня нет с собой денег.",
+    "level": "A1"
+  },
+  {
+    "id": 36,
+    "turkish": "su",
+    "russian": "вода",
+    "sentence_tr": "Bir bardak su istiyorum.",
+    "sentence_ru": "Я хочу стакан воды.",
+    "level": "A1"
+  },
+  {
+    "id": 37,
+    "turkish": "çay",
+    "russian": "чай",
+    "sentence_tr": "Türk çayı çok meşhurdur.",
+    "sentence_ru": "Турецкий чай очень знаменит.",
+    "level": "A1"
+  },
+  {
+    "id": 38,
+    "turkish": "kahve",
+    "russian": "кофе",
+    "sentence_tr": "Sabah kahve içiyorum.",
+    "sentence_ru": "Утром я пью кофе.",
+    "level": "A1"
+  },
+  {
+    "id": 39,
+    "turkish": "ekmek",
+    "russian": "хлеб",
+    "sentence_tr": "Taze ekmek aldım.",
+    "sentence_ru": "Я купил свежий хлеб.",
+    "level": "A1"
+  },
+  {
+    "id": 40,
+    "turkish": "yemek",
+    "russian": "еда, блюдо",
+    "sentence_tr": "Yemek çok lezzetli.",
+    "sentence_ru": "Еда очень вкусная.",
+    "level": "A1"
+  },
+  {
+    "id": 41,
+    "turkish": "elma",
+    "russian": "яблоко",
+    "sentence_tr": "Her gün bir elma yerim.",
+    "sentence_ru": "Я ем одно яблоко каждый день.",
+    "level": "A1"
+  },
+  {
+    "id": 42,
+    "turkish": "portakal",
+    "russian": "апельсин",
+    "sentence_tr": "Portakal çok tatlı.",
+    "sentence_ru": "Апельсин очень сладкий.",
+    "level": "A1"
+  },
+  {
+    "id": 43,
+    "turkish": "süt",
+    "russian": "молоко",
+    "sentence_tr": "Çocuk süt içiyor.",
+    "sentence_ru": "Ребенок пьет молоко.",
+    "level": "A1"
+  },
+  {
+    "id": 44,
     "turkish": "araba",
     "russian": "машина",
-    "sentence_tr": "Yeni bir araba aldım.",
-    "sentence_ru": "Я купил новую машину.",
+    "sentence_tr": "Arabam yeni.",
+    "sentence_ru": "Моя машина новая.",
+    "level": "A1"
+  },
+  {
+    "id": 45,
+    "turkish": "otobüs",
+    "russian": "автобус",
+    "sentence_tr": "Otobüs saat dokuzda geliyor.",
+    "sentence_ru": "Автобус приезжает в девять часов.",
+    "level": "A1"
+  },
+  {
+    "id": 46,
+    "turkish": "tren",
+    "russian": "поезд",
+    "sentence_tr": "Tren Ankara'ya gidiyor.",
+    "sentence_ru": "Поезд идет в Анкару.",
+    "level": "A1"
+  },
+  {
+    "id": 47,
+    "turkish": "uçak",
+    "russian": "самолет",
+    "sentence_tr": "Uçak zamanında kalktı.",
+    "sentence_ru": "Самолет вылетел вовремя.",
+    "level": "A1"
+  },
+  {
+    "id": 48,
+    "turkish": "yol",
+    "russian": "дорога, путь",
+    "sentence_tr": "Bu yol kısa.",
+    "sentence_ru": "Эта дорога короткая.",
+    "level": "A1"
+  },
+  {
+    "id": 49,
+    "turkish": "şehir",
+    "russian": "город",
+    "sentence_tr": "İstanbul büyük bir şehir.",
+    "sentence_ru": "Стамбул — большой город.",
+    "level": "A1"
+  },
+  {
+    "id": 50,
+    "turkish": "ülke",
+    "russian": "страна",
+    "sentence_tr": "Türkiye güzel bir ülke.",
+    "sentence_ru": "Турция — красивая страна.",
+    "level": "A1"
+  }
+]
+[
+  {
+    "id": 51,
+    "turkish": "köy",
+    "russian": "деревня",
+    "sentence_tr": "Dedem köyde yaşıyor.",
+    "sentence_ru": "Мой дедушка живет в деревне.",
+    "level": "A1"
+  },
+  {
+    "id": 52,
+    "turkish": "sokak",
+    "russian": "улица",
+    "sentence_tr": "Bu sokak çok sessiz.",
+    "sentence_ru": "Эта улица очень тихая.",
+    "level": "A1"
+  },
+  {
+    "id": 53,
+    "turkish": "park",
+    "russian": "парк",
+    "sentence_tr": "Çocuklar parkta oynuyor.",
+    "sentence_ru": "Дети играют в парке.",
+    "level": "A1"
+  },
+  {
+    "id": 54,
+    "turkish": "bahçe",
+    "russian": "сад",
+    "sentence_tr": "Bahçede çiçekler var.",
+    "sentence_ru": "В саду есть цветы.",
+    "level": "A1"
+  },
+  {
+    "id": 55,
+    "turkish": "çiçek",
+    "russian": "цветок",
+    "sentence_tr": "Bu çiçek çok güzel.",
+    "sentence_ru": "Этот цветок очень красивый.",
+    "level": "A1"
+  },
+  {
+    "id": 56,
+    "turkish": "ağaç",
+    "russian": "дерево",
+    "sentence_tr": "Ağaç çok yüksek.",
+    "sentence_ru": "Дерево очень высокое.",
+    "level": "A1"
+  },
+  {
+    "id": 57,
+    "turkish": "güneş",
+    "russian": "солнце",
+    "sentence_tr": "Bugün güneş parlıyor.",
+    "sentence_ru": "Сегодня светит солнце.",
+    "level": "A1"
+  },
+  {
+    "id": 58,
+    "turkish": "ay",
+    "russian": "луна, месяц",
+    "sentence_tr": "Bu ay çok yoğunum.",
+    "sentence_ru": "В этом месяце я очень занят.",
+    "level": "A1"
+  },
+  {
+    "id": 59,
+    "turkish": "yıldız",
+    "russian": "звезда",
+    "sentence_tr": "Gökyüzünde çok yıldız var.",
+    "sentence_ru": "На небе много звезд.",
+    "level": "A1"
+  },
+  {
+    "id": 60,
+    "turkish": "hava",
+    "russian": "погода, воздух",
+    "sentence_tr": "Bugün hava güzel.",
+    "sentence_ru": "Сегодня хорошая погода.",
+    "level": "A1"
+  },
+  {
+    "id": 61,
+    "turkish": "yağmur",
+    "russian": "дождь",
+    "sentence_tr": "Yağmur yağıyor.",
+    "sentence_ru": "Идет дождь.",
+    "level": "A1"
+  },
+  {
+    "id": 62,
+    "turkish": "kar",
+    "russian": "снег",
+    "sentence_tr": "Kışın kar yağar.",
+    "sentence_ru": "Зимой идет снег.",
+    "level": "A1"
+  },
+  {
+    "id": 63,
+    "turkish": "rüzgar",
+    "russian": "ветер",
+    "sentence_tr": "Bugün rüzgar güçlü.",
+    "sentence_ru": "Сегодня сильный ветер.",
+    "level": "A1"
+  },
+  {
+    "id": 64,
+    "turkish": "gün",
+    "russian": "день",
+    "sentence_tr": "Bugün güzel bir gün.",
+    "sentence_ru": "Сегодня хороший день.",
+    "level": "A1"
+  },
+  {
+    "id": 65,
+    "turkish": "gece",
+    "russian": "ночь",
+    "sentence_tr": "Gece erken uyuyorum.",
+    "sentence_ru": "Ночью я ложусь спать рано.",
+    "level": "A1"
+  },
+  {
+    "id": 66,
+    "turkish": "sabah",
+    "russian": "утро",
+    "sentence_tr": "Sabah kahve içiyorum.",
+    "sentence_ru": "Утром я пью кофе.",
+    "level": "A1"
+  },
+  {
+    "id": 67,
+    "turkish": "akşam",
+    "russian": "вечер",
+    "sentence_tr": "Akşam yürüyüş yapıyorum.",
+    "sentence_ru": "Вечером я гуляю.",
+    "level": "A1"
+  },
+  {
+    "id": 68,
+    "turkish": "saat",
+    "russian": "час, часы",
+    "sentence_tr": "Saat kaç?",
+    "sentence_ru": "Который час?",
+    "level": "A1"
+  },
+  {
+    "id": 69,
+    "turkish": "dakika",
+    "russian": "минута",
+    "sentence_tr": "Beş dakika bekle.",
+    "sentence_ru": "Подожди пять минут.",
+    "level": "A1"
+  },
+  {
+    "id": 70,
+    "turkish": "bugün",
+    "russian": "сегодня",
+    "sentence_tr": "Bugün çalışıyorum.",
+    "sentence_ru": "Сегодня я работаю.",
+    "level": "A1"
+  },
+  {
+    "id": 71,
+    "turkish": "yarın",
+    "russian": "завтра",
+    "sentence_tr": "Yarın görüşürüz.",
+    "sentence_ru": "Увидимся завтра.",
+    "level": "A1"
+  },
+  {
+    "id": 72,
+    "turkish": "dün",
+    "russian": "вчера",
+    "sentence_tr": "Dün sinemaya gittim.",
+    "sentence_ru": "Вчера я ходил в кино.",
+    "level": "A1"
+  },
+  {
+    "id": 73,
+    "turkish": "hafta",
+    "russian": "неделя",
+    "sentence_tr": "Bu hafta çok meşgulüm.",
+    "sentence_ru": "На этой неделе я очень занят.",
+    "level": "A1"
+  },
+  {
+    "id": 74,
+    "turkish": "aylık",
+    "russian": "ежемесячный",
+    "sentence_tr": "Aylık plan hazırlıyorum.",
+    "sentence_ru": "Я готовлю ежемесячный план.",
+    "level": "A1"
+  },
+  {
+    "id": 75,
+    "turkish": "yıl",
+    "russian": "год",
+    "sentence_tr": "Bu yıl Türkiye'ye gidiyorum.",
+    "sentence_ru": "В этом году я еду в Турцию.",
     "level": "A1"
   }
 ]
