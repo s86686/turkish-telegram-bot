@@ -38,7 +38,9 @@ async def lesson(
     message: Message
 ):
 
-    word = get_random_word()
+    word = get_random_word(
+    message.from_user.id
+)
 
     CURRENT_WORDS[
         message.from_user.id
