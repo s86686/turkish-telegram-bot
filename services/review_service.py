@@ -70,9 +70,15 @@ def save_review(
         )
 
         if quality >= 2:
-            user_word.correct_count += 1
+
+            user_word.correct_count = (
+                user_word.correct_count or 0
+            ) + 1
+
         else:
-            user_word.wrong_count += 1
+            user_word.wrong_count = (
+                user_word.wrong_count or 0
+            ) + 1
 
         db.commit()
 
