@@ -1,4 +1,11 @@
 import asyncio
+import os
+
+site = web.TCPSite(
+    runner,
+    host="0.0.0.0",
+    port=int(os.getenv("PORT", "10000"))
+)
 
 from aiohttp import web
 
@@ -60,7 +67,7 @@ async def handle_webhook(request):
 
 async def on_startup():
 
-    create_tables()
+    # create_tables()
 
     webhook_url = (
         f"{RENDER_EXTERNAL_URL}"
