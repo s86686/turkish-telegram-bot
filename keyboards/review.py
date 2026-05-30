@@ -80,3 +80,22 @@ def quiz_keyboard(options):
     return InlineKeyboardMarkup(
         inline_keyboard=keyboard
     )
+
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
+
+
+def speak_keyboard():
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="🔊 Слушать",
+                    callback_data="speak"
+                )
+            ]
+        ]
+    )
