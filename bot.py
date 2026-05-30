@@ -19,6 +19,9 @@ from handlers.settings import (
     router as settings_router
 )
 
+from handlers.lesson import (
+    router as lesson_router
+)
 
 async def main():
 
@@ -40,6 +43,9 @@ async def main():
         settings_router
     )
 
+    dp.include_router(
+        lesson_router
+    )
     await dp.start_polling(bot)
 
 
