@@ -128,31 +128,35 @@ class Word(Base):
 
     __tablename__ = "words"
 
-    id = Column(
+    id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True
     )
 
-    lemma = Column(
-        String(100),
-        nullable=False
+    lemma: Mapped[str] = mapped_column(
+        String(100)
     )
 
-    translation = Column(
-        String(100),
-        nullable=False
+    translation: Mapped[str] = mapped_column(
+        String(100)
     )
 
-    level = Column(
+    level: Mapped[str] = mapped_column(
         String(10),
         default="A1"
     )
 
-    topic = Column(
+    topic: Mapped[str] = mapped_column(
         String(50),
         default="general"
     )
 
-    example_tr = Column(Text)
+    example_tr: Mapped[str | None] = mapped_column(
+        String,
+        nullable=True
+    )
 
-    example_ru = Column(Text)
+    example_ru: Mapped[str | None] = mapped_column(
+        String,
+        nullable=True
+    )
