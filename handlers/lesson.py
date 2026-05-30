@@ -98,3 +98,50 @@ async def rate_word(
     )
 
     await callback.answer()
+
+@router.callback_query(
+    F.data.startswith("quiz_")
+)
+async def process_quiz(
+    callback: CallbackQuery
+):
+
+    word = CURRENT_WORDS.get(
+        callback.from_user.id
+    )
+
+    if not word:
+        return
+
+    selected = int(
+        callback.data.split("_")[1]
+    )
+
+    correct = (
+        word["quiz"]["correct"]
+    )
+
+    if selected == correct:
+
+        text = "✅ Верно"
+
+    else:
+
+        answer = (
+            word["quiz"]["options"][
+                correct
+            ]
+        )
+
+        text = (
+            f"❌ Неверно\n\n"
+            f"Правильный ответ:\n"
+            f"{answer}"
+        )
+
+    await callback.message.edit_text(
+        text,
+        reply_markup=quality_keyboard()
+    )
+
+    await callback.answer()
