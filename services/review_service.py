@@ -50,24 +50,52 @@ def save_review(
 
             db.add(user_word)
 
-        intervals = {
-            0: 1,
-            1: 2,
-            2: 5,
-            3: 10
-        }
+        if quality == 0:
 
-        interval = intervals.get(
-            quality,
-            1
+    user_word.repetitions = 0
+    user_word.interval_days = 1
+
+elif quality == 1:
+
+    user_word.repetitions = max(
+        0,
+        user_word.repetitions - 1
+    )
+
+    user_word.interval_days = 2
+
+elif quality == 2:
+
+    user_word.repetitions += 1
+
+    if user_word.repetitions == 1:
+        user_word.interval_days = 3
+    elif user_word.repetitions == 2:
+        user_word.interval_days = 7
+    else:
+        user_word.interval_days = int(
+            user_word.interval_days * 1.8
         )
 
-        user_word.interval_days = interval
+elif quality == 3:
+
+    user_word.repetitions += 1
+
+    if user_word.repetitions == 1:
+        user_word.interval_days = 5
+    elif user_word.repetitions == 2:
+        user_word.interval_days = 14
+    else:
+        user_word.interval_days = int(
+            user_word.interval_days * 2.5
+        )
 
         user_word.next_review = (
-            datetime.utcnow()
-            + timedelta(days=interval)
-        )
+    datetime.utcnow()
+    + timedelta(
+        days=user_word.interval_days
+    )
+)
 
         if quality >= 2:
 
