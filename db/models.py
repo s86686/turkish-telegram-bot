@@ -169,3 +169,8 @@ class Word(Base):
         String,
         nullable=True
     )
+    
+    priority: Mapped[int] = mapped_column(
+        Integer,
+        default=100
+    )
