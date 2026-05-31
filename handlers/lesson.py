@@ -206,6 +206,7 @@ async def rate_word(
 @router.callback_query(
     F.data == "speak"
 )
+
 async def speak_word(
     callback: CallbackQuery
 ):
@@ -224,21 +225,30 @@ async def speak_word(
         f"{example['tr']}"
     )
 
+    import os
+
     filename = await generate_tts(
         text
     )
 
-    audio = FSInputFile(
-        filename
-    )
+    try:
 
-    voice_msg = await callback.message.answer_voice(
-        audio
-    )
+        audio = FSInputFile(
+            filename
+        )
 
-    VOICE_MESSAGES[
-        callback.from_user.id
-    ] = voice_msg.message_id
+        voice_msg = await callback.message.answer_voice(
+            audio
+        )
+
+        VOICE_MESSAGES[
+            callback.from_user.id
+        ] = voice_msg.message_id
+
+    finally:
+
+        if os.path.exists(filename):
+            os.remove(filename)
 
     await callback.answer()
 
