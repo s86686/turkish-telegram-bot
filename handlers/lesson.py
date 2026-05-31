@@ -20,10 +20,8 @@ from services.tts_service import (
 )
 
 from keyboards.review import (
-    show_answer_keyboard,
     quality_keyboard,
-    quiz_keyboard,
-    continue_keyboard
+    quiz_keyboard
 )
 
 router = Router()
@@ -55,63 +53,12 @@ async def lesson(
     ] = word
 
     await message.answer(
-        f"🇹🇷\n\n"
-        f"{word['lemma']}",
-        reply_markup=
-        show_answer_keyboard()
-    )
-
-
-@router.callback_query(
-    F.data == "show_answer"
-)
-async def show_answer(
-    callback: CallbackQuery
-):
-
-    word = CURRENT_WORDS.get(
-        callback.from_user.id
-    )
-
-    if not word:
-        return
-
-    example = word["examples"][0]
-
-    await callback.message.edit_text(
-        f"🇹🇷 {word['lemma']}\n\n"
-        f"🇷🇺 {word['translation']}\n\n"
-        f"{example['tr']}\n"
-        f"{example['ru']}",
-        reply_markup=continue_keyboard()
-    )
-
-    await callback.answer()
-
-
-@router.callback_query(
-    F.data == "start_quiz"
-)
-async def start_quiz(
-    callback: CallbackQuery
-):
-
-    word = CURRENT_WORDS.get(
-        callback.from_user.id
-    )
-
-    if not word:
-        return
-
-    await callback.message.edit_text(
         f"Что означает?\n\n"
         f"🇹🇷 {word['lemma']}",
         reply_markup=quiz_keyboard(
             word["quiz"]["options"]
         )
     )
-
-    await callback.answer()
 
 
 @router.callback_query(
@@ -136,26 +83,26 @@ async def process_quiz(
         word["quiz"]["correct"]
     )
 
+    example = word["examples"][0]
+
     if selected == correct:
 
-        text = "✅ Верно"
+        result = "✅ Верно"
 
     else:
 
-        answer = (
-            word["quiz"]["options"][
-                correct
-            ]
-        )
-
-        text = (
-            f"❌ Неверно\n\n"
+        result = (
+            "❌ Неверно\n\n"
             f"Правильный ответ:\n"
-            f"{answer}"
+            f"{word['translation']}"
         )
 
     await callback.message.edit_text(
-        text,
+        f"{result}\n\n"
+        f"🇹🇷 {word['lemma']}\n"
+        f"🇷🇺 {word['translation']}\n\n"
+        f"{example['tr']}\n"
+        f"{example['ru']}",
         reply_markup=quality_keyboard()
     )
 
@@ -187,7 +134,7 @@ async def rate_word(
     )
 
     await callback.message.edit_text(
-        "✅ Ответ сохранён"
+        "✅ Ответ сохранён\n\nНажмите 📚 Урок для следующего слова."
     )
 
     await callback.answer()
