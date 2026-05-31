@@ -206,7 +206,12 @@ async def rate_word(
         f"✅ Ответ сохранён\n\n"
         f"📅 Следующее повторение через "
         f"{interval} дн.",
-        reply_markup=next_word_keyboard()
+        reply_markup=next_word_keyboard(
+            CURRENT_MODE.get(
+                callback.from_user.id,
+                "new"
+            )
+        )
     )
 
     await callback.answer()
@@ -262,7 +267,7 @@ async def speak_word(
     await callback.answer()
 
 @router.callback_query(
-    F.data == "next_word"
+    F.data.startswith("next_")
 )
 async def next_word(
     callback: CallbackQuery
@@ -289,10 +294,7 @@ async def next_word(
             None
         )
 
-    mode = CURRENT_MODE.get(
-        callback.from_user.id,
-        "new"
-    )
+    mode = callback.data.split("_")[1]
 
     if mode == "review":
 
