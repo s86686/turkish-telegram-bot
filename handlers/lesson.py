@@ -232,6 +232,17 @@ async def next_word(
         callback.from_user.id
     )
 
+    if word == "LIMIT_REACHED":
+
+        await callback.message.edit_text(
+            "🎉 Лимит новых слов на сегодня достигнут.\n\n"
+            "Перейдите к повторениям 🔁"
+        )
+
+        await callback.answer()
+
+        return
+
     if not word:
 
         await callback.message.edit_text(
