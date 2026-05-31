@@ -101,6 +101,11 @@ class UserWord(Base):
         DateTime,
         nullable=True
     )
+    
+    quiz_direction: Mapped[str] = mapped_column(
+        String(20),
+        default="TR_RU"
+    )
 
 
 class ReviewHistory(Base):
