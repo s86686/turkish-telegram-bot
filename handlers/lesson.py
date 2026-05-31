@@ -34,7 +34,7 @@ def build_question_text(
 word
 ):
 
-```
+
 question = word["quiz"]["question"]
 
 if question == word["lemma"]:
@@ -50,7 +50,7 @@ else:
     text = f"🇷🇺 {question}"
 
 return f"{title}\n\n{text}"
-```
+
 
 @router.message(
 lambda m: m.text == "📚 Новые слова"
@@ -59,7 +59,7 @@ async def new_words(
 message: Message
 ):
 
-```
+
 word = get_new_word(
     message.from_user.id
 )
@@ -91,7 +91,7 @@ await message.answer(
         word["quiz"]["options"]
     )
 )
-```
+
 
 @router.message(
 lambda m: m.text == "🔁 Повторения"
@@ -100,7 +100,7 @@ async def reviews(
 message: Message
 ):
 
-```
+
 word = get_review_word(
     message.from_user.id
 )
@@ -123,7 +123,7 @@ await message.answer(
         word["quiz"]["options"]
     )
 )
-```
+
 
 @router.callback_query(
 F.data.startswith("quiz_")
@@ -132,7 +132,7 @@ async def process_quiz(
 callback: CallbackQuery
 ):
 
-```
+
 word = CURRENT_WORDS.get(
     callback.from_user.id
 )
@@ -172,7 +172,7 @@ await callback.message.edit_text(
 )
 
 await callback.answer()
-```
+
 
 @router.callback_query(
 F.data.startswith("q_")
@@ -181,7 +181,7 @@ async def rate_word(
 callback: CallbackQuery
 ):
 
-```
+
 quality = int(
     callback.data.split("_")[1]
 )
@@ -207,7 +207,7 @@ await callback.message.edit_text(
 )
 
 await callback.answer()
-```
+
 
 @router.callback_query(
 F.data == "speak"
@@ -216,7 +216,7 @@ async def speak_word(
 callback: CallbackQuery
 ):
 
-```
+
 word = CURRENT_WORDS.get(
     callback.from_user.id
 )
@@ -244,7 +244,7 @@ await callback.message.answer_voice(
 )
 
 await callback.answer()
-```
+
 
 @router.callback_query(
 F.data == "next_word"
@@ -253,7 +253,7 @@ async def next_word(
 callback: CallbackQuery
 ):
 
-```
+
 word = get_new_word(
     callback.from_user.id
 )
@@ -291,7 +291,3 @@ await callback.message.edit_text(
 )
 
 await callback.answer()
-```
-
-```
-```
