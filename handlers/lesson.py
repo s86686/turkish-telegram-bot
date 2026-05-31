@@ -30,6 +30,7 @@ router = Router()
 
 CURRENT_WORDS = {}
 VOICE_MESSAGES = {}
+CURRENT_MODE = {}
 
 def build_question_text(
     word
@@ -82,6 +83,9 @@ async def new_words(
         message.from_user.id
     ] = word
 
+    CURRENT_MODE[
+        message.from_user.id
+    ] = "new"
     
     await message.answer(
         build_question_text(word),
@@ -113,6 +117,9 @@ async def reviews(
         message.from_user.id
     ] = word
 
+    CURRENT_MODE[
+        message.from_user.id
+    ] = "review"
     
     await message.answer(
         build_question_text(word),
