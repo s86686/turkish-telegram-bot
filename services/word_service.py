@@ -96,7 +96,7 @@ def get_new_word(
         )
 
         if learned_today_count >= user.daily_new_words:
-        return "LIMIT_REACHED"
+            return "LIMIT_REACHED"
         word = random.choice(
             new_words
         )
