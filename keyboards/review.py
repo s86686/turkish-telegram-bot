@@ -10,6 +10,12 @@ def quality_keyboard():
         inline_keyboard=[
             [
                 InlineKeyboardButton(
+                    text="🔊 Слушать",
+                    callback_data="speak"
+                )
+            ],
+            [
+                InlineKeyboardButton(
                     text="😵 Забыл",
                     callback_data="q_0"
                 ),
@@ -31,7 +37,6 @@ def quality_keyboard():
         ]
     )
 
-
 def quiz_keyboard(options):
 
     keyboard = []
@@ -46,15 +51,6 @@ def quiz_keyboard(options):
                 )
             ]
         )
-
-    keyboard.append(
-        [
-            InlineKeyboardButton(
-                text="🔊 Слушать",
-                callback_data="speak"
-            )
-        ]
-    )
 
     return InlineKeyboardMarkup(
         inline_keyboard=keyboard
