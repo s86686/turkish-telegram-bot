@@ -77,7 +77,26 @@ def get_new_word(
 
         if not new_words:
             return None
+        today = datetime.utcnow().date()
 
+        learned_today = (
+        db.query(UserWord)
+        .filter(
+        UserWord.user_id == user.id
+        )    
+        .all()
+        )
+
+        learned_today_count = len(
+        [
+        w for w in learned_today
+        if w.learned_at
+        and w.learned_at.date() == today
+        ]
+        )
+
+        if learned_today_count >= user.daily_new_words:
+        return "LIMIT_REACHED"
         word = random.choice(
             new_words
         )
