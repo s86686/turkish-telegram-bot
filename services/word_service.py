@@ -4,183 +4,194 @@ from datetime import datetime
 
 from db.database import SessionLocal
 from db.models import (
-    Word,
-    User,
-    UserWord
+Word,
+User,
+UserWord
 )
 
 from services.quiz_service import (
-    build_quiz
+build_quiz
 )
 
-
 def build_word_result(
-    word,
-    all_words
+word,
+all_words,
+direction
 ):
 
-    result = {
-        "id": word.id,
-        "lemma": word.lemma,
-        "translation": word.translation,
-        "examples": [
-            {
-                "tr": word.example_tr,
-                "ru": word.example_ru
-            }
-        ]
-    }
+```
+result = {
+    "id": word.id,
+    "lemma": word.lemma,
+    "translation": word.translation,
+    "examples": [
+        {
+            "tr": word.example_tr,
+            "ru": word.example_ru
+        }
+    ]
+}
 
-    result["quiz"] = build_quiz(
-        result,
-        all_words
-    )
+result["quiz"] = build_quiz(
+    result,
+    all_words,
+    direction
+)
 
-    return result
-
+return result
+```
 
 def get_new_word(
-    telegram_id: int
+telegram_id: int
 ):
 
-    db = SessionLocal()
+```
+db = SessionLocal()
 
-    try:
+try:
 
-        user = (
-            db.query(User)
-            .filter(
-                User.telegram_id == telegram_id
-            )
-            .first()
+    user = (
+        db.query(User)
+        .filter(
+            User.telegram_id == telegram_id
         )
+        .first()
+    )
 
-        if not user:
-            return None
+    if not user:
+        return None
 
-        learned_ids = [
-            uw.word_id
-            for uw in db.query(
-                UserWord
-            ).filter(
-                UserWord.user_id == user.id
-            ).all()
-        ]
+    today = datetime.utcnow().date()
 
-        new_words = (
-            db.query(Word)
-            .filter(
-                ~Word.id.in_(learned_ids)
-            )
-            .all()
-        )
-
-        if not new_words:
-            return None
-        today = datetime.utcnow().date()
-
-        learned_today = (
+    learned_today = (
         db.query(UserWord)
         .filter(
-        UserWord.user_id == user.id
-        )    
+            UserWord.user_id == user.id
+        )
         .all()
-        )
+    )
 
-        learned_today_count = len(
+    learned_today_count = len(
         [
-        w for w in learned_today
-        if w.learned_at
-        and w.learned_at.date() == today
+            w for w in learned_today
+            if w.learned_at
+            and w.learned_at.date() == today
         ]
+    )
+
+    if learned_today_count >= user.daily_new_words:
+        return "LIMIT_REACHED"
+
+    learned_ids = [
+        uw.word_id
+        for uw in db.query(
+            UserWord
+        ).filter(
+            UserWord.user_id == user.id
+        ).all()
+    ]
+
+    new_words = (
+        db.query(Word)
+        .filter(
+            ~Word.id.in_(learned_ids)
         )
+        .all()
+    )
 
-        if learned_today_count >= user.daily_new_words:
-            return "LIMIT_REACHED"
-        word = random.choice(
-            new_words
-        )
+    if not new_words:
+        return None
 
-        all_words = [
-            {
-                "id": w.id,
-                "translation": w.translation
-            }
-            for w in db.query(
-                Word
-            ).all()
-        ]
+    word = random.choice(
+        new_words
+    )
 
-        return build_word_result(
-            word,
-            all_words
-        )
+    all_words = [
+        {
+            "id": w.id,
+            "lemma": w.lemma,
+            "translation": w.translation
+        }
+        for w in db.query(
+            Word
+        ).all()
+    ]
 
-    finally:
+    return build_word_result(
+        word,
+        all_words,
+        user.quiz_direction
+    )
 
-        db.close()
+finally:
 
+    db.close()
+```
 
 def get_review_word(
-    telegram_id: int
+telegram_id: int
 ):
 
-    db = SessionLocal()
+```
+db = SessionLocal()
 
-    try:
+try:
 
-        user = (
-            db.query(User)
-            .filter(
-                User.telegram_id == telegram_id
-            )
-            .first()
+    user = (
+        db.query(User)
+        .filter(
+            User.telegram_id == telegram_id
         )
+        .first()
+    )
 
-        if not user:
-            return None
+    if not user:
+        return None
 
-        review = (
-            db.query(UserWord)
-            .filter(
-                UserWord.user_id == user.id,
-                UserWord.next_review <= datetime.utcnow()
-            )
-            .order_by(
-                UserWord.next_review
-            )
-            .first()
+    review = (
+        db.query(UserWord)
+        .filter(
+            UserWord.user_id == user.id,
+            UserWord.next_review <= datetime.utcnow()
         )
-
-        if not review:
-            return None
-
-        word = (
-            db.query(Word)
-            .filter(
-                Word.id == review.word_id
-            )
-            .first()
+        .order_by(
+            UserWord.next_review
         )
+        .first()
+    )
 
-        if not word:
-            return None
+    if not review:
+        return None
 
-        all_words = [
-            {
-                "id": w.id,
-                "translation": w.translation
-            }
-            for w in db.query(
-                Word
-            ).all()
-        ]
-
-        return build_word_result(
-            word,
-            all_words
+    word = (
+        db.query(Word)
+        .filter(
+            Word.id == review.word_id
         )
+        .first()
+    )
 
-    finally:
+    if not word:
+        return None
 
-        db.close()
+    all_words = [
+        {
+            "id": w.id,
+            "lemma": w.lemma,
+            "translation": w.translation
+        }
+        for w in db.query(
+            Word
+        ).all()
+    ]
+
+    return build_word_result(
+        word,
+        all_words,
+        user.quiz_direction
+    )
+
+finally:
+
+    db.close()
+```
