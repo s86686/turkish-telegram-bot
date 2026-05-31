@@ -139,10 +139,3 @@ def get_new_word(
     finally:
 
         db.close()
-
-select count(*)
-from user_words
-where word_id not in (
-    select id
-    from words
-);
