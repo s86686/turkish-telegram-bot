@@ -1,5 +1,3 @@
-# services/word_service.py
-
 import random
 
 from datetime import datetime
@@ -16,7 +14,32 @@ from services.quiz_service import (
 )
 
 
-def get_random_word(
+def build_word_result(
+    word,
+    all_words
+):
+
+    result = {
+        "id": word.id,
+        "lemma": word.lemma,
+        "translation": word.translation,
+        "examples": [
+            {
+                "tr": word.example_tr,
+                "ru": word.example_ru
+            }
+        ]
+    }
+
+    result["quiz"] = build_quiz(
+        result,
+        all_words
+    )
+
+    return result
+
+
+def get_new_word(
     telegram_id: int
 ):
 
@@ -24,100 +47,120 @@ def get_random_word(
 
     try:
 
-        user = db.query(
-            User
-        ).filter(
-            User.telegram_id == telegram_id
-        ).first()
-
-        if not user:
-            return None
-
-        # 1. Слова к повторению
-
-        review_word = (
-            db.query(
-                UserWord
-            )
+        user = (
+            db.query(User)
             .filter(
-                UserWord.user_id == user.id,
-                UserWord.next_review <= datetime.utcnow()
+                User.telegram_id == telegram_id
             )
             .first()
         )
 
-        if review_word:
+        if not user:
+            return None
 
-            word = db.query(
-                Word
+        learned_ids = [
+            uw.word_id
+            for uw in db.query(
+                UserWord
             ).filter(
-                Word.id == review_word.word_id
-            ).first()
+                UserWord.user_id == user.id
+            ).all()
+        ]
 
-        else:
-
-            learned_ids = [
-                uw.word_id
-                for uw in db.query(
-                    UserWord
-                ).filter(
-                    UserWord.user_id == user.id
-                ).all()
-            ]
-
-            new_words = (
-                db.query(
-                    Word
-                )
-                .filter(
-                    ~Word.id.in_(learned_ids)
-                )
-                .all()
+        new_words = (
+            db.query(Word)
+            .filter(
+                ~Word.id.in_(learned_ids)
             )
+            .all()
+        )
 
-            if new_words:
+        if not new_words:
+            return None
 
-                word = random.choice(
-                    new_words
-                )
+        word = random.choice(
+            new_words
+        )
 
-            else:
+        all_words = [
+            {
+                "id": w.id,
+                "translation": w.translation
+            }
+            for w in db.query(
+                Word
+            ).all()
+        ]
 
-                word = random.choice(
-                    db.query(Word).all()
-                )
-
-        result = {
-            "id": word.id,
-            "lemma": word.lemma,
-            "translation": word.translation,
-            "examples": [
-                {
-                    "tr": word.example_tr,
-                    "ru": word.example_ru
-                }
-            ]
-        }
-
-        all_words = []
-
-        for w in db.query(
-            Word
-        ).all():
-
-            all_words.append(
-                {
-                    "id": w.id,
-                    "translation": w.translation
-                }
-            )
-
-        result["quiz"] = build_quiz(
-            result,
+        return build_word_result(
+            word,
             all_words
         )
 
-        return result
+    finally:
+
+        db.close()
+
+
+def get_review_word(
+    telegram_id: int
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == telegram_id
+            )
+            .first()
+        )
+
+        if not user:
+            return None
+
+        review = (
+            db.query(UserWord)
+            .filter(
+                UserWord.user_id == user.id,
+                UserWord.next_review <= datetime.utcnow()
+            )
+            .order_by(
+                UserWord.next_review
+            )
+            .first()
+        )
+
+        if not review:
+            return None
+
+        word = (
+            db.query(Word)
+            .filter(
+                Word.id == review.word_id
+            )
+            .first()
+        )
+
+        if not word:
+            return None
+
+        all_words = [
+            {
+                "id": w.id,
+                "translation": w.translation
+            }
+            for w in db.query(
+                Word
+            ).all()
+        ]
+
+        return build_word_result(
+            word,
+            all_words
+        )
 
     finally:
 
