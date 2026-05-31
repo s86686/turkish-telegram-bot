@@ -43,6 +43,11 @@ class User(Base):
         Integer,
         default=15
     )
+    
+    quiz_direction: Mapped[str] = mapped_column(
+        String(20),
+        default="TR_RU"
+    )
 
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
@@ -102,12 +107,6 @@ class UserWord(Base):
         nullable=True
     )
     
-    quiz_direction: Mapped[str] = mapped_column(
-        String(20),
-        default="TR_RU"
-    )
-
-
 class ReviewHistory(Base):
 
     __tablename__ = "review_history"
