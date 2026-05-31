@@ -101,8 +101,22 @@ def get_new_word(
         if not new_words:
             return None
 
+        best_priority = min(
+            w.priority
+            for w in new_words
+        )
+        
+        candidates = [
+        
+            w
+        
+            for w in new_words
+        
+            if w.priority == best_priority
+        ]
+        
         word = random.choice(
-            new_words
+            candidates
         )
 
         all_words = [
