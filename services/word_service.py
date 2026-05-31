@@ -194,4 +194,3 @@ try:
 finally:
 
     db.close()
-```
