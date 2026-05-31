@@ -56,14 +56,16 @@ def quiz_keyboard(options):
         inline_keyboard=keyboard
     )
 
-def next_word_keyboard():
+def next_word_keyboard(
+    mode: str
+):
 
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="➡ Следующее слово",
-                    callback_data="next_word"
+                    callback_data=f"next_{mode}"
                 )
             ]
         ]
