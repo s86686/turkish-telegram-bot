@@ -21,7 +21,8 @@ from services.tts_service import (
 
 from keyboards.review import (
     quality_keyboard,
-    quiz_keyboard
+    quiz_keyboard,
+    next_word_keyboard
 )
 
 router = Router()
