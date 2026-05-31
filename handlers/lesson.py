@@ -32,20 +32,52 @@ CURRENT_WORDS = {}
 
 
 @router.message(
-    lambda m: m.text == "📚 Урок"
+    lambda m: m.text == "📚 Новые слова"
 )
-async def lesson(
+async def new_words(
     message: Message
 ):
 
-    word = get_random_word(
+    word = get_new_word(
         message.from_user.id
     )
 
     if not word:
 
         await message.answer(
-            "Слова не найдены."
+            "🎉 Новых слов больше нет."
+        )
+
+        return
+
+    CURRENT_WORDS[
+        message.from_user.id
+    ] = word
+
+    await message.answer(
+        f"Что означает?\n\n"
+        f"🇹🇷 {word['lemma']}",
+        reply_markup=quiz_keyboard(
+            word["quiz"]["options"]
+        )
+    )
+
+
+@router.message(
+    lambda m: m.text == "🔁 Повторения"
+)
+async def reviews(
+    message: Message
+):
+
+    word = get_review_word(
+        message.from_user.id
+    )
+
+    if not word:
+
+        await message.answer(
+            "🎉 Сегодня повторений нет."
         )
 
         return
@@ -185,15 +217,17 @@ async def next_word(
     callback: CallbackQuery
 ):
 
-    word = get_random_word(
+    word = get_new_word(
         callback.from_user.id
     )
 
     if not word:
 
-        await callback.answer(
-            "Слова не найдены."
+        await callback.message.edit_text(
+            "🎉 Новых слов больше нет."
         )
+
+        await callback.answer()
 
         return
 
