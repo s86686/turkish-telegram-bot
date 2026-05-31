@@ -158,7 +158,7 @@ def get_review_word(
         )
 
         if not user:
-            return None
+            return "USER_NOT_FOUND"
 
         review = (
             db.query(UserWord)
@@ -172,7 +172,7 @@ def get_review_word(
         )
 
         if not review:
-            return None
+            return "REVIEW_NOT_FOUND"
 
         word = (
             db.query(Word)
@@ -183,36 +183,12 @@ def get_review_word(
         )
 
         if not word:
-            return None
+            return f"WORD_NOT_FOUND: {review.word_id}"
 
-        all_words = [
-            {
-                "id": w.id,
-                "lemma": w.lemma,
-                "translation": w.translation
-            }
-            for w in db.query(
-                Word
-            ).all()
-        ]
-
-        try:
-
-            result = build_word_result(
-                word,
-                all_words,
-                user.quiz_direction
-            )
-
-            return result
-
-        except Exception as e:
-
-            return {
-                "error": str(e),
-                "word_id": word.id,
-                "lemma": word.lemma
-            }
+        return {
+            "review_word_id": review.word_id,
+            "lemma": word.lemma
+        }
 
     finally:
 
