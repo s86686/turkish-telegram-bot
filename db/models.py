@@ -97,6 +97,11 @@ class UserWord(Base):
         nullable=True
     )
 
+    learned_at: Mapped[datetime | None] = mapped_column(
+        DateTime,
+        nullable=True
+    )
+
 
 class ReviewHistory(Base):
 
