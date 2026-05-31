@@ -139,3 +139,68 @@ def get_new_word(
     finally:
 
         db.close()
+def get_review_word(
+    telegram_id: int
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == telegram_id
+            )
+            .first()
+        )
+
+        if not user:
+            return None
+
+        review = (
+            db.query(UserWord)
+            .filter(
+                UserWord.user_id == user.id,
+                UserWord.next_review <= datetime.utcnow()
+            )
+            .order_by(
+                UserWord.next_review
+            )
+            .first()
+        )
+
+        if not review:
+            return None
+
+        word = (
+            db.query(Word)
+            .filter(
+                Word.id == review.word_id
+            )
+            .first()
+        )
+
+        if not word:
+            return None
+
+        all_words = [
+            {
+                "id": w.id,
+                "lemma": w.lemma,
+                "translation": w.translation
+            }
+            for w in db.query(
+                Word
+            ).all()
+        ]
+
+        return build_word_result(
+            word,
+            all_words,
+            user.quiz_direction
+        )
+
+    finally:
+
+        db.close()
