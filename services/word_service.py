@@ -160,17 +160,16 @@ def get_review_word(
         if not user:
             return None
 
-        review = (
-            db.query(UserWord)
-            .filter(
-                UserWord.user_id == user.id,
-                UserWord.next_review <= datetime.utcnow()
-            )
-            .order_by(
-                UserWord.next_review
-            )
-            .first()
+       review = (
+        db.query(UserWord)
+        .filter(
+            UserWord.user_id == user.id
         )
+        .order_by(
+            UserWord.next_review
+        )
+        .first()
+    )
 
         if not review:
             return None
