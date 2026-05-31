@@ -140,56 +140,9 @@ def get_new_word(
 
         db.close()
 
-
-def get_review_word(
-    telegram_id: int
-):
-
-    db = SessionLocal()
-
-    try:
-
-        user = (
-            db.query(User)
-            .filter(
-                User.telegram_id == telegram_id
-            )
-            .first()
-        )
-
-        if not user:
-            return "USER_NOT_FOUND"
-
-        review = (
-            db.query(UserWord)
-            .filter(
-                UserWord.user_id == user.id
-            )
-            .order_by(
-                UserWord.next_review
-            )
-            .first()
-        )
-
-        if not review:
-            return "REVIEW_NOT_FOUND"
-
-        word = (
-            db.query(Word)
-            .filter(
-                Word.id == review.word_id
-            )
-            .first()
-        )
-
-        if not word:
-            return f"WORD_NOT_FOUND: {review.word_id}"
-
-        return {
-            "review_word_id": review.word_id,
-            "lemma": word.lemma
-        }
-
-    finally:
-
-        db.close()
+select count(*)
+from user_words
+where word_id not in (
+    select id
+    from words
+);
