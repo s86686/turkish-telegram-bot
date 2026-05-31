@@ -8,7 +8,8 @@ from aiogram.types import (
 )
 
 from services.word_service import (
-    get_random_word
+    get_new_word,
+    get_review_word
 )
 
 from services.review_service import (
