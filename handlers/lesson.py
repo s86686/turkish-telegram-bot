@@ -29,7 +29,7 @@ from keyboards.review import (
 router = Router()
 
 CURRENT_WORDS = {}
-
+VOICE_MESSAGES = {}
 
 def build_question_text(
     word
@@ -232,9 +232,13 @@ async def speak_word(
         filename
     )
 
-    await callback.message.answer_voice(
+    voice_msg = await callback.message.answer_voice(
         audio
     )
+
+    VOICE_MESSAGES[
+        callback.from_user.id
+    ] = voice_msg.message_id
 
     await callback.answer()
 
@@ -246,6 +250,27 @@ async def next_word(
     callback: CallbackQuery
 ):
 
+    voice_message_id = VOICE_MESSAGES.get(
+        callback.from_user.id
+    )
+
+    if voice_message_id:
+
+        try:
+
+            await callback.bot.delete_message(
+                chat_id=callback.message.chat.id,
+                message_id=voice_message_id
+            )
+
+        except Exception:
+            pass
+
+        VOICE_MESSAGES.pop(
+            callback.from_user.id,
+            None
+        )
+        
     word = get_new_word(
         callback.from_user.id
     )
