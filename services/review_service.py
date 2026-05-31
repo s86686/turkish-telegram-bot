@@ -44,8 +44,9 @@ def save_review(
         if not user_word:
 
             user_word = UserWord(
-                user_id=user.id,
-                word_id=word_id
+            user_id=user.id,
+            word_id=word_id,
+            learned_at=datetime.utcnow()
             )
 
             db.add(user_word)
