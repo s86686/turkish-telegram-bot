@@ -45,23 +45,27 @@ async def stats(
 
     await message.answer(
 
-    f"📈 Статистика\n\n"
-
-    f"📚 Изучено слов: "
-    f"{data['learned']}\n\n"
-
-    f"🔁 К повторению: "
-    f"{data['review_today']}\n\n"
-
-    f"🆕 Новых слов: "
-    f"{data['new_words']}\n\n"
-
-    f"✅ Правильных ответов: "
-    f"{data['correct']}\n"
-
-    f"❌ Ошибок: "
-    f"{data['wrong']}\n\n"
-
-    f"🎯 Точность: "
-    f"{accuracy}%"
-)
+        f"📈 Статистика\n\n"
+    
+        f"📚 Изучено слов: "
+        f"{data['learned']}\n\n"
+    
+        f"🆕 Сегодня изучено: "
+        f"{data['learned_today']} / "
+        f"{data['daily_limit']}\n\n"
+    
+        f"🔁 К повторению: "
+        f"{data['review_today']}\n\n"
+    
+        f"📦 Осталось новых слов: "
+        f"{data['new_words']}\n\n"
+    
+        f"🎯 Точность: "
+        f"{accuracy}%\n\n"
+    
+        f"✅ Правильных ответов: "
+        f"{data['correct']}\n"
+    
+        f"❌ Ошибок: "
+        f"{data['wrong']}"
+    )
