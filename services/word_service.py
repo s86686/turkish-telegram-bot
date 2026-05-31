@@ -160,6 +160,31 @@ def get_review_word(
         if not user:
             return None
 
+        print("TG ID:", telegram_id)
+        print("USER ID:", user.id)
+        
+        count_reviews = (
+            db.query(UserWord)
+            .filter(
+                UserWord.user_id == user.id
+            )
+            .count()
+        )
+        
+        print("USER WORDS:", count_reviews)
+        
+        ready_reviews = (
+            db.query(UserWord)
+            .filter(
+                UserWord.user_id == user.id,
+                UserWord.next_review <= datetime.utcnow()
+            )
+            .count()
+        )
+        
+        print("READY REVIEWS:", ready_reviews)
+
+        
         review = (
             db.query(UserWord)
             .filter(
@@ -171,8 +196,12 @@ def get_review_word(
         .first()
         )
 
+        print("REVIEW OBJECT:", review)
+
         if not review:
             return None
+
+        
 
         word = (
             db.query(Word)
