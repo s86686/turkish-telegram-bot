@@ -261,7 +261,6 @@ async def speak_word(
 
     await callback.answer()
 
-
 @router.callback_query(
     F.data == "next_word"
 )
@@ -289,7 +288,7 @@ async def next_word(
             callback.from_user.id,
             None
         )
-        
+
     mode = CURRENT_MODE.get(
         callback.from_user.id,
         "new"
@@ -320,21 +319,21 @@ async def next_word(
 
     if not word:
 
-    if mode == "review":
+        if mode == "review":
 
-        await callback.message.edit_text(
-            "🎉 Сегодня повторений нет."
-        )
+            await callback.message.edit_text(
+                "🎉 Сегодня повторений нет."
+            )
 
-    else:
+        else:
 
-        await callback.message.edit_text(
-            "🎉 Новых слов больше нет."
-        )
+            await callback.message.edit_text(
+                "🎉 Новых слов больше нет."
+            )
 
-    await callback.answer()
+        await callback.answer()
 
-    return
+        return
 
     CURRENT_WORDS[
         callback.from_user.id
@@ -348,3 +347,4 @@ async def next_word(
     )
 
     await callback.answer()
+
