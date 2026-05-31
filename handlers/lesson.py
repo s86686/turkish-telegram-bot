@@ -97,8 +97,16 @@ async def reviews(
     message: Message
 ):
 
+    await message.answer(
+        f"Telegram ID: {message.from_user.id}"
+    )
+
     word = get_review_word(
         message.from_user.id
+    )
+
+    await message.answer(
+        f"Word object: {word}"
     )
 
     if not word:
