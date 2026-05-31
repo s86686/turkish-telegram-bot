@@ -41,16 +41,16 @@ async def new_words(
     word = get_new_word(
         message.from_user.id
     )
-    
+
     if word == "LIMIT_REACHED":
 
-    await message.answer(
-        "🎉 Лимит новых слов на сегодня достигнут.\n\n"
-        "Перейдите к повторениям 🔁"
-    )
+        await message.answer(
+            "🎉 Лимит новых слов на сегодня достигнут.\n\n"
+            "Перейдите к повторениям 🔁"
+        )
 
-    return
-    
+        return
+
     if not word:
 
         await message.answer(
