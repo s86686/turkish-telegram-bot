@@ -309,14 +309,14 @@ async def next_word(
 
     if mode == "new" and word == "LIMIT_REACHED":
 
-    await callback.message.edit_text(
-        "🎉 Лимит новых слов на сегодня достигнут.\n\n"
-        "Перейдите к повторениям 🔁"
-    )
+        await callback.message.edit_text(
+            "🎉 Лимит новых слов на сегодня достигнут.\n\n"
+            "Перейдите к повторениям 🔁"
+        )
 
-    await callback.answer()
+        await callback.answer()
 
-    return
+        return
 
     if not word:
 
