@@ -161,14 +161,16 @@ async def rate_word(
     if not word:
         return
 
-    save_review(
+    interval = save_review(
         telegram_id=callback.from_user.id,
         word_id=word["id"],
         quality=quality
     )
 
     await callback.message.edit_text(
-        "✅ Ответ сохранён",
+        f"✅ Ответ сохранён\n\n"
+        f"📅 Следующее повторение через "
+        f"{interval} дн.",
         reply_markup=next_word_keyboard()
     )
 
