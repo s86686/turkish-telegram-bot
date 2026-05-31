@@ -30,6 +30,7 @@ router = Router()
 
 CURRENT_WORDS = {}
 VOICE_MESSAGES = {}
+CURRENT_MODE = {}
 
 def build_question_text(
     word
@@ -82,6 +83,10 @@ async def new_words(
         message.from_user.id
     ] = word
 
+    CURRENT_MODE[
+        message.from_user.id
+    ] = "new"
+
     await message.answer(
         build_question_text(word),
         reply_markup=quiz_keyboard(
@@ -111,6 +116,10 @@ async def reviews(
     CURRENT_WORDS[
         message.from_user.id
     ] = word
+
+    CURRENT_MODE[
+        message.from_user.id
+    ] = "review"
 
     await message.answer(
         build_question_text(word),
@@ -281,30 +290,51 @@ async def next_word(
             None
         )
         
-    word = get_new_word(
-        callback.from_user.id
+    mode = CURRENT_MODE.get(
+        callback.from_user.id,
+        "new"
     )
 
-    if word == "LIMIT_REACHED":
+    if mode == "review":
 
-        await callback.message.edit_text(
-            "🎉 Лимит новых слов на сегодня достигнут.\n\n"
-            "Перейдите к повторениям 🔁"
+        word = get_review_word(
+            callback.from_user.id
         )
 
-        await callback.answer()
+    else:
 
-        return
+        word = get_new_word(
+            callback.from_user.id
+        )
+
+    if mode == "new" and word == "LIMIT_REACHED":
+
+    await callback.message.edit_text(
+        "🎉 Лимит новых слов на сегодня достигнут.\n\n"
+        "Перейдите к повторениям 🔁"
+    )
+
+    await callback.answer()
+
+    return
 
     if not word:
+
+    if mode == "review":
+
+        await callback.message.edit_text(
+            "🎉 Сегодня повторений нет."
+        )
+
+    else:
 
         await callback.message.edit_text(
             "🎉 Новых слов больше нет."
         )
 
-        await callback.answer()
+    await callback.answer()
 
-        return
+    return
 
     CURRENT_WORDS[
         callback.from_user.id
