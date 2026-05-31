@@ -3,38 +3,6 @@ from aiogram.types import (
     InlineKeyboardButton
 )
 
-def continue_keyboard():
-
-    return InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="➡ Продолжить",
-                    callback_data="start_quiz"
-                )
-            ]
-        ]
-    )
-
-def show_answer_keyboard():
-
-    return InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="👁 Показать перевод",
-                    callback_data="show_answer"
-                )
-            ],
-            [
-                InlineKeyboardButton(
-                    text="🔊 Слушать",
-                    callback_data="speak"
-                )
-            ]
-        ]
-    )
-
 
 def quality_keyboard():
 
@@ -62,10 +30,6 @@ def quality_keyboard():
             ]
         ]
     )
-from aiogram.types import (
-    InlineKeyboardMarkup,
-    InlineKeyboardButton
-)
 
 
 def quiz_keyboard(options):
@@ -83,25 +47,15 @@ def quiz_keyboard(options):
             ]
         )
 
-    return InlineKeyboardMarkup(
-        inline_keyboard=keyboard
+    keyboard.append(
+        [
+            InlineKeyboardButton(
+                text="🔊 Слушать",
+                callback_data="speak"
+            )
+        ]
     )
 
-from aiogram.types import (
-    InlineKeyboardMarkup,
-    InlineKeyboardButton
-)
-
-
-def speak_keyboard():
-
     return InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(
-                    text="🔊 Слушать",
-                    callback_data="speak"
-                )
-            ]
-        ]
+        inline_keyboard=keyboard
     )
