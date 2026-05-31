@@ -100,11 +100,24 @@ async def reviews(
         message.from_user.id
     )
 
-    await message.answer(
-        str(word)
-    )
+    if not word:
 
-    return
+        await message.answer(
+            "🎉 Сегодня повторений нет."
+        )
+
+        return
+
+    CURRENT_WORDS[
+        message.from_user.id
+    ] = word
+
+    await message.answer(
+        build_question_text(word),
+        reply_markup=quiz_keyboard(
+            word["quiz"]["options"]
+        )
+    )
 
 
 
