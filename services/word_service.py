@@ -19,7 +19,7 @@ all_words,
 direction
 ):
 
-```
+
 result = {
     "id": word.id,
     "lemma": word.lemma,
@@ -39,13 +39,13 @@ result["quiz"] = build_quiz(
 )
 
 return result
-```
+
 
 def get_new_word(
 telegram_id: int
 ):
 
-```
+
 db = SessionLocal()
 
 try:
@@ -126,13 +126,13 @@ try:
 finally:
 
     db.close()
-```
+
 
 def get_review_word(
 telegram_id: int
 ):
 
-```
+
 db = SessionLocal()
 
 try:
