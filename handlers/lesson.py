@@ -89,7 +89,6 @@ async def new_words(
         )
     )
 
-
 @router.message(
     lambda m: m.text == "🔁 Повторения"
 )
@@ -97,36 +96,16 @@ async def reviews(
     message: Message
 ):
 
-    await message.answer(
-        f"Telegram ID: {message.from_user.id}"
-    )
-
     word = get_review_word(
         message.from_user.id
     )
 
     await message.answer(
-        f"Word object: {word}"
+        str(word)
     )
 
-    if not word:
+    return
 
-        await message.answer(
-            "🎉 Сегодня повторений нет."
-        )
-
-        return
-
-    CURRENT_WORDS[
-        message.from_user.id
-    ] = word
-
-    await message.answer(
-        build_question_text(word),
-        reply_markup=quiz_keyboard(
-            word["quiz"]["options"]
-        )
-    )
 
 
 @router.callback_query(
