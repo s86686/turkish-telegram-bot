@@ -4,193 +4,191 @@ from datetime import datetime
 
 from db.database import SessionLocal
 from db.models import (
-Word,
-User,
-UserWord
+    Word,
+    User,
+    UserWord
 )
 
 from services.quiz_service import (
-build_quiz
+    build_quiz
 )
+
 
 def build_word_result(
-word,
-all_words,
-direction
-):
-
-
-result = {
-    "id": word.id,
-    "lemma": word.lemma,
-    "translation": word.translation,
-    "examples": [
-        {
-            "tr": word.example_tr,
-            "ru": word.example_ru
-        }
-    ]
-}
-
-result["quiz"] = build_quiz(
-    result,
+    word,
     all_words,
     direction
-)
+):
 
-return result
+    result = {
+        "id": word.id,
+        "lemma": word.lemma,
+        "translation": word.translation,
+        "examples": [
+            {
+                "tr": word.example_tr,
+                "ru": word.example_ru
+            }
+        ]
+    }
+
+    result["quiz"] = build_quiz(
+        result,
+        all_words,
+        direction
+    )
+
+    return result
 
 
 def get_new_word(
-telegram_id: int
+    telegram_id: int
 ):
 
+    db = SessionLocal()
 
-db = SessionLocal()
+    try:
 
-try:
-
-    user = (
-        db.query(User)
-        .filter(
-            User.telegram_id == telegram_id
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == telegram_id
+            )
+            .first()
         )
-        .first()
-    )
 
-    if not user:
-        return None
+        if not user:
+            return None
 
-    today = datetime.utcnow().date()
+        today = datetime.utcnow().date()
 
-    learned_today = (
-        db.query(UserWord)
-        .filter(
-            UserWord.user_id == user.id
+        learned_today = (
+            db.query(UserWord)
+            .filter(
+                UserWord.user_id == user.id
+            )
+            .all()
         )
-        .all()
-    )
 
-    learned_today_count = len(
-        [
-            w for w in learned_today
-            if w.learned_at
-            and w.learned_at.date() == today
+        learned_today_count = len(
+            [
+                w for w in learned_today
+                if w.learned_at
+                and w.learned_at.date() == today
+            ]
+        )
+
+        if learned_today_count >= user.daily_new_words:
+            return "LIMIT_REACHED"
+
+        learned_ids = [
+            uw.word_id
+            for uw in db.query(
+                UserWord
+            ).filter(
+                UserWord.user_id == user.id
+            ).all()
         ]
-    )
 
-    if learned_today_count >= user.daily_new_words:
-        return "LIMIT_REACHED"
-
-    learned_ids = [
-        uw.word_id
-        for uw in db.query(
-            UserWord
-        ).filter(
-            UserWord.user_id == user.id
-        ).all()
-    ]
-
-    new_words = (
-        db.query(Word)
-        .filter(
-            ~Word.id.in_(learned_ids)
+        new_words = (
+            db.query(Word)
+            .filter(
+                ~Word.id.in_(learned_ids)
+            )
+            .all()
         )
-        .all()
-    )
 
-    if not new_words:
-        return None
+        if not new_words:
+            return None
 
-    word = random.choice(
-        new_words
-    )
+        word = random.choice(
+            new_words
+        )
 
-    all_words = [
-        {
-            "id": w.id,
-            "lemma": w.lemma,
-            "translation": w.translation
-        }
-        for w in db.query(
-            Word
-        ).all()
-    ]
+        all_words = [
+            {
+                "id": w.id,
+                "lemma": w.lemma,
+                "translation": w.translation
+            }
+            for w in db.query(
+                Word
+            ).all()
+        ]
 
-    return build_word_result(
-        word,
-        all_words,
-        user.quiz_direction
-    )
+        return build_word_result(
+            word,
+            all_words,
+            user.quiz_direction
+        )
 
-finally:
+    finally:
 
-    db.close()
+        db.close()
 
 
 def get_review_word(
-telegram_id: int
+    telegram_id: int
 ):
 
+    db = SessionLocal()
 
-db = SessionLocal()
+    try:
 
-try:
-
-    user = (
-        db.query(User)
-        .filter(
-            User.telegram_id == telegram_id
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == telegram_id
+            )
+            .first()
         )
-        .first()
-    )
 
-    if not user:
-        return None
+        if not user:
+            return None
 
-    review = (
-        db.query(UserWord)
-        .filter(
-            UserWord.user_id == user.id,
-            UserWord.next_review <= datetime.utcnow()
+        review = (
+            db.query(UserWord)
+            .filter(
+                UserWord.user_id == user.id,
+                UserWord.next_review <= datetime.utcnow()
+            )
+            .order_by(
+                UserWord.next_review
+            )
+            .first()
         )
-        .order_by(
-            UserWord.next_review
+
+        if not review:
+            return None
+
+        word = (
+            db.query(Word)
+            .filter(
+                Word.id == review.word_id
+            )
+            .first()
         )
-        .first()
-    )
 
-    if not review:
-        return None
+        if not word:
+            return None
 
-    word = (
-        db.query(Word)
-        .filter(
-            Word.id == review.word_id
+        all_words = [
+            {
+                "id": w.id,
+                "lemma": w.lemma,
+                "translation": w.translation
+            }
+            for w in db.query(
+                Word
+            ).all()
+        ]
+
+        return build_word_result(
+            word,
+            all_words,
+            user.quiz_direction
         )
-        .first()
-    )
 
-    if not word:
-        return None
+    finally:
 
-    all_words = [
-        {
-            "id": w.id,
-            "lemma": w.lemma,
-            "translation": w.translation
-        }
-        for w in db.query(
-            Word
-        ).all()
-    ]
-
-    return build_word_result(
-        word,
-        all_words,
-        user.quiz_direction
-    )
-
-finally:
-
-    db.close()
+        db.close()
