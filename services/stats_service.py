@@ -68,12 +68,24 @@ def get_stats(
             - learned
         )
 
+        today = datetime.utcnow().date()
+
+        learned_today = len(
+            [
+                w for w in words
+                if w.learned_at
+                and w.learned_at.date() == today
+            ]
+        )
+
         return {
             "learned": learned,
             "correct": correct,
             "wrong": wrong,
             "review_today": review_today,
-            "new_words": new_words
+            "new_words": new_words,
+            "learned_today": learned_today,
+            "daily_limit": user.daily_new_words
         }
 
     finally:
