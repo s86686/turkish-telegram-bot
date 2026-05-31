@@ -135,7 +135,8 @@ async def rate_word(
     )
 
     await callback.message.edit_text(
-        "✅ Ответ сохранён\n\nНажмите 📚 Урок для следующего слова."
+        "✅ Ответ сохранён",
+        reply_markup=next_word_keyboard()
     )
 
     await callback.answer()
@@ -172,6 +173,39 @@ async def speak_word(
 
     await callback.message.answer_voice(
         audio
+    )
+
+    await callback.answer()
+
+@router.callback_query(
+    F.data == "next_word"
+)
+async def next_word(
+    callback: CallbackQuery
+):
+
+    word = get_random_word(
+        callback.from_user.id
+    )
+
+    if not word:
+
+        await callback.answer(
+            "Слова не найдены."
+        )
+
+        return
+
+    CURRENT_WORDS[
+        callback.from_user.id
+    ] = word
+
+    await callback.message.edit_text(
+        f"Что означает?\n\n"
+        f"🇹🇷 {word['lemma']}",
+        reply_markup=quiz_keyboard(
+            word["quiz"]["options"]
+        )
     )
 
     await callback.answer()
