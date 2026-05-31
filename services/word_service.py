@@ -158,33 +158,61 @@ def get_review_word(
         )
 
         if not user:
-            return {
-                "error": "USER_NOT_FOUND"
-            }
+            return None
 
-        reviews_count = (
+        review = (
             db.query(UserWord)
             .filter(
                 UserWord.user_id == user.id
             )
-            .count()
-        )
-
-        ready_count = (
-            db.query(UserWord)
-            .filter(
-                UserWord.user_id == user.id,
-                UserWord.next_review <= datetime.utcnow()
+            .order_by(
+                UserWord.next_review
             )
-            .count()
+            .first()
         )
 
-        return {
-            "telegram_id": telegram_id,
-            "user_id": user.id,
-            "reviews_count": reviews_count,
-            "ready_count": ready_count
-        }
+        if not review:
+            return None
+
+        word = (
+            db.query(Word)
+            .filter(
+                Word.id == review.word_id
+            )
+            .first()
+        )
+
+        if not word:
+            return None
+
+        all_words = [
+            {
+                "id": w.id,
+                "lemma": w.lemma,
+                "translation": w.translation
+            }
+            for w in db.query(
+                Word
+            ).all()
+        ]
+
+        try:
+
+            result = build_word_result(
+                word,
+                all_words,
+                user.quiz_direction
+            )
+
+            return result
+
+        except Exception as e:
+
+            return {
+                "error": str(e),
+                "word_id": word.id,
+                "lemma": word.lemma
+            }
 
     finally:
 
