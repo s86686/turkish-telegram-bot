@@ -182,7 +182,16 @@ def get_review_word(
         )
 
         if not word:
-            return None
+
+            db.delete(
+                review
+            )
+
+            db.commit()
+
+            return get_review_word(
+                telegram_id
+            )
 
         all_words = [
             {
