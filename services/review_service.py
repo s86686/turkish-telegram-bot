@@ -114,6 +114,7 @@ def save_review(
             ) + 1
 
         db.commit()
+        return user_word.interval_days
 
     finally:
 
