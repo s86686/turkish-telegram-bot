@@ -3,22 +3,49 @@ import random
 
 def build_quiz(
     current_word,
-    all_words
+    all_words,
+    direction="TR_RU"
 ):
 
-    correct = (
-        current_word["translation"]
-    )
+    if direction == "RU_TR":
 
-    wrong_answers = [
+        correct = (
+            current_word["lemma"]
+        )
 
-        word["translation"]
+        wrong_answers = [
 
-        for word in all_words
+            word["lemma"]
 
-        if word["id"]
-        != current_word["id"]
-    ]
+            for word in all_words
+
+            if word["id"]
+            != current_word["id"]
+        ]
+
+        question = (
+            current_word["translation"]
+        )
+
+    else:
+
+        correct = (
+            current_word["translation"]
+        )
+
+        wrong_answers = [
+
+            word["translation"]
+
+            for word in all_words
+
+            if word["id"]
+            != current_word["id"]
+        ]
+
+        question = (
+            current_word["lemma"]
+        )
 
     options = random.sample(
         wrong_answers,
@@ -37,6 +64,7 @@ def build_quiz(
     )
 
     return {
+        "question": question,
         "options": options,
         "correct":
             options.index(
