@@ -20,6 +20,8 @@ router = Router()
 
 VOICE_MESSAGES = {}
 
+SPEAK_IN_PROGRESS = set()
+
 DIALOG_SETS = load_all_dialogs()
 
 print(
@@ -289,6 +291,15 @@ async def speak_dialog(
 ):
 
     await callback.answer()
+
+    user_id = callback.from_user.id
+
+    if user_id in SPEAK_IN_PROGRESS:
+        return
+
+    SPEAK_IN_PROGRESS.add(
+        user_id
+    )
     
     parts = callback.data.split(
         "_"
@@ -338,4 +349,6 @@ async def speak_dialog(
                 filename
             )
 
-    
+        SPEAK_IN_PROGRESS.discard(
+            user_id
+        ) 
