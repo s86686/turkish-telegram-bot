@@ -39,6 +39,12 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
+                text="🍽 Ресторан",
+                callback_data="dialog_restaurant"
+            )
+        ],
+        [
+            InlineKeyboardButton(
                 text="🚌 Транспорт",
                 callback_data="dialog_transport"
             )
