@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Сколько это стоит?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bu ne kadar?",
+        "ru": "Сколько это стоит?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Üç yüz lira.",
+        "ru": "Триста лир."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Есть другой размер?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Daha büyük beden var mı?",
+        "ru": "Есть размер побольше?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Evet, var.",
+        "ru": "Да, есть."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Можно примерить?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Deneyebilir miyim?",
+        "ru": "Можно примерить?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Есть другой цвет?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Başka renk var mı?",
+        "ru": "Есть другой цвет?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Evet, siyahı da var.",
+        "ru": "Да, есть ещё чёрный."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Можно оплатить картой?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Есть скидка?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "İndirim var mı?",
+        "ru": "Есть скидка?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Biraz yapabilirim.",
+        "ru": "Немного могу сделать."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Я беру это",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bunu alıyorum.",
+        "ru": "Я беру это."
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Tamam.",
+        "ru": "Хорошо."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Где касса?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kasa nerede?",
+        "ru": "Где касса?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Şurada.",
+        "ru": "Вон там."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Я просто смотрю",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Satıcı",
+        "tr": "Yardımcı olabilir miyim?",
+        "ru": "Могу я помочь?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Teşekkürler, sadece bakıyorum.",
+        "ru": "Спасибо, я просто смотрю."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Можно пакет?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Poşet alabilir miyim?",
+        "ru": "Можно пакет?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  }
+]
