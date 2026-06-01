@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Есть свободные лежаки?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Boş şezlong var mı?",
+        "ru": "Есть свободные лежаки?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet, var.",
+        "ru": "Да, есть."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Сколько стоит лежак?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Şezlong ne kadar?",
+        "ru": "Сколько стоит лежак?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "İki yüz lira.",
+        "ru": "Двести лир."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Где душ?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Duş nerede?",
+        "ru": "Где душ?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Şurada.",
+        "ru": "Вон там."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Где туалет?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Tuvalet nerede?",
+        "ru": "Где туалет?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Sağ tarafta.",
+        "ru": "Справа."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Можно арендовать зонтик?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Şemsiye kiralayabilir miyim?",
+        "ru": "Можно арендовать зонтик?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Во сколько закрывается пляж?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Plaj saat kaçta kapanıyor?",
+        "ru": "Во сколько закрывается пляж?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Saat sekizde.",
+        "ru": "В восемь часов."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Можно оплатить картой?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Есть камера хранения?",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Emanet dolabı var mı?",
+        "ru": "Есть камера хранения?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet, girişte.",
+        "ru": "Да, у входа."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Можно взять два лежака?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "İki şezlong alabilir miyim?",
+        "ru": "Можно взять два лежака?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Где вход на пляж?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Plaj girişi nerede?",
+        "ru": "Где вход на пляж?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "İleride solda.",
+        "ru": "Впереди слева."
+      }
+    ]
+  }
+]
