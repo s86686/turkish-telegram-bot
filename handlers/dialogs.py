@@ -12,22 +12,19 @@ from services.tts_service import (
     generate_tts
 )
 
-from dialogs.cafe import (
-    CAFE_DIALOGS
-)
-
-from dialogs.transport import (
-    TRANSPORT_DIALOGS
+from services.dialog_service import (
+    load_all_dialogs
 )
 
 router = Router()
 
 VOICE_MESSAGES = {}
 
-DIALOG_SETS = {
-    "cafe": CAFE_DIALOGS,
-    "transport": TRANSPORT_DIALOGS
-}
+DIALOG_SETS = load_all_dialogs()
+
+print(
+    f"Topics loaded: {list(DIALOG_SETS.keys())}"
+)
 
 
 topics_keyboard = InlineKeyboardMarkup(
