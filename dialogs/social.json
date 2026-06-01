@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Как вас зовут?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Adınız nedir?",
+        "ru": "Как вас зовут?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Benim adım Ivan.",
+        "ru": "Меня зовут Иван."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Откуда вы?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Nerelisiniz?",
+        "ru": "Откуда вы?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Özbekistan'dan geldim.",
+        "ru": "Я приехал из Узбекистана."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Первый раз в Турции?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Türkiye'ye ilk kez mi geldiniz?",
+        "ru": "Вы впервые в Турции?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Hayır, ikinci kez.",
+        "ru": "Нет, второй раз."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Вам нравится Турция?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Türkiye'yi seviyor musunuz?",
+        "ru": "Вам нравится Турция?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Evet, çok seviyorum.",
+        "ru": "Да, очень нравится."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Немного говорю по-турецки",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Türkçe biliyor musunuz?",
+        "ru": "Вы знаете турецкий?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Biraz Türkçe biliyorum.",
+        "ru": "Я немного знаю турецкий."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Я изучаю турецкий",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Türkçe öğreniyor musunuz?",
+        "ru": "Вы изучаете турецкий?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Evet, öğreniyorum.",
+        "ru": "Да, изучаю."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Повторите, пожалуйста",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Tekrar eder misiniz?",
+        "ru": "Повторите, пожалуйста."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Я не понимаю",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Anlamıyorum.",
+        "ru": "Я не понимаю."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Daha yavaş konuşayım.",
+        "ru": "Я буду говорить медленнее."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Очень приятно",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Yerli",
+        "tr": "Memnun oldum.",
+        "ru": "Очень приятно."
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Ben de memnun oldum.",
+        "ru": "Мне тоже очень приятно."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "До свидания",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Görüşürüz.",
+        "ru": "До свидания."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "İyi günler.",
+        "ru": "Хорошего дня."
+      }
+    ]
+  }
+]
