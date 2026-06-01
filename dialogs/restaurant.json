@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Можно меню?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Menüyü alabilir miyim?",
+        "ru": "Можно меню?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Что вы рекомендуете?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Ne tavsiye edersiniz?",
+        "ru": "Что вы порекомендуете?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Bugünün balığını tavsiye ederim.",
+        "ru": "Рекомендую сегодняшнюю рыбу."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Я хочу заказать",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Sipariş vermek istiyorum.",
+        "ru": "Я хочу сделать заказ."
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Buyurun.",
+        "ru": "Слушаю вас."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Без лука",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Soğansız lütfen.",
+        "ru": "Без лука, пожалуйста."
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tamam.",
+        "ru": "Хорошо."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Это острое?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bu acı mı?",
+        "ru": "Это острое?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Biraz acı.",
+        "ru": "Немного острое."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Я не ем мясо",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Et yemiyorum.",
+        "ru": "Я не ем мясо."
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Vejetaryen yemeklerimiz var.",
+        "ru": "У нас есть вегетарианские блюда."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Можно воды?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bir su alabilir miyim?",
+        "ru": "Можно воды?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Очень вкусно",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Çok lezzetli.",
+        "ru": "Очень вкусно."
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Teşekkür ederim.",
+        "ru": "Спасибо."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Можно счёт?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Hesabı alabilir miyim?",
+        "ru": "Можно счёт?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Можно оплатить картой?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  }
+]
