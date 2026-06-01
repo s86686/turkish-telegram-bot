@@ -43,6 +43,12 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
+                text="🛒 Магазин",
+                callback_data="dialog_shop"
+            )
+        ],
+        [
+            InlineKeyboardButton(
                 text="🏨 Отель",
                 callback_data="dialog_hotel"
             )
@@ -127,7 +133,13 @@ def build_dialog_text(
             "Garson": "👨‍🍳 Garson",
             "Şoför": "🚌 Şoför",
             "Yerli": "👤 Yerli",
-            "Siz": "👤 Siz"
+            "Siz": "👤 Siz",
+            "Satıcı": "🛍️ Satıcı",
+            "Resepsiyonist": "🏨 Resepsiyonist",
+            "Doktor": "👨‍⚕️ Doktor",
+            "Eczacı": "💊 Eczacı",
+            "Polis": "👮 Polis",
+            "Görevli": "ℹ️ Görevli"
         }.get(
             line["speaker"],
             f"👤 {line['speaker']}"
