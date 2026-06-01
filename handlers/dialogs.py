@@ -93,6 +93,12 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
+                text="🚨 Экстренные ситуации",
+                callback_data="dialog_emergency"
+            )
+        ],
+        [
+            InlineKeyboardButton(
                 text="✈️ Аэропорт",
                 callback_data="dialog_airport"
             )
