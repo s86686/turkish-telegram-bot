@@ -63,6 +63,12 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
+                text="💊 Аптека",
+                callback_data="dialog_pharmacy"
+            )
+        ],
+        [
+            InlineKeyboardButton(
                 text="✈️ Аэропорт",
                 callback_data="dialog_airport"
             )
