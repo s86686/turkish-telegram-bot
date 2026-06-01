@@ -16,9 +16,18 @@ from dialogs.cafe import (
     CAFE_DIALOGS
 )
 
+from dialogs.transport import (
+    TRANSPORT_DIALOGS
+)
+
 router = Router()
 
 VOICE_MESSAGES = {}
+
+DIALOG_SETS = {
+    "cafe": CAFE_DIALOGS,
+    "transport": TRANSPORT_DIALOGS
+}
 
 
 topics_keyboard = InlineKeyboardMarkup(
@@ -31,14 +40,14 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
-                text="🏨 Отель",
-                callback_data="dialog_hotel"
+                text="🚌 Транспорт",
+                callback_data="dialog_transport"
             )
         ],
         [
             InlineKeyboardButton(
-                text="🚕 Такси",
-                callback_data="dialog_taxi"
+                text="🏨 Отель",
+                callback_data="dialog_hotel"
             )
         ],
         [
@@ -79,6 +88,7 @@ async def delete_dialog_voice(
 
 
 def dialog_keyboard(
+    topic: str,
     dialog_index: int
 ):
 
@@ -87,13 +97,13 @@ def dialog_keyboard(
             [
                 InlineKeyboardButton(
                     text="🔊 Озвучить диалог",
-                    callback_data=f"cafe_speak_{dialog_index}"
+                    callback_data=f"speak_{topic}_{dialog_index}"
                 )
             ],
             [
                 InlineKeyboardButton(
                     text="➡️ Следующий диалог",
-                    callback_data=f"cafe_next_{dialog_index}"
+                    callback_data=f"next_{topic}_{dialog_index}"
                 )
             ],
             [
@@ -116,10 +126,14 @@ def build_dialog_text(
 
     for line in dialog["lines"]:
 
-        speaker = (
-            "👨‍🍳 Garson"
-            if line["speaker"] == "Garson"
-            else "👤 Siz"
+        speaker = {
+            "Garson": "👨‍🍳 Garson",
+            "Şoför": "🚌 Şoför",
+            "Yerli": "👤 Yerli",
+            "Siz": "👤 Siz"
+        }.get(
+            line["speaker"],
+            f"👤 {line['speaker']}"
         )
 
         text += (
@@ -164,21 +178,44 @@ async def back_to_dialogs_menu(
 
 
 @router.callback_query(
-    lambda c: c.data == "dialog_cafe"
+    lambda c: c.data.startswith(
+        "dialog_"
+    )
 )
-async def show_cafe_dialog(
+async def show_dialog_topic(
     callback: CallbackQuery
 ):
+
+    topic = callback.data.replace(
+        "dialog_",
+        ""
+    )
+
+    if topic not in DIALOG_SETS:
+
+        await callback.answer(
+            "🚧 Диалоги скоро появятся",
+            show_alert=True
+        )
+
+        return
 
     await delete_dialog_voice(
         callback
     )
 
-    dialog = CAFE_DIALOGS[0]
+    dialog = DIALOG_SETS[
+        topic
+    ][0]
 
     await callback.message.edit_text(
-        build_dialog_text(dialog),
-        reply_markup=dialog_keyboard(0)
+        build_dialog_text(
+            dialog
+        ),
+        reply_markup=dialog_keyboard(
+            topic,
+            0
+        )
     )
 
     await callback.answer()
@@ -186,10 +223,10 @@ async def show_cafe_dialog(
 
 @router.callback_query(
     lambda c: c.data.startswith(
-        "cafe_next_"
+        "next_"
     )
 )
-async def next_cafe_dialog(
+async def next_dialog(
     callback: CallbackQuery
 ):
 
@@ -197,21 +234,34 @@ async def next_cafe_dialog(
         callback
     )
 
-    current_index = int(
-        callback.data.split("_")[2]
+    parts = callback.data.split(
+        "_"
     )
+
+    topic = parts[1]
+
+    current_index = int(
+        parts[2]
+    )
+
+    dialogs = DIALOG_SETS[
+        topic
+    ]
 
     next_index = (
         current_index + 1
-    ) % len(CAFE_DIALOGS)
+    ) % len(dialogs)
 
-    dialog = CAFE_DIALOGS[
+    dialog = dialogs[
         next_index
     ]
 
     await callback.message.edit_text(
-        build_dialog_text(dialog),
+        build_dialog_text(
+            dialog
+        ),
         reply_markup=dialog_keyboard(
+            topic,
             next_index
         )
     )
@@ -221,20 +271,26 @@ async def next_cafe_dialog(
 
 @router.callback_query(
     lambda c: c.data.startswith(
-        "cafe_speak_"
+        "speak_"
     )
 )
-async def speak_cafe_dialog(
+async def speak_dialog(
     callback: CallbackQuery
 ):
 
-    dialog_index = int(
-        callback.data.split("_")[2]
+    parts = callback.data.split(
+        "_"
     )
 
-    dialog = CAFE_DIALOGS[
-        dialog_index
-    ]
+    topic = parts[1]
+
+    dialog_index = int(
+        parts[2]
+    )
+
+    dialog = DIALOG_SETS[
+        topic
+    ][dialog_index]
 
     text = " ".join(
         line["tr"]
@@ -271,42 +327,3 @@ async def speak_cafe_dialog(
             )
 
     await callback.answer()
-
-
-@router.callback_query(
-    lambda c: c.data == "dialog_hotel"
-)
-async def show_hotel_dialogs(
-    callback: CallbackQuery
-):
-
-    await callback.answer(
-        "🚧 Диалоги для отеля скоро появятся",
-        show_alert=True
-    )
-
-
-@router.callback_query(
-    lambda c: c.data == "dialog_taxi"
-)
-async def show_taxi_dialogs(
-    callback: CallbackQuery
-):
-
-    await callback.answer(
-        "🚧 Диалоги для такси скоро появятся",
-        show_alert=True
-    )
-
-
-@router.callback_query(
-    lambda c: c.data == "dialog_airport"
-)
-async def show_airport_dialogs(
-    callback: CallbackQuery
-):
-
-    await callback.answer(
-        "🚧 Диалоги для аэропорта скоро появятся",
-        show_alert=True
-    )
