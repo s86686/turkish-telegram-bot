@@ -17,8 +17,8 @@ main_menu = ReplyKeyboardMarkup(
             KeyboardButton(
                 text="⚙ Настройки"
             )
-        ]
-         [
+        ],
+        [
             KeyboardButton(
                 text="🎭 Диалоги"
             )
