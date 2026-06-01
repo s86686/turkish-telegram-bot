@@ -31,6 +31,7 @@ from handlers.settings import (
     router as settings_router
 )
 
+from handlers import dialogs
 
 bot = Bot(BOT_TOKEN)
 
@@ -40,7 +41,7 @@ dp.include_router(start_router)
 dp.include_router(lesson_router)
 dp.include_router(stats_router)
 dp.include_router(settings_router)
-
+dp.include_router(dialogs.router)
 
 WEBHOOK_PATH = f"/webhook/{WEBHOOK_SECRET}"
 
