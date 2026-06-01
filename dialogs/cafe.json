@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1,
+    "title": "Заказ кофе",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Garson",
+        "tr": "Merhaba, ne alırsınız?",
+        "ru": "Здравствуйте, что будете заказывать?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Bir kahve lütfen.",
+        "ru": "Один кофе, пожалуйста."
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Şeker ister misiniz?",
+        "ru": "Хотите сахар?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Hayır, teşekkürler.",
+        "ru": "Нет, спасибо."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Заказ чая",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Garson",
+        "tr": "Ne içersiniz?",
+        "ru": "Что будете пить?"
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Bir çay lütfen.",
+        "ru": "Один чай, пожалуйста."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Попросить меню",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Menüyü alabilir miyim?",
+        "ru": "Можно меню?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tabii, buyurun.",
+        "ru": "Конечно, пожалуйста."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Спросить цену",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bu kahve ne kadar?",
+        "ru": "Сколько стоит этот кофе?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Yüz elli lira.",
+        "ru": "Сто пятьдесят лир."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Попросить счёт",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Hesabı alabilir miyim?",
+        "ru": "Можно счёт?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Оплата картой",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Заказать воду",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bir su lütfen.",
+        "ru": "Воду, пожалуйста."
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Заказать пахлаву",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Baklava var mı?",
+        "ru": "Есть пахлава?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Evet.",
+        "ru": "Да."
+      },
+      {
+        "speaker": "Siz",
+        "tr": "Bir porsiyon lütfen.",
+        "ru": "Одну порцию, пожалуйста."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Есть свободный столик?",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Boş masa var mı?",
+        "ru": "Есть свободный столик?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Maalesef yok.",
+        "ru": "К сожалению, нет."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Столик у окна",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Pencere kenarında masa var mı?",
+        "ru": "Есть столик у окна?"
+      },
+      {
+        "speaker": "Garson",
+        "tr": "Evet, buyurun.",
+        "ru": "Да, пожалуйста."
+      }
+    ]
+  }
+]
