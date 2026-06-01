@@ -1,0 +1,52 @@
+[
+  {
+    "id": "questions",
+    "title": "❓ Как задавать вопросы",
+    "content": "В турецком для вопросов используются частицы mı / mi / mu / mü.\n\nÖrnekler:\n\nBu otobüs merkeze gidiyor mu?\nЭтот автобус идёт в центр?\n\nKartla ödeyebilir miyim?\nМожно оплатить картой?\n\nPhaselis'e gidiyor mu?\nОн идёт в Фазелис?"
+  },
+  {
+    "id": "negation",
+    "title": "❌ Как сказать 'не'",
+    "content": "Отрицание образуется через -ma / -me.\n\nİstemek — хотеть\nİstemiyorum — я не хочу\n\nBilmek — знать\nBilmiyorum — я не знаю\n\nAnlamak — понимать\nAnlamıyorum — я не понимаю\n\nŞeker istemiyorum.\nЯ не хочу сахар."
+  },
+  {
+    "id": "pronouns",
+    "title": "👤 Я / Ты / Он",
+    "content": "Личные окончания показывают кто выполняет действие.\n\nGeliyorum — я иду\nGeliyorsun — ты идёшь\nGeliyor — он идёт\nGeliyoruz — мы идём\nGeliyorsunuz — вы идёте\nGeliyorlar — они идут"
+  },
+  {
+    "id": "direction",
+    "title": "📍 Куда?",
+    "content": "Окончания -e / -a показывают направление.\n\nMerkez → Merkeze\nВ центр\n\nOtel → Otele\nВ отель\n\nPhaselis → Phaselis'e\nВ Фазелис\n\nBu otobüs Phaselis'e gidiyor mu?\nЭтот автобус идёт в Фазелис?"
+  },
+  {
+    "id": "location",
+    "title": "📍 Где?",
+    "content": "Окончания -de / -da показывают местонахождение.\n\nOtelde\nВ отеле\n\nMerkezde\nВ центре\n\nPhaselis'te\nВ Фазелисе\n\nPhaselis'te ineceğim.\nЯ выйду в Фазелисе."
+  },
+  {
+    "id": "future",
+    "title": "🔮 Будущее время",
+    "content": "Будущее время образуется через -ecek / -acak.\n\nGelmek — приходить\nGeleceğim — я приду\n\nİnmek — выходить\nİneceğim — я выйду\n\nPhaselis'te ineceğim.\nЯ выйду в Фазелисе."
+  },
+  {
+    "id": "past",
+    "title": "⏳ Прошедшее время",
+    "content": "Прошедшее время часто образуется через -di.\n\nGeldim — я пришёл\nGittim — я пошёл\nYedim — я съел\nİçtim — я выпил\n\nDün geldim.\nЯ приехал вчера."
+  },
+  {
+    "id": "numbers",
+    "title": "💰 Деньги и числа",
+    "content": "Полезные числа для путешествий.\n\n10 — on\n20 — yirmi\n30 — otuz\n40 — kırk\n50 — elli\n100 — yüz\n\nNe kadar?\nСколько стоит?\n\nYüz lira.\nСто лир."
+  },
+  {
+    "id": "useful",
+    "title": "🗣 Полезные конструкции",
+    "content": "Lütfen — пожалуйста\n\nTeşekkür ederim — спасибо\n\nAffedersiniz — извините\n\nYardım eder misiniz? — Вы можете помочь?\n\nAnlamıyorum — Я не понимаю\n\nTekrar eder misiniz? — Повторите, пожалуйста."
+  },
+  {
+    "id": "requests",
+    "title": "🙋 Как вежливо попросить",
+    "content": "Три самые полезные конструкции.\n\n1️⃣ Lütfen\nПожалуйста\n\nBir çay lütfen.\nЧай, пожалуйста.\n\n2️⃣ Alabilir miyim?\nМожно мне?\n\nMenüyü alabilir miyim?\nМожно меню?\n\nHesabı alabilir miyim?\nМожно счёт?\n\n3️⃣ Yardım eder misiniz?\nВы можете помочь?\n\nЭти конструкции работают в кафе, магазине, отеле и транспорте."
+  }
+]
