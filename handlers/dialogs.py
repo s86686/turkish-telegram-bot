@@ -288,6 +288,8 @@ async def speak_dialog(
     callback: CallbackQuery
 ):
 
+    await callback.answer()
+    
     parts = callback.data.split(
         "_"
     )
@@ -336,4 +338,4 @@ async def speak_dialog(
                 filename
             )
 
-    await callback.answer()
+    
