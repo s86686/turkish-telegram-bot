@@ -31,6 +31,7 @@ router = Router()
 CURRENT_WORDS = {}
 VOICE_MESSAGES = {}
 CURRENT_MODE = {}
+SPEAK_IN_PROGRESS = set()
 
 def build_question_text(
     word
@@ -226,6 +227,15 @@ async def speak_word(
 ):
 
     await callback.answer()
+
+    user_id = callback.from_user.id
+
+    if user_id in SPEAK_IN_PROGRESS:
+        return
+
+    SPEAK_IN_PROGRESS.add(
+        user_id
+    )
     
     word = CURRENT_WORDS.get(
         callback.from_user.id
@@ -265,6 +275,10 @@ async def speak_word(
 
         if os.path.exists(filename):
             os.remove(filename)
+
+        SPEAK_IN_PROGRESS.discard(
+            user_id
+        )
 
     
 
