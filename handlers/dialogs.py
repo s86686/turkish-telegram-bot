@@ -51,6 +51,12 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
+                text="🧺 Базар",
+                callback_data="dialog_bazaar"
+            )
+        ],
+        [
+            InlineKeyboardButton(
                 text="🏨 Отель",
                 callback_data="dialog_hotel"
             )
