@@ -18,6 +18,8 @@ from dialogs.cafe import (
 
 router = Router()
 
+VOICE_MESSAGES = {}
+
 
 topics_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
@@ -47,6 +49,33 @@ topics_keyboard = InlineKeyboardMarkup(
         ]
     ]
 )
+
+
+async def delete_dialog_voice(
+    callback: CallbackQuery
+):
+
+    voice_message_id = VOICE_MESSAGES.get(
+        callback.from_user.id
+    )
+
+    if not voice_message_id:
+        return
+
+    try:
+
+        await callback.bot.delete_message(
+            chat_id=callback.message.chat.id,
+            message_id=voice_message_id
+        )
+
+    except Exception:
+        pass
+
+    VOICE_MESSAGES.pop(
+        callback.from_user.id,
+        None
+    )
 
 
 def dialog_keyboard(
@@ -122,6 +151,10 @@ async def back_to_dialogs_menu(
     callback: CallbackQuery
 ):
 
+    await delete_dialog_voice(
+        callback
+    )
+
     await callback.message.edit_text(
         "🎭 Выберите тему:",
         reply_markup=topics_keyboard
@@ -136,6 +169,10 @@ async def back_to_dialogs_menu(
 async def show_cafe_dialog(
     callback: CallbackQuery
 ):
+
+    await delete_dialog_voice(
+        callback
+    )
 
     dialog = CAFE_DIALOGS[0]
 
@@ -155,6 +192,10 @@ async def show_cafe_dialog(
 async def next_cafe_dialog(
     callback: CallbackQuery
 ):
+
+    await delete_dialog_voice(
+        callback
+    )
 
     current_index = int(
         callback.data.split("_")[2]
@@ -176,6 +217,7 @@ async def next_cafe_dialog(
     )
 
     await callback.answer()
+
 
 @router.callback_query(
     lambda c: c.data.startswith(
@@ -211,9 +253,13 @@ async def speak_cafe_dialog(
             filename
         )
 
-        await callback.message.answer_voice(
+        voice_msg = await callback.message.answer_voice(
             audio
         )
+
+        VOICE_MESSAGES[
+            callback.from_user.id
+        ] = voice_msg.message_id
 
     finally:
 
@@ -225,6 +271,7 @@ async def speak_cafe_dialog(
             )
 
     await callback.answer()
+
 
 @router.callback_query(
     lambda c: c.data == "dialog_hotel"
