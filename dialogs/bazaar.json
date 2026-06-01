@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Сколько стоит?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bu ne kadar?",
+        "ru": "Сколько это стоит?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Beş yüz lira.",
+        "ru": "Пятьсот лир."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Слишком дорого",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Çok pahalı.",
+        "ru": "Очень дорого."
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Size indirim yaparım.",
+        "ru": "Для вас сделаю скидку."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Можно дешевле?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Biraz daha ucuz olur mu?",
+        "ru": "Можно немного дешевле?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Olur.",
+        "ru": "Можно."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Последняя цена",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Son fiyat ne?",
+        "ru": "Какая последняя цена?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Dört yüz lira.",
+        "ru": "Четыреста лир."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Я беру",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Tamam, alıyorum.",
+        "ru": "Хорошо, беру."
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Teşekkür ederim.",
+        "ru": "Спасибо."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Я ещё посмотрю",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Biraz bakacağım.",
+        "ru": "Я ещё посмотрю."
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Если куплю две?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "İki tane alırsam indirim olur mu?",
+        "ru": "Если куплю две штуки, будет скидка?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Можно оплатить картой?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Есть другой цвет?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Başka renk var mı?",
+        "ru": "Есть другой цвет?"
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Evet, var.",
+        "ru": "Да, есть."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Очень красиво",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Çok güzel.",
+        "ru": "Очень красиво."
+      },
+      {
+        "speaker": "Satıcı",
+        "tr": "Teşekkür ederim.",
+        "ru": "Спасибо."
+      }
+    ]
+  }
+]
