@@ -226,3 +226,40 @@ async def speak_cafe_dialog(
 
     await callback.answer()
 
+@router.callback_query(
+    lambda c: c.data == "dialog_hotel"
+)
+async def show_hotel_dialogs(
+    callback: CallbackQuery
+):
+
+    await callback.answer(
+        "🚧 Диалоги для отеля скоро появятся",
+        show_alert=True
+    )
+
+
+@router.callback_query(
+    lambda c: c.data == "dialog_taxi"
+)
+async def show_taxi_dialogs(
+    callback: CallbackQuery
+):
+
+    await callback.answer(
+        "🚧 Диалоги для такси скоро появятся",
+        show_alert=True
+    )
+
+
+@router.callback_query(
+    lambda c: c.data == "dialog_airport"
+)
+async def show_airport_dialogs(
+    callback: CallbackQuery
+):
+
+    await callback.answer(
+        "🚧 Диалоги для аэропорта скоро появятся",
+        show_alert=True
+    )
