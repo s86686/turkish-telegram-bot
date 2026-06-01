@@ -81,6 +81,12 @@ topics_keyboard = InlineKeyboardMarkup(
         ],
         [
             InlineKeyboardButton(
+                text="🏛 Экскурсии и достопримечательности",
+                callback_data="dialog_excursions"
+            )
+        ],
+        [
+            InlineKeyboardButton(
                 text="✈️ Аэропорт",
                 callback_data="dialog_airport"
             )
