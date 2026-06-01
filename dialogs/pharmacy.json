@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Где аптека?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Eczane nerede?",
+        "ru": "Где аптека?"
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Şu köşede.",
+        "ru": "За тем углом."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "У меня болит голова",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Başım ağrıyor.",
+        "ru": "У меня болит голова."
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Size bir ilaç verebilirim.",
+        "ru": "Я могу дать вам лекарство."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Мне нужно лекарство",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bir ilaç almak istiyorum.",
+        "ru": "Мне нужно лекарство."
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Ne için?",
+        "ru": "Для чего?"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "У меня температура",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Ateşim var.",
+        "ru": "У меня температура."
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Bu ilacı deneyin.",
+        "ru": "Попробуйте это лекарство."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "У меня кашель",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Öksürüyorum.",
+        "ru": "Я кашляю."
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Bu şurup yardımcı olur.",
+        "ru": "Этот сироп поможет."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Как принимать?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Nasıl kullanacağım?",
+        "ru": "Как мне это принимать?"
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Günde iki kez.",
+        "ru": "Два раза в день."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Есть пластырь?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Yara bandı var mı?",
+        "ru": "Есть пластырь?"
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Evet, var.",
+        "ru": "Да, есть."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Солнцезащитный крем",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Güneş kremi var mı?",
+        "ru": "Есть солнцезащитный крем?"
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Evet, burada.",
+        "ru": "Да, вот здесь."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Сколько стоит?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Ne kadar?",
+        "ru": "Сколько стоит?"
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "İki yüz lira.",
+        "ru": "Двести лир."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Можно оплатить картой?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Eczacı",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  }
+]
