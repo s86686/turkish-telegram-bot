@@ -7,8 +7,12 @@ from aiogram.types import (
 main_menu = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="📚 Новые слова"),
-            KeyboardButton(text="🔁 Повторения")
+            KeyboardButton(
+                text="📚 Новые слова"
+            ),
+            KeyboardButton(
+                text="🔁 Повторения"
+            )
         ],
         [
             KeyboardButton(
@@ -21,6 +25,9 @@ main_menu = ReplyKeyboardMarkup(
         [
             KeyboardButton(
                 text="🎭 Диалоги"
+            ),
+            KeyboardButton(
+                text="📖 Грамматика"
             )
         ]
     ],
