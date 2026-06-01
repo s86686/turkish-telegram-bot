@@ -141,4 +141,32 @@
     "level": "A1",
     "lines": [
       {
-        "
+        "speaker": "Siz",
+        "tr": "Yardıma ihtiyacım var.",
+        "ru": "Мне нужна помощь."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Size nasıl yardım edebilirim?",
+        "ru": "Как я могу вам помочь?"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Я заблудился",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kayboldum.",
+        "ru": "Я заблудился."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Nereye gitmek istiyorsunuz?",
+        "ru": "Куда вы хотите попасть?"
+      }
+    ]
+  }
+]
