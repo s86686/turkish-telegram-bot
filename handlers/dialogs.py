@@ -97,13 +97,13 @@ def dialog_keyboard(
             [
                 InlineKeyboardButton(
                     text="🔊 Озвучить диалог",
-                    callback_data=f"speak_{topic}_{dialog_index}"
+                    callback_data=f"dialog_speak_{topic}_{dialog_index}"
                 )
             ],
             [
                 InlineKeyboardButton(
                     text="➡️ Следующий диалог",
-                    callback_data=f"next_{topic}_{dialog_index}"
+                    callback_data=f"dialog_next_{topic}_{dialog_index}"
                 )
             ],
             [
@@ -181,6 +181,7 @@ async def back_to_dialogs_menu(
     lambda c: c.data.startswith(
         "dialog_"
     )
+    and c.data.count("_") == 1
 )
 async def show_dialog_topic(
     callback: CallbackQuery
@@ -223,7 +224,7 @@ async def show_dialog_topic(
 
 @router.callback_query(
     lambda c: c.data.startswith(
-        "next_"
+        "dialog_next_"
     )
 )
 async def next_dialog(
@@ -238,10 +239,10 @@ async def next_dialog(
         "_"
     )
 
-    topic = parts[1]
+    topic = parts[2]
 
     current_index = int(
-        parts[2]
+        parts[3]
     )
 
     dialogs = DIALOG_SETS[
@@ -271,7 +272,7 @@ async def next_dialog(
 
 @router.callback_query(
     lambda c: c.data.startswith(
-        "speak_"
+        "dialog_speak_"
     )
 )
 async def speak_dialog(
@@ -282,10 +283,10 @@ async def speak_dialog(
         "_"
     )
 
-    topic = parts[1]
+    topic = parts[2]
 
     dialog_index = int(
-        parts[2]
+        parts[3]
     )
 
     dialog = DIALOG_SETS[
