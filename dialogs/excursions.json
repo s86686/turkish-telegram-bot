@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "Где вход?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Giriş nerede?",
+        "ru": "Где вход?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "İleride sağda.",
+        "ru": "Впереди справа."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Сколько стоит билет?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bilet ne kadar?",
+        "ru": "Сколько стоит билет?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Beş yüz lira.",
+        "ru": "Пятьсот лир."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Можно оплатить картой?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kartla ödeyebilir miyim?",
+        "ru": "Можно оплатить картой?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet.",
+        "ru": "Да."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Во сколько открывается?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Saat kaçta açılıyor?",
+        "ru": "Во сколько открывается?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Saat sekizde.",
+        "ru": "В восемь часов."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Во сколько закрывается?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Saat kaçta kapanıyor?",
+        "ru": "Во сколько закрывается?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Saat altıda.",
+        "ru": "В шесть часов."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Где туалет?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Tuvalet nerede?",
+        "ru": "Где туалет?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Solda.",
+        "ru": "Слева."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Можно фотографировать?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Fotoğraf çekebilir miyim?",
+        "ru": "Можно фотографировать?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet, çekebilirsiniz.",
+        "ru": "Да, можете."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Есть аудиогид?",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Sesli rehber var mı?",
+        "ru": "Есть аудиогид?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Evet, var.",
+        "ru": "Да, есть."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Сколько длится экскурсия?",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Tur ne kadar sürüyor?",
+        "ru": "Сколько длится экскурсия?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Yaklaşık iki saat.",
+        "ru": "Примерно два часа."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Где выход?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Çıkış nerede?",
+        "ru": "Где выход?"
+      },
+      {
+        "speaker": "Görevli",
+        "tr": "Düz devam edin.",
+        "ru": "Идите прямо."
+      }
+    ]
+  }
+]
