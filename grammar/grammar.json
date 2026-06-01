@@ -48,5 +48,10 @@
     "id": "requests",
     "title": "🙋 Как вежливо попросить",
     "content": "Три самые полезные конструкции.\n\n1️⃣ Lütfen\nПожалуйста\n\nBir çay lütfen.\nЧай, пожалуйста.\n\n2️⃣ Alabilir miyim?\nМожно мне?\n\nMenüyü alabilir miyim?\nМожно меню?\n\nHesabı alabilir miyim?\nМожно счёт?\n\n3️⃣ Yardım eder misiniz?\nВы можете помочь?\n\nЭти конструкции работают в кафе, магазине, отеле и транспорте."
+  },
+  {
+    "id": "directions",
+    "title": "🚕 Как спросить дорогу",
+    "content": "Полезные фразы для поиска места.\n\nNerede?\nГде?\n\nOtobüs durağı nerede?\nГде автобусная остановка?\n\nNasıl gidebilirim?\nКак я могу добраться?\n\nPhaselis'e nasıl gidebilirim?\nКак добраться до Фазелиса?\n\nYakın mı?\nЭто близко?\n\nUzak mı?\nЭто далеко?\n\nSağda\nСправа\n\nSolda\nСлева"
   }
 ]
