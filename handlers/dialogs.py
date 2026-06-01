@@ -13,6 +13,7 @@ from dialogs.cafe import (
 
 router = Router()
 
+
 topics_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
@@ -42,16 +43,52 @@ topics_keyboard = InlineKeyboardMarkup(
     ]
 )
 
-dialog_back_keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [
-            InlineKeyboardButton(
-                text="⬅️ Назад к темам",
-                callback_data="dialogs_menu"
-            )
+
+def dialog_keyboard(
+    dialog_index: int
+):
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="➡️ Следующий диалог",
+                    callback_data=f"cafe_next_{dialog_index}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="⬅️ Назад к темам",
+                    callback_data="dialogs_menu"
+                )
+            ]
         ]
-    ]
-)
+    )
+
+
+def build_dialog_text(
+    dialog
+):
+
+    text = (
+        f"🎭 {dialog['title']}\n\n"
+    )
+
+    for line in dialog["lines"]:
+
+        speaker = (
+            "👨‍🍳 Garson"
+            if line["speaker"] == "Garson"
+            else "👤 Siz"
+        )
+
+        text += (
+            f"{speaker}\n"
+            f"🇹🇷 {line['tr']}\n"
+            f"🇷🇺 {line['ru']}\n\n"
+        )
+
+    return text
 
 
 @router.message(
@@ -91,27 +128,40 @@ async def show_cafe_dialog(
 
     dialog = CAFE_DIALOGS[0]
 
-    text = (
-        f"🎭 {dialog['title']}\n\n"
+    await callback.message.edit_text(
+        build_dialog_text(dialog),
+        reply_markup=dialog_keyboard(0)
     )
 
-    for line in dialog["lines"]:
+    await callback.answer()
 
-        speaker = (
-            "👨‍🍳 Garson"
-            if line["speaker"] == "Garson"
-            else "👤 Siz"
-        )
 
-        text += (
-            f"{speaker}\n"
-            f"🇹🇷 {line['tr']}\n"
-            f"🇷🇺 {line['ru']}\n\n"
-        )
+@router.callback_query(
+    lambda c: c.data.startswith(
+        "cafe_next_"
+    )
+)
+async def next_cafe_dialog(
+    callback: CallbackQuery
+):
+
+    current_index = int(
+        callback.data.split("_")[2]
+    )
+
+    next_index = (
+        current_index + 1
+    ) % len(CAFE_DIALOGS)
+
+    dialog = CAFE_DIALOGS[
+        next_index
+    ]
 
     await callback.message.edit_text(
-        text,
-        reply_markup=dialog_back_keyboard
+        build_dialog_text(dialog),
+        reply_markup=dialog_keyboard(
+            next_index
+        )
     )
 
     await callback.answer()
