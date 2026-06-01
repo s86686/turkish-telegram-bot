@@ -4,6 +4,11 @@ from aiogram.types import (
     Message
 )
 
+from aiogram.types import (
+    ReplyKeyboardMarkup,
+    KeyboardButton
+)
+
 from dialogs.cafe import (
     CAFE_DIALOGS
 )
