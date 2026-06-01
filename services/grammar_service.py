@@ -14,7 +14,10 @@ def load_grammar():
 
     with open(
         GRAMMAR_FILE,
+        "r",
         encoding="utf-8"
     ) as f:
 
-        return json.load(f)
+        return json.load(
+            f
+        )
