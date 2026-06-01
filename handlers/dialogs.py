@@ -4,7 +4,12 @@ from aiogram.types import (
     Message,
     InlineKeyboardMarkup,
     InlineKeyboardButton,
-    CallbackQuery
+    CallbackQuery,
+    FSInputFile
+)
+
+from services.tts_service import (
+    generate_tts
 )
 
 from dialogs.cafe import (
@@ -50,6 +55,12 @@ def dialog_keyboard(
 
     return InlineKeyboardMarkup(
         inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="🔊 Озвучить диалог",
+                    callback_data=f"cafe_speak_{dialog_index}"
+                )
+            ],
             [
                 InlineKeyboardButton(
                     text="➡️ Следующий диалог",
@@ -165,3 +176,53 @@ async def next_cafe_dialog(
     )
 
     await callback.answer()
+
+@router.callback_query(
+    lambda c: c.data.startswith(
+        "cafe_speak_"
+    )
+)
+async def speak_cafe_dialog(
+    callback: CallbackQuery
+):
+
+    dialog_index = int(
+        callback.data.split("_")[2]
+    )
+
+    dialog = CAFE_DIALOGS[
+        dialog_index
+    ]
+
+    text = " ".join(
+        line["tr"]
+        for line in dialog["lines"]
+    )
+
+    import os
+
+    filename = await generate_tts(
+        text
+    )
+
+    try:
+
+        audio = FSInputFile(
+            filename
+        )
+
+        await callback.message.answer_voice(
+            audio
+        )
+
+    finally:
+
+        if os.path.exists(
+            filename
+        ):
+            os.remove(
+                filename
+            )
+
+    await callback.answer()
+
