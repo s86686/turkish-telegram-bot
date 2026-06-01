@@ -18,6 +18,11 @@ main_menu = ReplyKeyboardMarkup(
                 text="⚙ Настройки"
             )
         ]
+         [
+            KeyboardButton(
+                text="🎭 Диалоги"
+            )
+        ]
     ],
     resize_keyboard=True
 )
