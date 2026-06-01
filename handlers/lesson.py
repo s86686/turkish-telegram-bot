@@ -225,6 +225,8 @@ async def speak_word(
     callback: CallbackQuery
 ):
 
+    await callback.answer()
+    
     word = CURRENT_WORDS.get(
         callback.from_user.id
     )
@@ -264,7 +266,7 @@ async def speak_word(
         if os.path.exists(filename):
             os.remove(filename)
 
-    await callback.answer()
+    
 
 @router.callback_query(
     F.data.startswith("next_")
