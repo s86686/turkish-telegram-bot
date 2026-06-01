@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "title": "У меня бронь",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Rezervasyonum var.",
+        "ru": "У меня есть бронь."
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Adınız nedir?",
+        "ru": "Как вас зовут?"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Можно заселиться?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Giriş yapabilir miyim?",
+        "ru": "Можно заселиться?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Evet, odanız hazır.",
+        "ru": "Да, ваш номер готов."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Во сколько завтрак?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kahvaltı saat kaçta?",
+        "ru": "Во сколько завтрак?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Saat yediden ona kadar.",
+        "ru": "С семи до десяти."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Пароль от Wi-Fi",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Wi-Fi şifresi nedir?",
+        "ru": "Какой пароль от Wi-Fi?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Odanızdaki kartta yazıyor.",
+        "ru": "Он написан на карточке в номере."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Нужно полотенце",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bir havlu alabilir miyim?",
+        "ru": "Можно полотенце?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Где лифт?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Asansör nerede?",
+        "ru": "Где лифт?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Sağ tarafta.",
+        "ru": "Справа."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Кондиционер не работает",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Klima çalışmıyor.",
+        "ru": "Кондиционер не работает."
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Hemen kontrol edeceğiz.",
+        "ru": "Сейчас проверим."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Поздний выезд",
+    "level": "A2",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Geç çıkış mümkün mü?",
+        "ru": "Возможен поздний выезд?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Evet, mümkün.",
+        "ru": "Да, возможен."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Вызовите такси",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bir taksi çağırabilir misiniz?",
+        "ru": "Можете вызвать такси?"
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Tabii.",
+        "ru": "Конечно."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Я выезжаю",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Çıkış yapmak istiyorum.",
+        "ru": "Я хочу выписаться из отеля."
+      },
+      {
+        "speaker": "Resepsiyonist",
+        "tr": "Tabii, anahtarınızı alabilir miyim?",
+        "ru": "Конечно, можно ваш ключ?"
+      }
+    ]
+  }
+]
