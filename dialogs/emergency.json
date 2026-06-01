@@ -1,0 +1,144 @@
+[
+  {
+    "id": 1,
+    "title": "Помогите, пожалуйста",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Lütfen yardım edin.",
+        "ru": "Пожалуйста, помогите."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Ne oldu?",
+        "ru": "Что случилось?"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Мне нужен врач",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Bir doktora ihtiyacım var.",
+        "ru": "Мне нужен врач."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Size yardım edeceğim.",
+        "ru": "Я помогу вам."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Где больница?",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Hastane nerede?",
+        "ru": "Где больница?"
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Yakınlarda bir hastane var.",
+        "ru": "Рядом есть больница."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Мне плохо",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Kendimi iyi hissetmiyorum.",
+        "ru": "Я плохо себя чувствую."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Bir doktora gidelim.",
+        "ru": "Давайте пойдём к врачу."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Я потерял телефон",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Telefonumu kaybettim.",
+        "ru": "Я потерял телефон."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Polise haber verelim.",
+        "ru": "Давайте сообщим в полицию."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Я потерял паспорт",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Pasaportumu kaybettim.",
+        "ru": "Я потерял паспорт."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Polis karakoluna gitmelisiniz.",
+        "ru": "Вам нужно обратиться в полицию."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Вызовите скорую",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Lütfen ambulans çağırın.",
+        "ru": "Пожалуйста, вызовите скорую."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Hemen arıyorum.",
+        "ru": "Сейчас звоню."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Вызовите полицию",
+    "level": "A1",
+    "lines": [
+      {
+        "speaker": "Siz",
+        "tr": "Lütfen polisi arayın.",
+        "ru": "Пожалуйста, вызовите полицию."
+      },
+      {
+        "speaker": "Yerli",
+        "tr": "Tamam.",
+        "ru": "Хорошо."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Мне нужна помощь",
+    "level": "A1",
+    "lines": [
+      {
+        "
