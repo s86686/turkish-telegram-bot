@@ -3,11 +3,18 @@ from aiogram import F
 
 from aiogram.types import (
     Message,
-    CallbackQuery
+    CallbackQuery,
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
 )
 
 from keyboards.settings import (
     direction_keyboard
+)
+
+from services.settings_service import (
+    get_direction,
+    set_direction
 )
 
 from services.topic_service import (
@@ -17,16 +24,38 @@ from services.topic_service import (
     set_user_topic
 )
 
-from aiogram.types import (
-    InlineKeyboardMarkup,
-    InlineKeyboardButton
-)
-from services.settings_service import (
-    get_direction,
-    set_direction
-)
-
 router = Router()
+
+
+def topics_keyboard():
+
+    topics = get_topics()
+
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                text="🌍 Все слова",
+                callback_data="topic_all"
+            )
+        ]
+    ]
+
+    for topic in topics:
+
+        keyboard.append(
+            [
+                InlineKeyboardButton(
+                    text=get_topic_name(
+                        topic
+                    ),
+                    callback_data=f"topic_{topic}"
+                )
+            ]
+        )
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=keyboard
+    )
 
 
 @router.message(
@@ -40,12 +69,25 @@ async def settings(
         message.from_user.id
     )
 
+    current_topic = get_user_topic(
+        message.from_user.id
+    )
+
+    topic_name = (
+        "🌍 Все слова"
+        if current_topic == "all"
+        else get_topic_name(
+            current_topic
+        )
+    )
+
     if direction == "RU_TR":
 
         text = (
             "⚙ Настройки\n\n"
             "Текущее направление:\n"
-            "🇷🇺 → 🇹🇷"
+            "🇷🇺 → 🇹🇷\n\n"
+            f"Текущая тема:\n{topic_name}"
         )
 
     else:
@@ -53,7 +95,8 @@ async def settings(
         text = (
             "⚙ Настройки\n\n"
             "Текущее направление:\n"
-            "🇹🇷 → 🇷🇺"
+            "🇹🇷 → 🇷🇺\n\n"
+            f"Текущая тема:\n{topic_name}"
         )
 
     await message.answer(
@@ -99,35 +142,7 @@ async def dir_ru_tr(
         "🇷🇺 → 🇹🇷"
     )
 
-    def topics_keyboard():
-
-    topics = get_topics()
-
-    keyboard = [
-        [
-            InlineKeyboardButton(
-                text="🌍 Все слова",
-                callback_data="topic_all"
-            )
-        ]
-    ]
-
-    for topic in topics:
-
-        keyboard.append(
-            [
-                InlineKeyboardButton(
-                    text=get_topic_name(
-                        topic
-                    ),
-                    callback_data=f"topic_{topic}"
-                )
-            ]
-        )
-
-    return InlineKeyboardMarkup(
-        inline_keyboard=keyboard
-    )
+    await callback.answer()
 
 
 @router.callback_query(
@@ -141,10 +156,18 @@ async def choose_topic(
         callback.from_user.id
     )
 
+    topic_name = (
+        "🌍 Все слова"
+        if current_topic == "all"
+        else get_topic_name(
+            current_topic
+        )
+    )
+
     await callback.message.edit_text(
         f"📚 Тема изучения\n\n"
         f"Текущая тема:\n"
-        f"{get_topic_name(current_topic) if current_topic != 'all' else '🌍 Все слова'}\n\n"
+        f"{topic_name}\n\n"
         f"Выберите новую тему:",
         reply_markup=topics_keyboard()
     )
@@ -174,14 +197,14 @@ async def set_topic(
     topic_name = (
         "🌍 Все слова"
         if topic == "all"
-        else get_topic_name(topic)
+        else get_topic_name(
+            topic
+        )
     )
 
     await callback.message.edit_text(
         f"✅ Тема изменена\n\n"
         f"{topic_name}"
     )
-
-    await callback.answer()
 
     await callback.answer()
