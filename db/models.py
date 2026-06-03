@@ -49,6 +49,11 @@ class User(Base):
         default="TR_RU"
     )
 
+    selected_topic: Mapped[str] = mapped_column(
+        String(50),
+        default="all"
+    )
+    
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         default=datetime.utcnow
