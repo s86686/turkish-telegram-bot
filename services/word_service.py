@@ -129,13 +129,18 @@ def get_new_word(
 
         all_words = [
             {
-                "id": w.id,
-                "lemma": w.lemma,
-                "translation": w.translation
+                "id": row.id,
+                "lemma": row.lemma,
+                "translation": row.translation
             }
-            for w in db.query(
-                Word
-            ).all()
+            for row in (
+                db.query(
+                    Word.id,
+                    Word.lemma,
+                    Word.translation
+                )
+                .all()
+            )
         ]
 
         return build_word_result(
@@ -203,13 +208,18 @@ def get_review_word(
 
         all_words = [
             {
-                "id": w.id,
-                "lemma": w.lemma,
-                "translation": w.translation
+                "id": row.id,
+                "lemma": row.lemma,
+                "translation": row.translation
             }
-            for w in db.query(
-                Word
-            ).all()
+            for row in (
+                db.query(
+                    Word.id,
+                    Word.lemma,
+                    Word.translation
+                )
+                .all()
+            )
         ]
 
         return build_word_result(
