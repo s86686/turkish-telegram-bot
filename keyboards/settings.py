@@ -19,6 +19,12 @@ def direction_keyboard():
                     text="🇷🇺 → 🇹🇷",
                     callback_data="dir_ru_tr"
                 )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="📚 Тема изучения",
+                    callback_data="choose_topic"
+                )
             ]
         ]
     )
