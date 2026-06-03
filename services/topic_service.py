@@ -5,6 +5,38 @@ from db.models import (
 )
 
 
+TOPIC_NAMES = {
+    "general": "📚 Общие слова",
+    "transport": "🚌 Транспорт",
+    "hotel": "🏨 Отель",
+    "pharmacy": "💊 Аптека",
+    "restaurant": "🍽 Ресторан",
+    "cafe": "☕ Кафе",
+    "market": "🧺 Базар",
+    "shop": "🛒 Магазин",
+    "beach": "🏖 Пляж",
+    "airport": "✈️ Аэропорт",
+    "excursions": "🏛 Экскурсии",
+    "emergency": "🚨 Экстренные ситуации",
+    "social": "🤝 Общение",
+    "family": "👨‍👩‍👧‍👦 Семья",
+    "people": "👥 Люди",
+    "food": "🍎 Еда",
+    "education": "🎓 Образование",
+    "home": "🏠 Дом"
+}
+
+
+def get_topic_name(
+    topic: str
+):
+
+    return TOPIC_NAMES.get(
+        topic,
+        f"📚 {topic.replace('_', ' ').title()}"
+    )
+
+
 def get_topics():
 
     db = SessionLocal()
