@@ -90,13 +90,21 @@ def get_new_word(
             ).all()
         ]
 
-        new_words = (
+        query = (
             db.query(Word)
             .filter(
                 ~Word.id.in_(learned_ids)
             )
-            .all()
         )
+
+        if user.selected_topic != "all":
+
+            query = query.filter(
+                Word.topic
+                == user.selected_topic
+            )
+
+        new_words = query.all()
 
         if not new_words:
             return None
