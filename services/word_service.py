@@ -107,6 +107,10 @@ def get_new_word(
         new_words = query.all()
 
         if not new_words:
+
+            if user.selected_topic != "all":
+                return "TOPIC_FINISHED"
+        
             return None
 
         best_priority = min(
