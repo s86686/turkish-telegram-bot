@@ -10,6 +10,17 @@ from keyboards.settings import (
     direction_keyboard
 )
 
+from services.topic_service import (
+    get_topics,
+    get_topic_name,
+    get_user_topic,
+    set_user_topic
+)
+
+from aiogram.types import (
+    InlineKeyboardMarkup,
+    InlineKeyboardButton
+)
 from services.settings_service import (
     get_direction,
     set_direction
@@ -87,5 +98,90 @@ async def dir_ru_tr(
         "✅ Направление изменено\n\n"
         "🇷🇺 → 🇹🇷"
     )
+
+    def topics_keyboard():
+
+    topics = get_topics()
+
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                text="🌍 Все слова",
+                callback_data="topic_all"
+            )
+        ]
+    ]
+
+    for topic in topics:
+
+        keyboard.append(
+            [
+                InlineKeyboardButton(
+                    text=get_topic_name(
+                        topic
+                    ),
+                    callback_data=f"topic_{topic}"
+                )
+            ]
+        )
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=keyboard
+    )
+
+
+@router.callback_query(
+    F.data == "choose_topic"
+)
+async def choose_topic(
+    callback: CallbackQuery
+):
+
+    current_topic = get_user_topic(
+        callback.from_user.id
+    )
+
+    await callback.message.edit_text(
+        f"📚 Тема изучения\n\n"
+        f"Текущая тема:\n"
+        f"{get_topic_name(current_topic) if current_topic != 'all' else '🌍 Все слова'}\n\n"
+        f"Выберите новую тему:",
+        reply_markup=topics_keyboard()
+    )
+
+    await callback.answer()
+
+
+@router.callback_query(
+    lambda c: c.data.startswith(
+        "topic_"
+    )
+)
+async def set_topic(
+    callback: CallbackQuery
+):
+
+    topic = callback.data.replace(
+        "topic_",
+        ""
+    )
+
+    set_user_topic(
+        callback.from_user.id,
+        topic
+    )
+
+    topic_name = (
+        "🌍 Все слова"
+        if topic == "all"
+        else get_topic_name(topic)
+    )
+
+    await callback.message.edit_text(
+        f"✅ Тема изменена\n\n"
+        f"{topic_name}"
+    )
+
+    await callback.answer()
 
     await callback.answer()
