@@ -72,6 +72,16 @@ async def new_words(
 
         return
 
+    if word == "TOPIC_FINISHED":
+
+        await message.answer(
+            "🎉 Вы изучили все новые слова этой темы.\n\n"
+            "Выберите другую тему в настройках ⚙ "
+            "или перейдите к повторениям 🔁"
+        )
+
+        return
+
     if not word:
 
         await message.answer(
@@ -333,6 +343,18 @@ async def next_word(
 
         await callback.answer()
 
+        return
+
+    if mode == "new" and word == "TOPIC_FINISHED":
+
+        await callback.message.edit_text(
+            "🎉 Вы изучили все новые слова этой темы.\n\n"
+            "Выберите другую тему в настройках ⚙ "
+            "или перейдите к повторениям 🔁"
+        )
+    
+        await callback.answer()
+    
         return
 
     if not word:
