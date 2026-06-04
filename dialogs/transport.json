@@ -1,182 +1,341 @@
 [
-  {
-    "id": 1,
-    "title": "Автобус до Фазелиса",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Bu otobüs Phaselis'e gidiyor mu?",
-        "ru": "Этот автобус идёт в Фазелис?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Evet.",
-        "ru": "Да."
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "title": "Остановка в Фазелисе",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Phaselis'te duruyor mu?",
-        "ru": "Он останавливается в Фазелисе?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Evet.",
-        "ru": "Да."
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "title": "Скажите, где выйти",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Phaselis'te ineceğim. Bana söyler misiniz?",
-        "ru": "Я выхожу в Фазелисе. Скажете мне?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Tabii.",
-        "ru": "Конечно."
-      }
-    ]
-  },
-  {
-    "id": 4,
-    "title": "Это Фазелис?",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Burası Phaselis mi?",
-        "ru": "Это Фазелис?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Evet, burada inebilirsiniz.",
-        "ru": "Да, можете выходить здесь."
-      }
-    ]
-  },
-  {
-    "id": 5,
-    "title": "Мне здесь выходить?",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Burada mı ineceğim?",
-        "ru": "Мне здесь выходить?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Evet.",
-        "ru": "Да."
-      }
-    ]
-  },
-  {
-    "id": 6,
-    "title": "Сколько ещё ехать?",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Phaselis'e daha ne kadar var?",
-        "ru": "Сколько ещё ехать до Фазелиса?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "On dakika.",
-        "ru": "Десять минут."
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "title": "Где остановка?",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Otobüs durağı nerede?",
-        "ru": "Где автобусная остановка?"
-      },
-      {
-        "speaker": "Yerli",
-        "tr": "Şurada.",
-        "ru": "Вон там."
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "title": "Стоимость и оплата",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Phaselis'e ne kadar?",
-        "ru": "Сколько до Фазелиса?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Kırk lira.",
-        "ru": "Сорок лир."
-      },
-      {
-        "speaker": "Siz",
-        "tr": "Kartla ödeyebilir miyim?",
-        "ru": "Можно оплатить картой?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Evet.",
-        "ru": "Да."
-      }
-    ]
-  },
-  {
-    "id": 9,
-    "title": "Автобус в центр",
-    "level": "A1",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Merkeze gidiyor mu?",
-        "ru": "Этот автобус идёт в центр?"
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Evet.",
-        "ru": "Да."
-      }
-    ]
-  },
-  {
-    "id": 10,
-    "title": "Я пропустил остановку",
-    "level": "A2",
-    "lines": [
-      {
-        "speaker": "Siz",
-        "tr": "Durağımı kaçırdım.",
-        "ru": "Я пропустил свою остановку."
-      },
-      {
-        "speaker": "Şoför",
-        "tr": "Bir sonraki durakta inin.",
-        "ru": "Выходите на следующей остановке."
-      }
-    ]
-  }
+{
+"id": 1,
+"title": "Автобус до Фазелиса",
+"level": "A1",
+"vocabulary": [
+{"tr":"otobüs","ru":"автобус"},
+{"tr":"gitmek","ru":"ехать"},
+{"tr":"Phaselis","ru":"Фазелис"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Bu otobüs Phaselis'e gidiyor mu?",
+"ru": "Этот автобус идёт в Фазелис?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, gidiyor.",
+"ru": "Да, идёт."
+}
+]
+},
+
+{
+"id": 2,
+"title": "Остановка в Фазелисе",
+"level": "A1",
+"vocabulary": [
+{"tr":"durmak","ru":"останавливаться"},
+{"tr":"Phaselis","ru":"Фазелис"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Phaselis'te duruyor mu?",
+"ru": "Он останавливается в Фазелисе?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, duruyor.",
+"ru": "Да, останавливается."
+}
+]
+},
+
+{
+"id": 3,
+"title": "Скажите, где выйти",
+"level": "A1",
+"vocabulary": [
+{"tr":"ineceğim","ru":"я выйду"},
+{"tr":"söylemek","ru":"сказать"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Phaselis'te ineceğim. Bana söyler misiniz?",
+"ru": "Я выхожу в Фазелисе. Скажете мне?"
+},
+{
+"speaker": "Şoför",
+"tr": "Tabii, söylerim.",
+"ru": "Конечно, скажу."
+}
+]
+},
+
+{
+"id": 4,
+"title": "Это Фазелис?",
+"level": "A1",
+"vocabulary": [
+{"tr":"burası","ru":"это место"},
+{"tr":"inmek","ru":"выходить"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Burası Phaselis mi?",
+"ru": "Это Фазелис?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, burada inebilirsiniz.",
+"ru": "Да, можете выходить здесь."
+}
+]
+},
+
+{
+"id": 5,
+"title": "Мне здесь выходить?",
+"level": "A1",
+"vocabulary": [
+{"tr":"burada","ru":"здесь"},
+{"tr":"inmek","ru":"выходить"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Burada mı ineceğim?",
+"ru": "Мне здесь выходить?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, burada ineceksiniz.",
+"ru": "Да, вам нужно выйти здесь."
+}
+]
+},
+
+{
+"id": 6,
+"title": "Сколько ещё ехать?",
+"level": "A1",
+"vocabulary": [
+{"tr":"daha","ru":"ещё"},
+{"tr":"dakika","ru":"минута"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Phaselis'e daha ne kadar var?",
+"ru": "Сколько ещё ехать до Фазелиса?"
+},
+{
+"speaker": "Şoför",
+"tr": "Yaklaşık on dakika.",
+"ru": "Примерно десять минут."
+}
+]
+},
+
+{
+"id": 7,
+"title": "Где остановка?",
+"level": "A1",
+"vocabulary": [
+{"tr":"durak","ru":"остановка"},
+{"tr":"nerede","ru":"где"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Otobüs durağı nerede?",
+"ru": "Где автобусная остановка?"
+},
+{
+"speaker": "Yerli",
+"tr": "Şurada, köşede.",
+"ru": "Вон там, на углу."
+}
+]
+},
+
+{
+"id": 8,
+"title": "Стоимость и оплата",
+"level": "A1",
+"vocabulary": [
+{"tr":"ne kadar","ru":"сколько стоит"},
+{"tr":"kart","ru":"карта"},
+{"tr":"ödemek","ru":"оплачивать"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Phaselis'e ne kadar?",
+"ru": "Сколько до Фазелиса?"
+},
+{
+"speaker": "Şoför",
+"tr": "Kırk lira.",
+"ru": "Сорок лир."
+},
+{
+"speaker": "Siz",
+"tr": "Kartla ödeyebilir miyim?",
+"ru": "Можно оплатить картой?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, tabii.",
+"ru": "Да, конечно."
+}
+]
+},
+
+{
+"id": 9,
+"title": "Автобус в центр",
+"level": "A1",
+"vocabulary": [
+{"tr":"merkez","ru":"центр"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Bu otobüs merkeze gidiyor mu?",
+"ru": "Этот автобус идёт в центр?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, gidiyor.",
+"ru": "Да, идёт."
+}
+]
+},
+
+{
+"id": 10,
+"title": "Я пропустил остановку",
+"level": "A2",
+"vocabulary": [
+{"tr":"kaçırmak","ru":"пропустить"},
+{"tr":"sonraki","ru":"следующий"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Durağımı kaçırdım.",
+"ru": "Я пропустил свою остановку."
+},
+{
+"speaker": "Şoför",
+"tr": "Bir sonraki durakta inin.",
+"ru": "Выходите на следующей остановке."
+}
+]
+},
+
+{
+"id": 11,
+"title": "Какой автобус мне нужен?",
+"level": "A1",
+"vocabulary": [
+{"tr":"hangi","ru":"какой"},
+{"tr":"binmek","ru":"садиться"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Phaselis'e gitmek için hangi otobüse binmeliyim?",
+"ru": "На какой автобус мне нужно сесть, чтобы доехать до Фазелиса?"
+},
+{
+"speaker": "Yerli",
+"tr": "TA08'e binin.",
+"ru": "Садитесь на TA08."
+}
+]
+},
+
+{
+"id": 12,
+"title": "Нужна ли пересадка?",
+"level": "A2",
+"vocabulary": [
+{"tr":"aktarma","ru":"пересадка"},
+{"tr":"direkt","ru":"напрямую"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Aktarma yapmam gerekiyor mu?",
+"ru": "Мне нужно делать пересадку?"
+},
+{
+"speaker": "Yerli",
+"tr": "Hayır, direkt gidiyor.",
+"ru": "Нет, едет напрямую."
+}
+]
+},
+
+{
+"id": 13,
+"title": "Автобус уже ушёл?",
+"level": "A1",
+"vocabulary": [
+{"tr":"gitmek","ru":"уходить"},
+{"tr":"gelmek","ru":"приходить"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Otobüs gitti mi?",
+"ru": "Автобус уже ушёл?"
+},
+{
+"speaker": "Yerli",
+"tr": "Hayır, birazdan gelecek.",
+"ru": "Нет, скоро приедет."
+}
+]
+},
+
+{
+"id": 14,
+"title": "Следующий автобус",
+"level": "A1",
+"vocabulary": [
+{"tr":"sonraki","ru":"следующий"},
+{"tr":"ne zaman","ru":"когда"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Sonraki otobüs ne zaman?",
+"ru": "Когда следующий автобус?"
+},
+{
+"speaker": "Yerli",
+"tr": "On beş dakika sonra.",
+"ru": "Через пятнадцать минут."
+}
+]
+},
+
+{
+"id": 15,
+"title": "Есть свободные места?",
+"level": "A1",
+"vocabulary": [
+{"tr":"boş yer","ru":"свободное место"}
+],
+"lines": [
+{
+"speaker": "Siz",
+"tr": "Boş yer var mı?",
+"ru": "Есть свободные места?"
+},
+{
+"speaker": "Şoför",
+"tr": "Evet, arkada var.",
+"ru": "Да, сзади есть."
+}
+]
+}
 ]
