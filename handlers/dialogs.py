@@ -149,6 +149,12 @@ def dialog_keyboard(
             ],
             [
                 InlineKeyboardButton(
+                    text="📚 Ключевые слова",
+                    callback_data=f"dialog_words_{topic}_{dialog_index}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
                     text="➡️ Следующий диалог",
                     callback_data=f"dialog_next_{topic}_{dialog_index}"
                 )
@@ -394,3 +400,50 @@ async def speak_dialog(
         SPEAK_IN_PROGRESS.discard(
             user_id
         ) 
+
+@router.callback_query(
+    lambda c: c.data.startswith(
+        "dialog_words_"
+    )
+)
+async def show_dialog_words(
+    callback: CallbackQuery
+):
+
+    parts = callback.data.split("_")
+
+    topic = parts[2]
+    dialog_index = int(parts[3])
+
+    dialog = DIALOG_SETS[
+        topic
+    ][dialog_index]
+
+    vocabulary = dialog.get(
+        "vocabulary",
+        []
+    )
+
+    if not vocabulary:
+
+        await callback.answer(
+            "Для этого диалога словарь ещё не заполнен",
+            show_alert=True
+        )
+
+        return
+
+    text = "📚 Ключевые слова\n\n"
+
+    for item in vocabulary:
+
+        text += (
+            f"🇹🇷 {item['tr']}\n"
+            f"🇷🇺 {item['ru']}\n\n"
+        )
+
+    await callback.message.answer(
+        text
+    )
+
+    await callback.answer()
