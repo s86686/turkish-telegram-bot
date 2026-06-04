@@ -20,6 +20,8 @@ router = Router()
 
 VOICE_MESSAGES = {}
 
+WORDS_MESSAGES = {}
+
 SPEAK_IN_PROGRESS = set()
 
 DIALOG_SETS = load_all_dialogs()
@@ -133,7 +135,32 @@ async def delete_dialog_voice(
         None
     )
 
+async def delete_words_message(
+    callback: CallbackQuery
+):
 
+    words_message_id = WORDS_MESSAGES.get(
+        callback.from_user.id
+    )
+
+    if not words_message_id:
+        return
+
+    try:
+
+        await callback.bot.delete_message(
+            chat_id=callback.message.chat.id,
+            message_id=words_message_id
+        )
+
+    except Exception:
+        pass
+
+    WORDS_MESSAGES.pop(
+        callback.from_user.id,
+        None
+    )
+    
 def dialog_keyboard(
     topic: str,
     dialog_index: int
@@ -228,6 +255,10 @@ async def back_to_dialogs_menu(
         callback
     )
 
+    await delete_words_message(
+        callback
+    )
+
     await callback.message.edit_text(
         "🎭 Выберите тему:",
         reply_markup=topics_keyboard
@@ -264,6 +295,10 @@ async def show_dialog_topic(
         callback
     )
 
+    await delete_words_message(
+        callback
+    )
+
     dialog = DIALOG_SETS[
         topic
     ][0]
@@ -291,6 +326,10 @@ async def next_dialog(
 ):
 
     await delete_dialog_voice(
+        callback
+    )
+
+    await delete_words_message(
         callback
     )
 
@@ -410,10 +449,15 @@ async def show_dialog_words(
     callback: CallbackQuery
 ):
 
-    parts = callback.data.split("_")
+    parts = callback.data.split(
+        "_"
+    )
 
     topic = parts[2]
-    dialog_index = int(parts[3])
+
+    dialog_index = int(
+        parts[3]
+    )
 
     dialog = DIALOG_SETS[
         topic
@@ -433,17 +477,24 @@ async def show_dialog_words(
 
         return
 
+    await delete_words_message(
+        callback
+    )
+
     text = "📚 Ключевые слова\n\n"
 
     for item in vocabulary:
 
         text += (
-            f"🇹🇷 {item['tr']}\n"
-            f"🇷🇺 {item['ru']}\n\n"
+            f"{item['tr']} — {item['ru']}\n"
         )
 
-    await callback.message.answer(
+    msg = await callback.message.answer(
         text
     )
+
+    WORDS_MESSAGES[
+        callback.from_user.id
+    ] = msg.message_id
 
     await callback.answer()
