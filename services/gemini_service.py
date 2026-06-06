@@ -77,7 +77,8 @@ def explain_phrase(
 
             save_cached_response(
                 phrase,
-                text
+                text,
+                model
             )
 
             print(
