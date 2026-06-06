@@ -1,7 +1,8 @@
 from db.database import SessionLocal
-from db.models import DailyStory, UserWord, Word, User
+from db.models import DailyStory, UserWord, Word
 from datetime import datetime
-from services.gemini_service import generate_story
+from services.gemini_service import generate_story  # отдельная функция для генерации истории
+
 
 def get_user_words_for_story(user_id: int, limit: int = 10):
     """Берем слова, которые пользователь изучал сегодня"""
@@ -12,7 +13,7 @@ def get_user_words_for_story(user_id: int, limit: int = 10):
             db.query(UserWord)
             .filter(UserWord.user_id == user_id)
             .filter(UserWord.learned_at != None)
-            .filter(UserWord.learned_at >= today)  # Слова изученные сегодня
+            .filter(UserWord.learned_at >= today)
             .order_by(UserWord.next_review)
             .limit(limit)
             .all()
@@ -26,6 +27,7 @@ def get_user_words_for_story(user_id: int, limit: int = 10):
         return words
     finally:
         db.close()
+
 
 def get_daily_story(user_id: int):
     """Возвращает историю дня для пользователя, если она есть"""
@@ -42,22 +44,14 @@ def get_daily_story(user_id: int):
     finally:
         db.close()
 
+
 def create_daily_story(user_id: int, words: list):
     """Создаем историю через Gemini и сохраняем в БД"""
     db = SessionLocal()
     today = datetime.utcnow().date()
     try:
-        prompt = f"""
-Ты преподаватель турецкого языка.
-Напиши короткую историю уровня A1-A2.
-Используй все эти слова: {', '.join(words)}
-5-8 предложений, простой турецкий, естественная ситуация.
-После истории дай перевод на русский.
-Выделяй использованные слова жирным.
-"""
-       story_text = generate_story(
-            words
-        )
+        # Генерируем историю через отдельную функцию
+        story_text = generate_story(words)
 
         story = DailyStory(
             user_id=user_id,
@@ -67,7 +61,6 @@ def create_daily_story(user_id: int, words: list):
 
         db.add(story)
         db.commit()
-        db.refresh(story)
         return story
     finally:
         db.close()
