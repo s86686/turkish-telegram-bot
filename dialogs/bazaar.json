@@ -16,7 +16,7 @@
       {"tr": "lira", "ru": "лира"},
       {"tr": "indirim", "ru": "скидка"}
     ],
-    "ai_phrase": "Вы спрашиваете цену яблок, пытаетесь договориться о скидке и выбираете количество."
+    "ai_phrase": "Peki biraz indirim yapabilir misiniz?"
   },
   {
     "id": 2,
@@ -35,7 +35,7 @@
       {"tr": "kilo", "ru": "килограмм"},
       {"tr": "lira", "ru": "лира"}
     ],
-    "ai_phrase": "Вы спрашиваете о свежести овощей, цене и решаете количество покупки."
+    "ai_phrase": "Domatesler taze mi?"
   },
   {
     "id": 3,
@@ -54,7 +54,7 @@
       {"tr": "kart", "ru": "карта"},
       {"tr": "paket", "ru": "пакет"}
     ],
-    "ai_phrase": "Вы спрашиваете цену специй, условия оплаты и количество для покупки."
+    "ai_phrase": "Kartla ödeyebilir miyim?"
   },
   {
     "id": 4,
@@ -72,7 +72,7 @@
       {"tr": "lokum", "ru": "лукум"},
       {"tr": "paket", "ru": "пакет"}
     ],
-    "ai_phrase": "Вы интересуетесь популярными сладостями, просите упаковать один пакет."
+    "ai_phrase": "Hangi tatlılar popüler?"
   },
   {
     "id": 5,
@@ -88,18 +88,17 @@
       {"tr": "somun", "ru": "батон"},
       {"tr": "lira", "ru": "лира"}
     ],
-    "ai_phrase": "Вы спрашиваете цену хлеба и благодарите продавца."
+    "ai_phrase": "Bir somun ekmek alabilir miyim?"
   },
   {
     "id": 6,
-    "title": "Покупка овощей на базаре",
+    "title": "Покупка баклажанов",
     "level": "A1",
     "lines": [
       {"speaker": "Siz", "tr": "Patlıcanlar taze mi?", "ru": "Баклажаны свежие?"},
-      {"speaker": "Satıcı", "tr": "Evet, bugün geldi.", "ru": "Да, привезли сегодня."},
+      {"speaker": "Satıcı", "tr": "Evet, sabah geldi.", "ru": "Да, сегодня утром привезли."},
       {"speaker": "Siz", "tr": "Kaç lira kilosu?", "ru": "Сколько стоит килограмм?"},
-      {"speaker": "Satıcı", "tr": "8 lira.", "ru": "8 лир."},
-      {"speaker": "Siz", "tr": "O zaman iki kilo alacağım.", "ru": "Тогда возьму два килограмма."}
+      {"speaker": "Satıcı", "tr": "8 lira.", "ru": "8 лир."}
     ],
     "vocabulary": [
       {"tr": "patlıcan", "ru": "баклажан"},
@@ -107,42 +106,39 @@
       {"tr": "kilo", "ru": "килограмм"},
       {"tr": "lira", "ru": "лира"}
     ],
-    "ai_phrase": "Вы спрашиваете о свежести овощей, цене за килограмм и покупаете нужное количество."
+    "ai_phrase": "Patlıcanlar taze mi?"
   },
   {
     "id": 7,
     "title": "Покупка зелени",
     "level": "A1",
     "lines": [
-      {"speaker": "Siz", "tr": "Maydanoz taze mi?", "ru": "Петрушка свежая?"},
-      {"speaker": "Satıcı", "tr": "Evet, sabah geldi.", "ru": "Да, пришла сегодня утром."},
-      {"speaker": "Siz", "tr": "Birkaç demet alabilir miyim?", "ru": "Можно взять несколько пучков?"},
-      {"speaker": "Satıcı", "tr": "Tabii, istediğiniz kadar.", "ru": "Конечно, сколько хотите."}
+      {"speaker": "Siz", "tr": "Birkaç demet alabilir miyim?", "ru": "Можно купить несколько пучков?"},
+      {"speaker": "Satıcı", "tr": "Tabii, ne alırsınız?", "ru": "Конечно, что вы хотите?"},
+      {"speaker": "Siz", "tr": "Maydanoz ve dereotu alacağım.", "ru": "Возьму петрушку и укроп."}
     ],
     "vocabulary": [
+      {"tr": "demet", "ru": "пучок"},
       {"tr": "maydanoz", "ru": "петрушка"},
-      {"tr": "taze", "ru": "свежий"},
-      {"tr": "demet", "ru": "пучок"}
+      {"tr": "dereotu", "ru": "укроп"}
     ],
-    "ai_phrase": "Вы спрашиваете о свежести зелени и количестве пучков для покупки."
+    "ai_phrase": "Birkaç demet alabilir miyim?"
   },
   {
     "id": 8,
-    "title": "Покупка оливок",
+    "title": "Покупка фруктов на вес",
     "level": "A1",
     "lines": [
-      {"speaker": "Siz", "tr": "Zeytin ne kadar?", "ru": "Сколько стоят оливки?"},
-      {"speaker": "Satıcı", "tr": "1 kilo 40 lira.", "ru": "1 килограмм — 40 лир."},
       {"speaker": "Siz", "tr": "Yarım kilo alabilir miyim?", "ru": "Можно взять полкилограмма?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 20 lira.", "ru": "Конечно, 20 лир."}
+      {"speaker": "Satıcı", "tr": "Tabii, hangisinden?", "ru": "Конечно, какого вида?"},
+      {"speaker": "Siz", "tr": "Elma ve armut alacağım.", "ru": "Возьму яблоки и груши."}
     ],
     "vocabulary": [
-      {"tr": "zeytin", "ru": "оливки"},
-      {"tr": "kilo", "ru": "килограмм"},
-      {"tr": "yarım", "ru": "половина"},
-      {"tr": "lira", "ru": "лира"}
+      {"tr": "yarım kilo", "ru": "полкилограмма"},
+      {"tr": "elma", "ru": "яблоко"},
+      {"tr": "armut", "ru": "груша"}
     ],
-    "ai_phrase": "Вы узнаете цену за килограмм оливок и покупаете половину килограмма."
+    "ai_phrase": "Yarım kilo alabilir miyim?"
   },
   {
     "id": 9,
@@ -150,35 +146,31 @@
     "level": "A1",
     "lines": [
       {"speaker": "Siz", "tr": "Beyaz peynir taze mi?", "ru": "Белый сыр свежий?"},
-      {"speaker": "Satıcı", "tr": "Evet, dün geldi.", "ru": "Да, поступил вчера."},
-      {"speaker": "Siz", "tr": "200 gram alabilir miyim?", "ru": "Можно 200 грамм?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 25 lira.", "ru": "Конечно, 25 лир."}
+      {"speaker": "Satıcı", "tr": "Evet, sabah geldi.", "ru": "Да, сегодня утром привезли."},
+      {"speaker": "Siz", "tr": "100 gram alabilir miyim?", "ru": "Можно взять 100 грамм?"},
+      {"speaker": "Satıcı", "tr": "Tabii.", "ru": "Конечно."}
     ],
     "vocabulary": [
-      {"tr": "beyaz peynir", "ru": "белый сыр"},
-      {"tr": "taze", "ru": "свежий"},
-      {"tr": "gram", "ru": "грамм"},
-      {"tr": "lira", "ru": "лира"}
+      {"tr": "peynir", "ru": "сыр"},
+      {"tr": "gram", "ru": "грамм"}
     ],
-    "ai_phrase": "Вы спрашиваете свежесть сыра и покупаете нужное количество грамм."
+    "ai_phrase": "Beyaz peynir taze mi?"
   },
   {
     "id": 10,
     "title": "Покупка орехов",
     "level": "A1",
     "lines": [
-      {"speaker": "Siz", "tr": "Fındık ne kadar?", "ru": "Сколько стоят орехи?"},
-      {"speaker": "Satıcı", "tr": "1 kilo 100 lira.", "ru": "1 килограмм — 100 лир."},
-      {"speaker": "Siz", "tr": "Yarım kilo alabilir miyim?", "ru": "Можно полкилограмма?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 50 lira.", "ru": "Конечно, 50 лир."}
+      {"speaker": "Siz", "tr": "Fındık ne kadar?", "ru": "Сколько стоит орехи?"},
+      {"speaker": "Satıcı", "tr": "Bir kilo 60 lira.", "ru": "Килограмм — 60 лир."},
+      {"speaker": "Siz", "tr": "Yarım kilo alabilir miyim?", "ru": "Можно взять полкилограмма?"}
     ],
     "vocabulary": [
-      {"tr": "fındık", "ru": "орехи"},
+      {"tr": "fındık", "ru": "орех"},
       {"tr": "kilo", "ru": "килограмм"},
-      {"tr": "yarım", "ru": "половина"},
       {"tr": "lira", "ru": "лира"}
     ],
-    "ai_phrase": "Вы узнаете цену орехов за килограмм и покупаете половину."
+    "ai_phrase": "Fındık ne kadar?"
   },
   {
     "id": 11,
@@ -186,17 +178,15 @@
     "level": "A1",
     "lines": [
       {"speaker": "Siz", "tr": "Zeytinyağı ne kadar?", "ru": "Сколько стоит оливковое масло?"},
-      {"speaker": "Satıcı", "tr": "1 litre 80 lira.", "ru": "1 литр — 80 лир."},
-      {"speaker": "Siz", "tr": "500 ml alabilir miyim?", "ru": "Можно взять 500 мл?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 40 lira.", "ru": "Конечно, 40 лир."}
+      {"speaker": "Satıcı", "tr": "Bir litre 120 lira.", "ru": "Литр — 120 лир."},
+      {"speaker": "Siz", "tr": "İki litre alabilir miyim?", "ru": "Можно взять два литра?"}
     ],
     "vocabulary": [
       {"tr": "zeytinyağı", "ru": "оливковое масло"},
       {"tr": "litre", "ru": "литр"},
-      {"tr": "ml", "ru": "миллилитр"},
       {"tr": "lira", "ru": "лира"}
     ],
-    "ai_phrase": "Вы узнаете цену оливкового масла за литр и покупаете половину литра."
+    "ai_phrase": "Zeytinyağı ne kadar?"
   },
   {
     "id": 12,
@@ -204,71 +194,58 @@
     "level": "A1",
     "lines": [
       {"speaker": "Siz", "tr": "Balık taze mi?", "ru": "Рыба свежая?"},
-      {"speaker": "Satıcı", "tr": "Evet, sabah geldi.", "ru": "Да, привезли сегодня утром."},
-      {"speaker": "Siz", "tr": "Bir kilo alabilir miyim?", "ru": "Можно килограмм?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 70 lira.", "ru": "Конечно, 70 лир."}
+      {"speaker": "Satıcı", "tr": "Evet, sabah geldi.", "ru": "Да, сегодня утром привезли."},
+      {"speaker": "Siz", "tr": "500 gram alabilir miyim?", "ru": "Можно взять 500 грамм?"}
     ],
     "vocabulary": [
       {"tr": "balık", "ru": "рыба"},
-      {"tr": "taze", "ru": "свежий"},
-      {"tr": "kilo", "ru": "килограмм"},
-      {"tr": "lira", "ru": "лира"}
+      {"tr": "gram", "ru": "грамм"}
     ],
-    "ai_phrase": "Вы спрашиваете о свежести рыбы и покупаете килограмм."
+    "ai_phrase": "Balık taze mi?"
   },
   {
     "id": 13,
-    "title": "Покупка мяса",
+    "title": "Покупка пирожков",
     "level": "A1",
     "lines": [
-      {"speaker": "Siz", "tr": "Et taze mi?", "ru": "Мясо свежее?"},
-      {"speaker": "Satıcı", "tr": "Evet, bugün geldi.", "ru": "Да, привезли сегодня."},
-      {"speaker": "Siz", "tr": "500 gram alabilir miyim?", "ru": "Можно 500 грамм?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 50 lira.", "ru": "Конечно, 50 лир."}
+      {"speaker": "Siz", "tr": "Poğaça var mı?", "ru": "Есть пирожки?"},
+      {"speaker": "Satıcı", "tr": "Evet, var.", "ru": "Да, есть."},
+      {"speaker": "Siz", "tr": "İki tane alabilir miyim?", "ru": "Можно взять два?"}
     ],
     "vocabulary": [
-      {"tr": "et", "ru": "мясо"},
-      {"tr": "taze", "ru": "свежий"},
-      {"tr": "gram", "ru": "грамм"},
-      {"tr": "lira", "ru": "лира"}
+      {"tr": "poğaça", "ru": "пирожок"},
+      {"tr": "tane", "ru": "штука"}
     ],
-    "ai_phrase": "Вы спрашиваете о свежести мяса и покупаете нужное количество."
+    "ai_phrase": "Poğaça var mı?"
   },
   {
     "id": 14,
-    "title": "Покупка хлебобулочных изделий",
+    "title": "Покупка воды",
     "level": "A1",
     "lines": [
-      {"speaker": "Siz", "tr": "Poğaça var mı?", "ru": "Есть ли булочки?"},
-      {"speaker": "Satıcı", "tr": "Evet, taze geldi.", "ru": "Да, свежие."},
-      {"speaker": "Siz", "tr": "Üç tane alabilir miyim?", "ru": "Можно три штуки?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 15 lira.", "ru": "Конечно, 15 лир."}
-    ],
-    "vocabulary": [
-      {"tr": "poğaça", "ru": "булочка"},
-      {"tr": "taze", "ru": "свежий"},
-      {"tr": "tane", "ru": "штука"},
-      {"tr": "lira", "ru": "лира"}
-    ],
-    "ai_phrase": "Вы спрашиваете наличие булочек, количество и цену."
-  },
-  {
-    "id": 15,
-    "title": "Покупка напитков",
-    "level": "A1",
-    "lines": [
-      {"speaker": "Siz", "tr": "Bir şişe su alabilir miyim?", "ru": "Можно одну бутылку воды?"},
-      {"speaker": "Satıcı", "tr": "Tabii, 5 lira.", "ru": "Конечно, 5 лир."},
-      {"speaker": "Siz", "tr": "Kola var mı?", "ru": "Есть ли кола?"},
-      {"speaker": "Satıcı", "tr": "Evet, var.", "ru": "Да, есть."},
-      {"speaker": "Siz", "tr": "Bir tane de kola alacağım.", "ru": "Тогда возьму одну колу."}
+      {"speaker": "Siz", "tr": "Bir şişe su alabilir miyim?", "ru": "Можно купить одну бутылку воды?"},
+      {"speaker": "Satıcı", "tr": "Tabii, 3 lira.", "ru": "Конечно, 3 лиры."}
     ],
     "vocabulary": [
       {"tr": "su", "ru": "вода"},
-      {"tr": "kola", "ru": "кола"},
       {"tr": "şişe", "ru": "бутылка"},
       {"tr": "lira", "ru": "лира"}
     ],
-    "ai_phrase": "Вы покупаете напитки, спрашиваете цену и наличие колы."
+    "ai_phrase": "Bir şişe su alabilir miyim?"
+  },
+  {
+    "id": 15,
+    "title": "Покупка хлебобулочных изделий",
+    "level": "A1",
+    "lines": [
+      {"speaker": "Siz", "tr": "Poğaça ve simit alabilir miyim?", "ru": "Можно взять пирожки и симит?"},
+      {"speaker": "Satıcı", "tr": "Tabii, 5 lira.", "ru": "Конечно, 5 лир."}
+    ],
+    "vocabulary": [
+      {"tr": "poğaça", "ru": "пирожок"},
+      {"tr": "simit", "ru": "сочник"},
+      {"tr": "lira", "ru": "лира"}
+    ],
+    "ai_phrase": "Poğaça ve simit alabilir miyim?"
   }
 ]
