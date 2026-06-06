@@ -1,5 +1,3 @@
-I'll analyze the Turkish Telegram Bot repository and generate comprehensive technical documentation. Let me start by exploring the repository structure and code.Let me get the repository contents:Now I'll fetch the actual content of the key files to understand the implementation:# Turkish Telegram Bot - Technical Documentation
-
 ## Project Overview
 
 ### Purpose of the Project
