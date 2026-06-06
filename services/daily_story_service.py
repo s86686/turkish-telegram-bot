@@ -1,7 +1,7 @@
 from db.database import SessionLocal
 from db.models import DailyStory, UserWord, Word, User
 from datetime import datetime
-from services.gemini_service import explain_phrase
+from services.gemini_service import generate_story
 
 def get_user_words_for_story(user_id: int, limit: int = 10):
     """Берем слова, которые пользователь изучал сегодня"""
@@ -55,7 +55,9 @@ def create_daily_story(user_id: int, words: list):
 После истории дай перевод на русский.
 Выделяй использованные слова жирным.
 """
-        story_text = explain_phrase(prompt)
+       story_text = generate_story(
+            words
+        )
 
         story = DailyStory(
             user_id=user_id,
