@@ -144,6 +144,13 @@ def create_daily_story(
         if not user:
             return None
 
+        if (
+            not story_text
+            or story_text.startswith("Ошибка Gemini")
+            or story_text.startswith("⚠️")
+        ):
+            return None
+
         story_text = generate_story(
             words
         )
