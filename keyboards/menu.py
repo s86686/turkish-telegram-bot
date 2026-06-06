@@ -29,6 +29,9 @@ main_menu = ReplyKeyboardMarkup(
             KeyboardButton(
                 text="📖 Грамматика"
             )
+        ],
+        [
+            KeyboardButton(text="📖 История дня")  # Новая кнопка
         ]
     ],
     resize_keyboard=True
