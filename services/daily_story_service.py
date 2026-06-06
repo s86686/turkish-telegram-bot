@@ -3,6 +3,7 @@ from db.models import DailyStory, UserWord, Word
 from datetime import datetime
 from services.gemini_service import explain_phrase
 
+
 def get_user_words_for_story(user_id: int, limit: int = 10):
     """Берем слова, которые пользователь изучал сегодня"""
     db = SessionLocal()
@@ -12,7 +13,7 @@ def get_user_words_for_story(user_id: int, limit: int = 10):
             db.query(UserWord)
             .filter(UserWord.user_id == user_id)
             .filter(UserWord.learned_at != None)
-            .filter(UserWord.learned_at >= today)
+            .filter(UserWord.learned_at.cast(Date) == today)  # только дата без времени
             .order_by(UserWord.next_review)
             .limit(limit)
             .all()
@@ -26,6 +27,7 @@ def get_user_words_for_story(user_id: int, limit: int = 10):
         return words
     finally:
         db.close()
+
 
 def get_daily_story(user_id: int):
     """Возвращает историю дня для пользователя, если она есть"""
@@ -42,8 +44,12 @@ def get_daily_story(user_id: int):
     finally:
         db.close()
 
+
 def create_daily_story(user_id: int, words: list):
     """Создаем историю через Gemini и сохраняем в БД"""
+    if not words:
+        return None  # защита от пустого списка слов
+
     db = SessionLocal()
     today = datetime.utcnow().date()
     try:
@@ -65,6 +71,7 @@ def create_daily_story(user_id: int, words: list):
 
         db.add(story)
         db.commit()
+        db.refresh(story)
         return story
     finally:
         db.close()
