@@ -511,12 +511,11 @@ async def show_dialog_words(
 
     await callback.answer()
 
-    @router.callback_query(
+@router.callback_query(
     lambda c: c.data.startswith(
         "dialog_ai_"
     )
 )
-
 async def explain_dialog_phrase(
     callback: CallbackQuery
 ):
@@ -588,4 +587,3 @@ async def explain_dialog_phrase(
         AI_IN_PROGRESS.discard(
             user_id
         )
-
