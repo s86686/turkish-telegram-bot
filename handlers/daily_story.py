@@ -6,6 +6,7 @@ from aiogram.types import (
     InlineKeyboardButton,
     CallbackQuery
 )
+from aiogram.enums import ParseMode
 
 router = Router()
 
@@ -28,8 +29,9 @@ async def show_daily_story(message: Message):
     story = get_daily_story(user_id)
     if story:
         await message.answer(
-            f"📖 История дня\n\n{story.story_text}",
-            reply_markup=daily_story_keyboard
+            f"📖 Hikaye\n\n{story.story_text}",
+            reply_markup=daily_story_keyboard,
+            parse_mode=ParseMode.HTML
         )
         return
 
@@ -40,9 +42,14 @@ async def show_daily_story(message: Message):
         return
 
     story = create_daily_story(user_id, words)
+    if not story or not story.story_text:
+        await message.answer("⚠️ Не удалось сгенерировать историю. Попробуйте позже.")
+        return
+
     await message.answer(
-        f"📖 История дня\n\n{story.story_text}",
-        reply_markup=daily_story_keyboard
+        f"📖 Hikaye\n\n{story.story_text}",
+        reply_markup=daily_story_keyboard,
+        parse_mode=ParseMode.HTML
     )
 
 @router.callback_query(lambda c: c.data == "close_story")
