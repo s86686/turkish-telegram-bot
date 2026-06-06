@@ -199,6 +199,10 @@ class AICache(Base):
         Text
     )
 
+    model_name: Mapped[str] = mapped_column(
+        String(100)
+    )
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
         default=datetime.utcnow
