@@ -2,6 +2,7 @@ from db.database import SessionLocal
 from db.models import DailyStory, UserWord, Word
 from datetime import datetime
 from services.gemini_service import explain_phrase
+from sqlalchemy import func
 
 
 def get_user_words_for_story(user_id: int, limit: int = 10):
@@ -9,11 +10,12 @@ def get_user_words_for_story(user_id: int, limit: int = 10):
     db = SessionLocal()
     today = datetime.utcnow().date()
     try:
+        # Используем func.date для сравнения только даты без времени
         user_words = (
             db.query(UserWord)
             .filter(UserWord.user_id == user_id)
             .filter(UserWord.learned_at != None)
-            .filter(UserWord.learned_at.cast(Date) == today)  # только дата без времени
+            .filter(func.date(UserWord.learned_at) == today)
             .order_by(UserWord.next_review)
             .limit(limit)
             .all()
