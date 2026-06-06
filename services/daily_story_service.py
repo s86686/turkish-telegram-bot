@@ -2,65 +2,29 @@ from db.database import SessionLocal
 from db.models import DailyStory, UserWord, Word, User
 from datetime import datetime
 from services.gemini_service import explain_phrase
-from sqlalchemy import func
 
-
-def get_user_words_for_story(
-    telegram_id: int,
-    limit: int = 10
-):
-
+def get_user_words_for_story(user_id: int, limit: int = 10):
+    """Берем слова, которые пользователь изучал сегодня"""
     db = SessionLocal()
-
+    today = datetime.utcnow().date()
     try:
-
-        user = (
-            db.query(User)
-            .filter(
-                User.telegram_id == telegram_id
-            )
-            .first()
-        )
-
-        if not user:
-            return []
-
         user_words = (
             db.query(UserWord)
-            .filter(
-                UserWord.user_id == user.id
-            )
-            .filter(
-                UserWord.learned_at != None
-            )
-            .order_by(
-                UserWord.learned_at.desc()
-            )
+            .filter(UserWord.user_id == user_id)
+            .filter(UserWord.learned_at != None)
+            .filter(UserWord.learned_at >= today)  # Слова изученные сегодня
+            .order_by(UserWord.next_review)
             .limit(limit)
             .all()
         )
 
         words = []
-
         for uw in user_words:
-
-            word = (
-                db.query(Word)
-                .filter(
-                    Word.id == uw.word_id
-                )
-                .first()
-            )
-
+            word = db.query(Word).filter(Word.id == uw.word_id).first()
             if word:
-                words.append(
-                    word.lemma
-                )
-
+                words.append(word.lemma)
         return words
-
     finally:
-
         db.close()
 
 def get_daily_story(user_id: int):
@@ -78,12 +42,8 @@ def get_daily_story(user_id: int):
     finally:
         db.close()
 
-
 def create_daily_story(user_id: int, words: list):
     """Создаем историю через Gemini и сохраняем в БД"""
-    if not words:
-        return None  # защита от пустого списка слов
-
     db = SessionLocal()
     today = datetime.utcnow().date()
     try:
