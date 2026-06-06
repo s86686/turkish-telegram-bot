@@ -286,6 +286,10 @@ async def back_to_dialogs_menu(
         callback
     )
 
+    await delete_ai_message(
+        callback
+    )
+
     await callback.message.edit_text(
         "🎭 Выберите тему:",
         reply_markup=topics_keyboard
@@ -326,6 +330,10 @@ async def show_dialog_topic(
         callback
     )
 
+    await delete_ai_message(
+        callback
+    )
+
     dialog = DIALOG_SETS[
         topic
     ][0]
@@ -357,6 +365,10 @@ async def next_dialog(
     )
 
     await delete_words_message(
+        callback
+    )
+
+    await delete_ai_message(
         callback
     )
 
