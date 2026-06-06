@@ -6,7 +6,8 @@ from sqlalchemy import (
     Float,
     BigInteger,
     DateTime,
-    ForeignKey
+    ForeignKey,
+    Text
 )
 
 from sqlalchemy.orm import (
@@ -178,4 +179,27 @@ class Word(Base):
     priority: Mapped[int] = mapped_column(
         Integer,
         default=100
+    )
+
+class AICache(Base):
+
+    __tablename__ = "ai_cache"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    phrase: Mapped[str] = mapped_column(
+        Text,
+        unique=True
+    )
+
+    response: Mapped[str] = mapped_column(
+        Text
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow
     )
