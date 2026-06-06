@@ -1,5 +1,5 @@
 from db.database import SessionLocal
-from db.models import DailyStory, UserWord, Word
+from db.models import DailyStory, UserWord, Word, User
 from datetime import datetime
 from services.gemini_service import explain_phrase
 from sqlalchemy import func
