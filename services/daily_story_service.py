@@ -6,7 +6,7 @@ from sqlalchemy import func
 
 
 def get_user_words_for_story(
-    user_id: int,
+    telegram_id: int,
     limit: int = 10
 ):
 
@@ -14,10 +14,21 @@ def get_user_words_for_story(
 
     try:
 
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == telegram_id
+            )
+            .first()
+        )
+
+        if not user:
+            return []
+
         user_words = (
             db.query(UserWord)
             .filter(
-                UserWord.user_id == user_id
+                UserWord.user_id == user.id
             )
             .filter(
                 UserWord.learned_at != None
@@ -42,7 +53,6 @@ def get_user_words_for_story(
             )
 
             if word:
-
                 words.append(
                     word.lemma
                 )
