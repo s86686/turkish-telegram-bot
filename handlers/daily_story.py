@@ -29,7 +29,7 @@ async def show_daily_story(message: Message):
     story = get_daily_story(user_id)
     if story:
         await message.answer(
-            f"📖 Hikaye\n\n{story.story_text}",
+            story.story_text,
             reply_markup=daily_story_keyboard,
             parse_mode=ParseMode.HTML
         )
@@ -47,7 +47,7 @@ async def show_daily_story(message: Message):
         return
 
     await message.answer(
-        f"📖 Hikaye\n\n{story.story_text}",
+        story.story_text,
         reply_markup=daily_story_keyboard,
         parse_mode=ParseMode.HTML
     )
