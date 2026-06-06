@@ -30,6 +30,8 @@ SPEAK_IN_PROGRESS = set()
 
 AI_IN_PROGRESS = set()
 
+AI_MESSAGES = {}
+
 DIALOG_SETS = load_all_dialogs()
 
 print(
@@ -114,6 +116,19 @@ topics_keyboard = InlineKeyboardMarkup(
     ]
 )
 
+async def delete_ai_message(callback: CallbackQuery):
+    """Удаляет предыдущий AI разбор с экрана"""
+    user_id = callback.from_user.id
+    message_id = AI_MESSAGES.get(user_id)
+    if message_id:
+        try:
+            await callback.bot.delete_message(
+                chat_id=callback.message.chat.id,
+                message_id=message_id
+            )
+        except Exception:
+            pass
+        AI_MESSAGES.pop(user_id, None)
 
 async def delete_dialog_voice(
     callback: CallbackQuery
@@ -511,79 +526,40 @@ async def show_dialog_words(
 
     await callback.answer()
 
-@router.callback_query(
-    lambda c: c.data.startswith(
-        "dialog_ai_"
-    )
-)
-async def explain_dialog_phrase(
-    callback: CallbackQuery
-):
-
+@@router.callback_query(lambda c: c.data.startswith("dialog_ai_"))
+async def explain_dialog_phrase(callback: CallbackQuery):
     user_id = callback.from_user.id
 
+    # защита от параллельных запросов
     if user_id in AI_IN_PROGRESS:
-
-        await callback.answer(
-            "Подождите завершения предыдущего запроса"
-        )
-
+        await callback.answer("Подождите завершения предыдущего запроса")
         return
+    AI_IN_PROGRESS.add(user_id)
 
-    AI_IN_PROGRESS.add(
-        user_id
-    )
+    await delete_ai_message(callback)  # удаляем предыдущий разбор
 
     try:
-
-        parts = callback.data.split(
-            "_"
-        )
-
+        parts = callback.data.split("_")
         topic = parts[2]
+        dialog_index = int(parts[3])
+        dialog = DIALOG_SETS[topic][dialog_index]
 
-        dialog_index = int(
-            parts[3]
-        )
+        phrase = dialog.get("ai_phrase") or dialog["lines"][-1]["tr"]
 
-        dialog = DIALOG_SETS[
-            topic
-        ][dialog_index]
+        wait_msg = await callback.message.answer("🤖 Анализирую фразу...")
 
-        phrase = dialog.get(
-            "ai_phrase"
-        )
+        result = explain_phrase(phrase)
 
-        if not phrase:
-
-            phrase = dialog[
-                "lines"
-            ][-1]["tr"]
-
-        wait_msg = await callback.message.answer(
-            "🤖 Анализирую фразу..."
-        )
-
-        result = explain_phrase(
-            phrase
-        )
+        # сохраняем message_id для последующего удаления
+        AI_MESSAGES[user_id] = wait_msg.message_id
 
         await wait_msg.edit_text(
-            f"🔍 Фраза\n\n"
-            f"{phrase}\n\n"
-            f"{result}"
+            f"🔍 Фраза\n\n{phrase}\n\n{result}"
         )
-
         await callback.answer()
 
     except Exception as e:
-
-        await wait_msg.edit_text(
-            f"Ошибка AI:\n{e}"
-        )
-
+        await wait_msg.edit_text(f"Ошибка AI:\n{e}")
     finally:
+        AI_IN_PROGRESS.discard(user_id)
 
-        AI_IN_PROGRESS.discard(
-            user_id
-        )
