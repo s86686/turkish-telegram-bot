@@ -526,7 +526,7 @@ async def show_dialog_words(
 
     await callback.answer()
 
-@@router.callback_query(lambda c: c.data.startswith("dialog_ai_"))
+@router.callback_query(lambda c: c.data.startswith("dialog_ai_"))
 async def explain_dialog_phrase(callback: CallbackQuery):
     user_id = callback.from_user.id
 
