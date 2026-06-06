@@ -27,7 +27,15 @@ def get_cached_response(
 
         if record:
 
+            print(
+                f"CACHE HIT: {phrase}"
+            )
+
             return record.response
+
+        print(
+            f"CACHE MISS: {phrase}"
+        )
 
         return None
 
@@ -38,7 +46,8 @@ def get_cached_response(
 
 def save_cached_response(
     phrase: str,
-    response: str
+    response: str,
+    model_name: str
 ):
 
     db = SessionLocal()
@@ -62,11 +71,16 @@ def save_cached_response(
         db.add(
             AICache(
                 phrase=phrase,
-                response=response
+                response=response,
+                model_name=model_name
             )
         )
 
         db.commit()
+
+        print(
+            f"CACHE SAVED: {phrase}"
+        )
 
     finally:
 
