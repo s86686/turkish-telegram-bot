@@ -18,6 +18,42 @@ MODELS = [
     "gemini-flash-latest"
 ]
 
+def generate_story(
+    words: list
+) -> str:
+
+    prompt = f"""
+Ты преподаватель турецкого языка.
+
+Напиши короткую историю уровня A1-A2.
+
+Используй все эти слова:
+
+{', '.join(words)}
+
+Требования:
+
+- 5-8 предложений
+- простой турецкий
+- естественная ситуация
+- после истории дай перевод на русский
+- не делай разбор слов
+- не делай грамматический анализ
+- не объясняй правила
+"""
+
+    try:
+
+        response = client.models.generate_content(
+            model=get_working_model(),
+            contents=prompt
+        )
+
+        return response.text
+
+    except Exception as e:
+
+        return f"Ошибка Gemini: {e}"
 
 def explain_phrase(
     phrase: str
