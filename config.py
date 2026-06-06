@@ -11,3 +11,7 @@ WEBHOOK_SECRET = os.getenv(
 RENDER_EXTERNAL_URL = os.getenv(
     "RENDER_EXTERNAL_URL"
 )
+
+GEMINI_API_KEY = os.getenv(
+    "GEMINI_API_KEY"
+)
