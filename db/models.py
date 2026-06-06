@@ -1,13 +1,15 @@
 from datetime import datetime
 
 from sqlalchemy import (
+    Column,    
     Integer,
     String,
     Float,
     BigInteger,
     DateTime,
     ForeignKey,
-    Text
+    Text,
+    func
 )
 
 from sqlalchemy.orm import (
@@ -207,3 +209,12 @@ class AICache(Base):
         DateTime,
         default=datetime.utcnow
     )
+
+class DailyStory(Base):
+    __tablename__ = "daily_stories"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    user_id: Mapped[int] = mapped_column(BigInteger)
+    story_date: Mapped[Date] = mapped_column(Date, default=func.current_date())
+    story_text: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
