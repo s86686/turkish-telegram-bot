@@ -42,18 +42,56 @@ def generate_story(
 - не объясняй правила
 """
 
-    try:
+    last_error = None
 
-        response = client.models.generate_content(
-            model=get_working_model(),
-            contents=prompt
-        )
+    for model in MODELS:
 
-        return response.text
+        try:
 
-    except Exception as e:
+            print(
+                f"Trying story model: {model}"
+            )
 
-        return f"Ошибка Gemini: {e}"
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt
+            )
+
+            return response.text
+
+        except Exception as e:
+
+            print(
+                f"Story model failed: {model}"
+            )
+
+            print(
+                str(e)
+            )
+
+            last_error = e
+
+            error_text = str(
+                e
+            ).lower()
+
+            if (
+                "429" in error_text
+                or "quota" in error_text
+                or "resource_exhausted" in error_text
+                or "rate limit" in error_text
+                or "503" in error_text
+                or "unavailable" in error_text
+            ):
+
+                continue
+
+            break
+
+    return (
+        "⚠️ Не удалось создать историю.\n\n"
+        f"{last_error}"
+    )
 
 def explain_phrase(
     phrase: str
