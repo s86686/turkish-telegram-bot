@@ -37,6 +37,8 @@ from handlers.grammar import (
 
 from handlers import dialogs
 
+from handlers import daily_story
+
 bot = Bot(BOT_TOKEN)
 
 dp = Dispatcher()
@@ -47,6 +49,9 @@ dp.include_router(stats_router)
 dp.include_router(settings_router)
 dp.include_router(dialogs.router)
 dp.include_router(grammar_router)
+dp.include_router(
+    daily_story.router
+)
 
 WEBHOOK_PATH = f"/webhook/{WEBHOOK_SECRET}"
 
