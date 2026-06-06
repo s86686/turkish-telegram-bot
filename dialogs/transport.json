@@ -3,6 +3,7 @@
 "id": 1,
 "title": "Автобус до Фазелиса",
 "level": "A1",
+"ai_phrase": "Bu otobüs Phaselis'e gidiyor mu?",
 "vocabulary": [
 {"tr":"otobüs","ru":"автобус"},
 {"tr":"gitmek","ru":"ехать"},
@@ -26,6 +27,7 @@
 "id": 2,
 "title": "Остановка в Фазелисе",
 "level": "A1",
+"ai_phrase": "Phaselis'te duruyor mu?",  
 "vocabulary": [
 {"tr":"durmak","ru":"останавливаться"},
 {"tr":"Phaselis","ru":"Фазелис"}
@@ -48,6 +50,7 @@
 "id": 3,
 "title": "Скажите, где выйти",
 "level": "A1",
+"ai_phrase": "Phaselis'te ineceğim.",
 "vocabulary": [
 {"tr":"ineceğim","ru":"я выйду"},
 {"tr":"söylemek","ru":"сказать"}
@@ -70,6 +73,7 @@
 "id": 4,
 "title": "Это Фазелис?",
 "level": "A1",
+"ai_phrase": "Burası Phaselis mi?",
 "vocabulary": [
 {"tr":"burası","ru":"это место"},
 {"tr":"inmek","ru":"выходить"}
@@ -92,6 +96,7 @@
 "id": 5,
 "title": "Мне здесь выходить?",
 "level": "A1",
+"ai_phrase": "Burada mı ineceğim?",
 "vocabulary": [
 {"tr":"burada","ru":"здесь"},
 {"tr":"inmek","ru":"выходить"}
@@ -114,6 +119,7 @@
 "id": 6,
 "title": "Сколько ещё ехать?",
 "level": "A1",
+"ai_phrase": "Phaselis'e daha ne kadar var?",
 "vocabulary": [
 {"tr":"daha","ru":"ещё"},
 {"tr":"dakika","ru":"минута"}
@@ -136,6 +142,7 @@
 "id": 7,
 "title": "Где остановка?",
 "level": "A1",
+"ai_phrase": "Otobüs durağı nerede?",
 "vocabulary": [
 {"tr":"durak","ru":"остановка"},
 {"tr":"nerede","ru":"где"}
@@ -158,6 +165,7 @@
 "id": 8,
 "title": "Стоимость и оплата",
 "level": "A1",
+"ai_phrase": "Kartla ödeyebilir miyim?",
 "vocabulary": [
 {"tr":"ne kadar","ru":"сколько стоит"},
 {"tr":"kart","ru":"карта"},
@@ -191,6 +199,7 @@
 "id": 9,
 "title": "Автобус в центр",
 "level": "A1",
+"ai_phrase": "Bu otobüs merkeze gidiyor mu?",
 "vocabulary": [
 {"tr":"merkez","ru":"центр"}
 ],
@@ -212,6 +221,7 @@
 "id": 10,
 "title": "Я пропустил остановку",
 "level": "A2",
+"ai_phrase": "Durağımı kaçırdım.",
 "vocabulary": [
 {"tr":"kaçırmak","ru":"пропустить"},
 {"tr":"sonraki","ru":"следующий"}
@@ -234,6 +244,7 @@
 "id": 11,
 "title": "Какой автобус мне нужен?",
 "level": "A1",
+"ai_phrase": "Phaselis'e gitmek için hangi otobüse binmeliyim?",
 "vocabulary": [
 {"tr":"hangi","ru":"какой"},
 {"tr":"binmek","ru":"садиться"}
@@ -256,6 +267,7 @@
 "id": 12,
 "title": "Нужна ли пересадка?",
 "level": "A2",
+"ai_phrase": "Aktarma yapmam gerekiyor mu?",
 "vocabulary": [
 {"tr":"aktarma","ru":"пересадка"},
 {"tr":"direkt","ru":"напрямую"}
@@ -278,6 +290,7 @@
 "id": 13,
 "title": "Автобус уже ушёл?",
 "level": "A1",
+"ai_phrase": "Otobüs gitti mi?",
 "vocabulary": [
 {"tr":"gitmek","ru":"уходить"},
 {"tr":"gelmek","ru":"приходить"}
@@ -300,6 +313,7 @@
 "id": 14,
 "title": "Следующий автобус",
 "level": "A1",
+"ai_phrase": "Sonraki otobüs ne zaman?",
 "vocabulary": [
 {"tr":"sonraki","ru":"следующий"},
 {"tr":"ne zaman","ru":"когда"}
@@ -322,6 +336,7 @@
 "id": 15,
 "title": "Есть свободные места?",
 "level": "A1",
+"ai_phrase": "Boş yer var mı?",
 "vocabulary": [
 {"tr":"boş yer","ru":"свободное место"}
 ],
@@ -338,4 +353,114 @@
 }
 ]
 }
-]
+{
+  "id": 16,
+  "title": "Оплата наличными",
+  "level": "A1",
+  "ai_phrase": "Nakit ödeyebilir miyim?",
+  "vocabulary": [
+    {"tr":"nakit","ru":"наличные"},
+    {"tr":"ödemek","ru":"платить"}
+  ],
+  "lines": [
+    {
+      "speaker":"Siz",
+      "tr":"Nakit ödeyebilir miyim?",
+      "ru":"Можно оплатить наличными?"
+    },
+    {
+      "speaker":"Şoför",
+      "tr":"Evet, tabii.",
+      "ru":"Да, конечно."
+    }
+  ]
+},
+{
+  "id": 17,
+  "title": "Транспортная карта",
+  "level": "A1",
+  "ai_phrase": "Ulaşım kartını nereden alabilirim?",
+  "vocabulary": [
+    {"tr":"ulaşım kartı","ru":"транспортная карта"},
+    {"tr":"almak","ru":"покупать"}
+  ],
+  "lines": [
+    {
+      "speaker":"Siz",
+      "tr":"Ulaşım kartını nereden alabilirim?",
+      "ru":"Где можно купить транспортную карту?"
+    },
+    {
+      "speaker":"Görevli",
+      "tr":"Şuradaki büfeden alabilirsiniz.",
+      "ru":"Можно купить в том киоске."
+    }
+  ]
+},
+{
+  "id": 18,
+  "title": "Как добраться до отеля",
+  "level": "A1",
+  "ai_phrase": "Otele nasıl gidebilirim?",
+  "vocabulary": [
+    {"tr":"otel","ru":"отель"},
+    {"tr":"nasıl","ru":"как"}
+  ],
+  "lines": [
+    {
+      "speaker":"Siz",
+      "tr":"Otele nasıl gidebilirim?",
+      "ru":"Как мне добраться до отеля?"
+    },
+    {
+      "speaker":"Yerli",
+      "tr":"Bu otobüse binin.",
+      "ru":"Садитесь на этот автобус."
+    }
+  ]
+},
+{
+  "id": 19,
+  "title": "Переполненный автобус",
+  "level": "A2",
+  "ai_phrase": "Bu otobüs çok kalabalık.",
+  "vocabulary": [
+    {"tr":"kalabalık","ru":"переполненный"},
+    {"tr":"beklemek","ru":"ждать"}
+  ],
+  "lines": [
+    {
+      "speaker":"Siz",
+      "tr":"Bu otobüs çok kalabalık.",
+      "ru":"Этот автобус слишком переполнен."
+    },
+    {
+      "speaker":"Yerli",
+      "tr":"Bir sonraki otobüsü bekleyebilirsiniz.",
+      "ru":"Можете подождать следующий автобус."
+    }
+  ]
+},
+{
+  "id": 20,
+  "title": "Я сел не на тот автобус",
+  "level": "A2",
+  "ai_phrase": "Sanırım yanlış otobüse bindim.",
+  "vocabulary": [
+    {"tr":"yanlış","ru":"неправильный"},
+    {"tr":"binmek","ru":"садиться"}
+  ],
+  "lines": [
+    {
+      "speaker":"Siz",
+      "tr":"Sanırım yanlış otobüse bindim.",
+      "ru":"Кажется, я сел не на тот автобус."
+    },
+    {
+      "speaker":"Şoför",
+      "tr":"Sorun değil, bir sonraki durakta inebilirsiniz.",
+      "ru":"Ничего страшного, можете выйти на следующей остановке."
+    }
+  ]
+  }
+  ]
