@@ -143,6 +143,10 @@ def create_daily_story(
 
         if not user:
             return None
+     
+        story_text = generate_story(
+            words
+        )
 
         if (
             not story_text
@@ -150,10 +154,6 @@ def create_daily_story(
             or story_text.startswith("⚠️")
         ):
             return None
-
-        story_text = generate_story(
-            words
-        )
 
         today = datetime.utcnow().date()
 
