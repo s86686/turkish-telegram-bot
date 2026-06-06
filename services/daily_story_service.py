@@ -5,31 +5,53 @@ from services.gemini_service import explain_phrase
 from sqlalchemy import func
 
 
-def get_user_words_for_story(user_id: int, limit: int = 10):
-    """Берем слова, которые пользователь изучал сегодня"""
+def get_user_words_for_story(
+    user_id: int,
+    limit: int = 10
+):
+
     db = SessionLocal()
-    today = datetime.utcnow().date()
+
     try:
-        # Используем func.date для сравнения только даты без времени
+
         user_words = (
             db.query(UserWord)
-            .filter(UserWord.user_id == user_id)
-            .filter(UserWord.learned_at != None)
-            .filter(func.date(UserWord.learned_at) == today)
-            .order_by(UserWord.next_review)
+            .filter(
+                UserWord.user_id == user_id
+            )
+            .filter(
+                UserWord.learned_at != None
+            )
+            .order_by(
+                UserWord.learned_at.desc()
+            )
             .limit(limit)
             .all()
         )
 
         words = []
-        for uw in user_words:
-            word = db.query(Word).filter(Word.id == uw.word_id).first()
-            if word:
-                words.append(word.lemma)
-        return words
-    finally:
-        db.close()
 
+        for uw in user_words:
+
+            word = (
+                db.query(Word)
+                .filter(
+                    Word.id == uw.word_id
+                )
+                .first()
+            )
+
+            if word:
+
+                words.append(
+                    word.lemma
+                )
+
+        return words
+
+    finally:
+
+        db.close()
 
 def get_daily_story(user_id: int):
     """Возвращает историю дня для пользователя, если она есть"""
