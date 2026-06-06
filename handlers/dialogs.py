@@ -16,6 +16,10 @@ from services.dialog_service import (
     load_all_dialogs
 )
 
+from services.gemini_service import (
+    explain_phrase
+)
+
 router = Router()
 
 VOICE_MESSAGES = {}
@@ -23,6 +27,8 @@ VOICE_MESSAGES = {}
 WORDS_MESSAGES = {}
 
 SPEAK_IN_PROGRESS = set()
+
+AI_IN_PROGRESS = set()
 
 DIALOG_SETS = load_all_dialogs()
 
@@ -178,6 +184,12 @@ def dialog_keyboard(
                 InlineKeyboardButton(
                     text="📚 Ключевые слова",
                     callback_data=f"dialog_words_{topic}_{dialog_index}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="🔍 Разобрать фразу",
+                    callback_data=f"dialog_ai_{topic}_{dialog_index}"
                 )
             ],
             [
@@ -498,3 +510,82 @@ async def show_dialog_words(
     ] = msg.message_id
 
     await callback.answer()
+
+    @router.callback_query(
+    lambda c: c.data.startswith(
+        "dialog_ai_"
+    )
+)
+
+async def explain_dialog_phrase(
+    callback: CallbackQuery
+):
+
+    user_id = callback.from_user.id
+
+    if user_id in AI_IN_PROGRESS:
+
+        await callback.answer(
+            "Подождите завершения предыдущего запроса"
+        )
+
+        return
+
+    AI_IN_PROGRESS.add(
+        user_id
+    )
+
+    try:
+
+        parts = callback.data.split(
+            "_"
+        )
+
+        topic = parts[2]
+
+        dialog_index = int(
+            parts[3]
+        )
+
+        dialog = DIALOG_SETS[
+            topic
+        ][dialog_index]
+
+        phrase = dialog.get(
+            "ai_phrase"
+        )
+
+        if not phrase:
+
+            phrase = dialog[
+                "lines"
+            ][-1]["tr"]
+
+        wait_msg = await callback.message.answer(
+            "🤖 Анализирую фразу..."
+        )
+
+        result = explain_phrase(
+            phrase
+        )
+
+        await wait_msg.edit_text(
+            f"🔍 Фраза\n\n"
+            f"{phrase}\n\n"
+            f"{result}"
+        )
+
+        await callback.answer()
+
+    except Exception as e:
+
+        await wait_msg.edit_text(
+            f"Ошибка AI:\n{e}"
+        )
+
+    finally:
+
+        AI_IN_PROGRESS.discard(
+            user_id
+        )
+
