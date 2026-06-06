@@ -24,14 +24,16 @@ daily_story_keyboard = InlineKeyboardMarkup(
 async def show_daily_story(message: Message):
     user_id = message.from_user.id
 
+    # Сначала пробуем получить готовую историю
     story = get_daily_story(user_id)
     if story:
-       await message.answer(
+        await message.answer(
             f"📖 История дня\n\n{story.story_text}",
             reply_markup=daily_story_keyboard
         )
         return
 
+    # Если истории нет — создаем по изученным словам
     words = get_user_words_for_story(user_id)
     if not words:
         await message.answer("Сегодня ещё нет изученных слов для истории.")
@@ -39,23 +41,14 @@ async def show_daily_story(message: Message):
 
     story = create_daily_story(user_id, words)
     await message.answer(
-        f"📖 История дня\n\n{story_text}",
+        f"📖 История дня\n\n{story.story_text}",
         reply_markup=daily_story_keyboard
     )
 
-@router.callback_query(
-    lambda c: c.data == "close_story"
-)
-async def close_story(
-    callback: CallbackQuery
-):
-
+@router.callback_query(lambda c: c.data == "close_story")
+async def close_story(callback: CallbackQuery):
     try:
-
         await callback.message.delete()
-
     except Exception:
-
         pass
-
     await callback.answer()
