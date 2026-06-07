@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from db.database import SessionLocal
 from db.models import (
@@ -7,17 +7,17 @@ from db.models import (
     UserWord,
     Word
 )
-
+from collections import Counter
 from services.gemini_service import generate_story
 
 
 def get_user_words_for_story(
     telegram_id: int,
-    limit: int = 10
+    max_words: int = 15
 ):
     """
-    Получаем последние изученные слова пользователя.
-    telegram_id приходит из Telegram.
+    Выбираем доминирующую тему среди изученных слов
+    и возвращаем слова этой темы для истории.
     """
 
     db = SessionLocal()
@@ -46,28 +46,54 @@ def get_user_words_for_story(
             .order_by(
                 UserWord.learned_at.desc()
             )
-            .limit(limit)
+            .limit(100)
             .all()
         )
 
-        words = []
+        if not user_words:
+            return []
 
-        for uw in user_words:
+        word_ids = [
+            uw.word_id
+            for uw in user_words
+        ]
 
-            word = (
-                db.query(Word)
-                .filter(
-                    Word.id == uw.word_id
-                )
-                .first()
+        words = (
+            db.query(Word)
+            .filter(
+                Word.id.in_(word_ids)
             )
+            .all()
+        )
 
-            if word:
-                words.append(
-                    word.lemma
-                )
+        if not words:
+            return []
 
-        return words
+        topic_counter = Counter(
+            word.topic
+            for word in words
+        )
+
+        best_topic = (
+            topic_counter
+            .most_common(1)[0][0]
+        )
+
+        topic_words = [
+            word.lemma
+            for word in words
+            if word.topic == best_topic
+        ]
+
+        print(
+            f"[DAILY STORY] Topic: {best_topic}"
+        )
+
+        print(
+            f"[DAILY STORY] Words: {topic_words}"
+        )
+
+        return topic_words[:max_words]
 
     finally:
 
