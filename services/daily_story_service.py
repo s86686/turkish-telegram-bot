@@ -148,6 +148,7 @@ def get_daily_story(
 
 def create_daily_story(
     telegram_id: int,
+    topic: str,
     words: list
 ):
     """
@@ -174,6 +175,7 @@ def create_daily_story(
             return None
      
         story_text = generate_story(
+            topic,
             words
         )
 
