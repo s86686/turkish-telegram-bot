@@ -560,7 +560,7 @@ async def explain_dialog_phrase(callback: CallbackQuery):
 
         wait_msg = await callback.message.answer("🤖 Анализирую фразу...")
 
-        result = explain_phrase(phrase)
+        result_html = explain_phrase(phrase)
 
         # сохраняем message_id для последующего удаления
         AI_MESSAGES[user_id] = wait_msg.message_id
