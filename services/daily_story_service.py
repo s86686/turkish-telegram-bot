@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-
+import random
 from db.database import SessionLocal
 from db.models import (
     DailyStory,
@@ -11,95 +11,60 @@ from collections import Counter
 from services.gemini_service import generate_story
 
 
-def get_user_words_for_story(
-    telegram_id: int,
-    max_words: int = 15
-):
+def get_user_words_for_story(telegram_id: int, max_words: int = 15, recent_words: int = 100):
     """
-    Выбираем доминирующую тему среди изученных слов
-    и возвращаем тему + слова этой темы.
+    Выбираем тему для истории дня с учётом изученных слов
+    и возвращаем тему + список слов этой темы.
+    Взвешенный случайный выбор темы, чтобы не зацикливаться только на самой частой теме.
     """
 
     db = SessionLocal()
-
     try:
-
-        user = (
-            db.query(User)
-            .filter(
-                User.telegram_id == telegram_id
-            )
-            .first()
-        )
-
+        # Получаем пользователя
+        user = db.query(User).filter(User.telegram_id == telegram_id).first()
         if not user:
             return None, []
 
+        # Берём последние recent_words изученных слов
         user_words = (
             db.query(UserWord)
-            .filter(
-                UserWord.user_id == user.id
-            )
-            .filter(
-                UserWord.learned_at.isnot(None)
-            )
-            .order_by(
-                UserWord.learned_at.desc()
-            )
-            .limit(100)
+            .filter(UserWord.user_id == user.id)  # локальный user id
+            .filter(UserWord.learned_at.isnot(None))
+            .order_by(UserWord.learned_at.desc())
+            .limit(recent_words)
             .all()
         )
 
         if not user_words:
             return None, []
 
-        word_ids = [
-            uw.word_id
-            for uw in user_words
-        ]
-
-        words = (
-            db.query(Word)
-            .filter(
-                Word.id.in_(word_ids)
-            )
-            .all()
-        )
-
+        # Получаем все слова по id
+        word_ids = [uw.word_id for uw in user_words]
+        words = db.query(Word).filter(Word.id.in_(word_ids)).all()
         if not words:
             return None, []
 
-        topic_counter = Counter(
-            word.topic
-            for word in words
-        )
+        # Считаем количество слов по темам
+        topic_counter = Counter(word.topic for word in words)
+        topics, counts = zip(*topic_counter.items())
+        total = sum(counts)
+        weights = [count / total for count in counts]
 
-        best_topic = (
-            topic_counter
-            .most_common(1)[0][0]
-        )
+        # Случайный выбор темы с учётом веса
+        selected_topic = random.choices(topics, weights=weights, k=1)[0]
 
-        topic_words = [
-            word.lemma
-            for word in words
-            if word.topic == best_topic
-        ]
+        # Берём слова выбранной темы
+        topic_words = [w.lemma for w in words if w.topic == selected_topic]
 
-        print(
-            f"[DAILY STORY] Topic: {best_topic}"
-        )
+        # Ограничиваем по max_words
+        selected_words = topic_words[:max_words]
 
-        print(
-            f"[DAILY STORY] Words: {topic_words[:max_words]}"
-        )
+        print(f"[DAILY STORY] Topic: {selected_topic}")
+        print(f"[DAILY STORY] Words: {selected_words}")
 
-        return (
-            best_topic,
-            topic_words[:max_words]
-        )
+        return selected_topic, selected_words
 
     finally:
-
         db.close()
 
 
