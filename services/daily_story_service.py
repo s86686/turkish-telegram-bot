@@ -17,7 +17,7 @@ def get_user_words_for_story(
 ):
     """
     Выбираем доминирующую тему среди изученных слов
-    и возвращаем слова этой темы для истории.
+    и возвращаем тему + слова этой темы.
     """
 
     db = SessionLocal()
@@ -33,7 +33,7 @@ def get_user_words_for_story(
         )
 
         if not user:
-            return []
+            return None, []
 
         user_words = (
             db.query(UserWord)
@@ -51,7 +51,7 @@ def get_user_words_for_story(
         )
 
         if not user_words:
-            return []
+            return None, []
 
         word_ids = [
             uw.word_id
@@ -67,7 +67,7 @@ def get_user_words_for_story(
         )
 
         if not words:
-            return []
+            return None, []
 
         topic_counter = Counter(
             word.topic
@@ -90,10 +90,13 @@ def get_user_words_for_story(
         )
 
         print(
-            f"[DAILY STORY] Words: {topic_words}"
+            f"[DAILY STORY] Words: {topic_words[:max_words]}"
         )
 
-        return topic_words[:max_words]
+        return (
+            best_topic,
+            topic_words[:max_words]
+        )
 
     finally:
 
