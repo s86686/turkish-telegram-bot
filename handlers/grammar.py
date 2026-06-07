@@ -1,4 +1,5 @@
 from aiogram import Router
+from aiogram.enums import ParseMode
 
 from aiogram.types import (
     Message,
@@ -126,9 +127,8 @@ async def show_lesson(
     await callback.message.edit_text(
         f"{lesson['title']}\n\n"
         f"{lesson['content']}",
-        reply_markup=lesson_keyboard(
-            index
-        )
+        reply_markup=lesson_keyboard(index),
+        parse_mode=ParseMode.HTML
     )
 
     await callback.answer()
@@ -154,9 +154,8 @@ async def next_lesson(
     await callback.message.edit_text(
         f"{lesson['title']}\n\n"
         f"{lesson['content']}",
-        reply_markup=lesson_keyboard(
-            index
-        )
+        reply_markup=lesson_keyboard(index),
+        parse_mode=ParseMode.HTML
     )
 
     await callback.answer()
@@ -182,9 +181,8 @@ async def prev_lesson(
     await callback.message.edit_text(
         f"{lesson['title']}\n\n"
         f"{lesson['content']}",
-        reply_markup=lesson_keyboard(
-            index
-        )
+        reply_markup=lesson_keyboard(index),
+        parse_mode=ParseMode.HTML
     )
 
     await callback.answer()
