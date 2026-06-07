@@ -566,7 +566,8 @@ async def explain_dialog_phrase(callback: CallbackQuery):
         AI_MESSAGES[user_id] = wait_msg.message_id
 
         await wait_msg.edit_text(
-            f"🔍 Фраза\n\n{phrase}\n\n{result}"
+            f"🔍 Фраза\n\n<b>{phrase}</b>\n\n{result_html}",
+            parse_mode=ParseMode.HTML
         )
         await callback.answer()
 
