@@ -57,7 +57,10 @@ def get_user_words_for_story(telegram_id: int, max_words: int = 15, recent_words
         topic_words = [w.lemma for w in words if w.topic == selected_topic]
 
         # Ограничиваем по max_words
-        selected_words = topic_words[:max_words]
+        selected_words = random.sample(
+            topic_words,
+            min(max_words, len(topic_words))
+        )
 
         print(f"[DAILY STORY] Topic: {selected_topic}")
         print(f"[DAILY STORY] Words: {selected_words}")
