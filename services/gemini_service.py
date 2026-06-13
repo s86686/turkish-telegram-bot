@@ -347,9 +347,13 @@ general
                 text
             )
 
-            return json.loads(
-                text
-            )
+            return [
+                {
+                    "lemma": text,
+                    "translation": "DEBUG",
+                    "topic": "debug"
+                }
+            ]
 
         except Exception as e:
 
