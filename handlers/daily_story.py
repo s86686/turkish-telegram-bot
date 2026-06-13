@@ -26,41 +26,39 @@ daily_story_keyboard = InlineKeyboardMarkup(
 @router.message(lambda m: m.text == "📖 История дня")
 async def show_daily_story(message: Message):
 
-    user_id = message.from_user.id
+user_id = message.from_user.id
 
-    # Сначала пробуем получить готовую историю
+# Сначала пробуем получить готовую историю
+story = get_daily_story(user_id)
 
-    story = get_daily_story(user_id)
+if story:
 
-    if story:
-
-        await message.answer(
-            story.story_text,
-            reply_markup=daily_story_keyboard,
-            parse_mode=ParseMode.HTML
-        )
-
-        return
-
-    # Если истории нет — создаем по изученным словам
-
-    topic, words = get_user_words_for_story(
-        user_id
+    await message.answer(
+        story.story_text,
+        reply_markup=daily_story_keyboard,
+        parse_mode=ParseMode.HTML
     )
 
-    if not words:
+    return
 
-        await message.answer(
-            "Сегодня ещё нет изученных слов для истории."
-        )
+# Если истории нет — создаем по изученным словам
+topic, words = get_user_words_for_story(
+    user_id
+)
 
-        return
+if not words:
 
-    story = create_daily_story(
-        user_id,
-        topic,
-        words
+    await message.answer(
+        "Сегодня ещё нет изученных слов для истории."
     )
+
+    return
+
+story = create_daily_story(
+    user_id,
+    topic,
+    words
+)
 
 if not story or not story.story_text:
 
@@ -97,6 +95,8 @@ await message.answer(
     reply_markup=daily_story_keyboard,
     parse_mode=ParseMode.HTML
 )
+
+
     
 @router.callback_query(lambda c: c.data == "close_story")
 async def close_story(callback: CallbackQuery):
