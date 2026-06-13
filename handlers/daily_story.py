@@ -72,9 +72,17 @@ async def show_daily_story(message: Message):
         story.story_text,
         words
     )
-
+    
+    story.story_text += (
+        f"\n\nDEBUG BEFORE FILTER:\n{new_words}"
+    )
+    
     new_words = filter_unknown_words(
         new_words
+    )
+    
+    story.story_text += (
+        f"\n\nDEBUG AFTER FILTER:\n{new_words}"
     )
 
     if new_words:
