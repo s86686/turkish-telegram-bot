@@ -314,8 +314,10 @@ shopping, family, work, city, health, general)
 
     except Exception as e:
 
-        print(
-            f"NEW WORDS ERROR: {e}"
-        )
-
-        return []
+        return [
+            {
+                "lemma": f"ERROR: {e}",
+                "translation": "error",
+                "topic": "debug"
+            }
+        ]
