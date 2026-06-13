@@ -28,73 +28,73 @@ async def show_daily_story(message: Message):
 
     user_id = message.from_user.id
 
-# Сначала пробуем получить готовую историю
-story = get_daily_story(user_id)
+    # Сначала пробуем получить готовую историю
+    story = get_daily_story(user_id)
 
-if story:
+    if story:
+
+        await message.answer(
+            story.story_text,
+            reply_markup=daily_story_keyboard,
+            parse_mode=ParseMode.HTML
+        )
+
+        return
+
+    # Если истории нет — создаем по изученным словам
+    topic, words = get_user_words_for_story(
+        user_id
+    )
+
+    if not words:
+
+        await message.answer(
+            "Сегодня ещё нет изученных слов для истории."
+        )
+
+        return
+
+    story = create_daily_story(
+        user_id,
+        topic,
+        words
+    )
+
+    if not story or not story.story_text:
+
+        await message.answer(
+            "⚠️ Не удалось сгенерировать историю. Попробуйте позже."
+        )
+
+        return
+
+    new_words = extract_new_words(
+        story.story_text
+    )
+
+    new_words = filter_unknown_words(
+        new_words
+    )
+
+    if new_words:
+
+        debug_text = "\n\n🆕 Найдено новых слов:\n\n"
+
+        for word in new_words:
+
+            debug_text += (
+                f"• {word['lemma']} — "
+                f"{word['translation']} "
+                f"({word['topic']})\n"
+            )
+
+        story.story_text += debug_text
 
     await message.answer(
         story.story_text,
         reply_markup=daily_story_keyboard,
         parse_mode=ParseMode.HTML
     )
-
-    return
-
-# Если истории нет — создаем по изученным словам
-topic, words = get_user_words_for_story(
-    user_id
-)
-
-if not words:
-
-    await message.answer(
-        "Сегодня ещё нет изученных слов для истории."
-    )
-
-    return
-
-story = create_daily_story(
-    user_id,
-    topic,
-    words
-)
-
-if not story or not story.story_text:
-
-    await message.answer(
-        "⚠️ Не удалось сгенерировать историю. Попробуйте позже."
-    )
-
-    return
-
-new_words = extract_new_words(
-    story.story_text
-)
-
-new_words = filter_unknown_words(
-    new_words
-)
-
-if new_words:
-
-    debug_text = "\n\n🆕 Найдено новых слов:\n\n"
-
-    for word in new_words:
-
-        debug_text += (
-            f"• {word['lemma']} — "
-            f"{word['translation']} "
-            f"({word['topic']})\n"
-        )
-
-    story.story_text += debug_text
-
-await message.answer(
-    story.story_text,
-    reply_markup=daily_story_keyboard,
-    parse_mode=ParseMode.HTML
-)
 
 
     
