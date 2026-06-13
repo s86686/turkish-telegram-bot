@@ -287,38 +287,38 @@ shopping, family, work, city, health, general)
 """
 
     for model in MODELS:
-    try:
 
-        response = client.models.generate_content(
-            model=model,
-            contents=prompt
-        )
+        try:
 
-        text = response.text.strip()
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt
+            )
 
-        # Gemini иногда оборачивает JSON в ```json
-        text = re.sub(
-            r"^```json\s*",
-            "",
-            text
-        )
+            text = response.text.strip()
 
-        text = re.sub(
-            r"\s*```$",
-            "",
-            text
-        )
+            text = re.sub(
+                r"^```json\s*",
+                "",
+                text
+            )
 
-        return json.loads(
-            text
-        )
+            text = re.sub(
+                r"\s*```$",
+                "",
+                text
+            )
 
-    except Exception as e:
+            return json.loads(
+                text
+            )
 
-        return [
-            {
-                "lemma": f"ERROR: {e}",
-                "translation": "error",
-                "topic": "debug"
-            }
-        ]
+        except Exception as e:
+
+            print(
+                f"NEW WORDS ERROR ({model}): {e}"
+            )
+
+            continue
+
+    return []
