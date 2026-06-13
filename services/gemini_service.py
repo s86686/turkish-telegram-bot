@@ -286,10 +286,11 @@ shopping, family, work, city, health, general)
 {story_text}
 """
 
+    for model in MODELS:
     try:
 
         response = client.models.generate_content(
-            model=get_working_model(),
+            model=model,
             contents=prompt
         )
 
