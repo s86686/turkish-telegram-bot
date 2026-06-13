@@ -69,7 +69,8 @@ async def show_daily_story(message: Message):
         return
 
     new_words = extract_new_words(
-        story.story_text
+        story.story_text,
+        words
     )
 
     new_words = filter_unknown_words(
