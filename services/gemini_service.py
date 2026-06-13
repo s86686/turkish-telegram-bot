@@ -1,3 +1,5 @@
+import json
+import re
 from google import genai
 
 from config import GEMINI_API_KEY
@@ -246,3 +248,74 @@ def explain_phrase(
         "⚠️ AI временно недоступен.\n\n"
         f"{last_error}"
     )
+
+def extract_new_words(
+    story_text: str
+) -> list:
+
+    prompt = f"""
+Ты преподаватель турецкого языка.
+
+Проанализируй историю.
+
+Найди максимум 5 полезных слов или выражений уровня A1-A2,
+которые могут быть интересны для изучения.
+
+Для каждого слова укажи:
+
+- lemma (начальная форма)
+- translation (перевод на русский)
+- topic (одна тема из списка:
+food, restaurant, transport, travel, hotel,
+shopping, family, work, city, health, general)
+
+Верни ТОЛЬКО JSON.
+
+Формат:
+
+[
+  {{
+    "lemma": "lezzetli",
+    "translation": "вкусный",
+    "topic": "food"
+  }}
+]
+
+История:
+
+{story_text}
+"""
+
+    try:
+
+        response = client.models.generate_content(
+            model=get_working_model(),
+            contents=prompt
+        )
+
+        text = response.text.strip()
+
+        # Gemini иногда оборачивает JSON в ```json
+        text = re.sub(
+            r"^```json\s*",
+            "",
+            text
+        )
+
+        text = re.sub(
+            r"\s*```$",
+            "",
+            text
+        )
+
+        return json.loads(
+            text
+        )
+
+    except Exception as e:
+
+        print(
+            f"NEW WORDS ERROR: {e}"
+        )
+
+        return []
