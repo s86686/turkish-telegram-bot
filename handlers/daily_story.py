@@ -26,7 +26,7 @@ daily_story_keyboard = InlineKeyboardMarkup(
 @router.message(lambda m: m.text == "📖 История дня")
 async def show_daily_story(message: Message):
 
-user_id = message.from_user.id
+    user_id = message.from_user.id
 
 # Сначала пробуем получить готовую историю
 story = get_daily_story(user_id)
