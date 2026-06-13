@@ -177,3 +177,42 @@ def create_daily_story(
     finally:
 
         db.close()
+
+def filter_unknown_words(
+    words: list
+) -> list:
+
+    db = SessionLocal()
+
+    try:
+
+        if not words:
+            return []
+
+        lemmas = [
+            w["lemma"]
+            for w in words
+        ]
+
+        existing = {
+            row[0]
+            for row in (
+                db.query(
+                    Word.lemma
+                )
+                .filter(
+                    Word.lemma.in_(lemmas)
+                )
+                .all()
+            )
+        }
+
+        return [
+            w
+            for w in words
+            if w["lemma"] not in existing
+        ]
+
+    finally:
+
+        db.close()
