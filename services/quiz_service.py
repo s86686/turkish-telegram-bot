@@ -7,7 +7,10 @@ def build_quiz(
     direction="TR_RU"
 ):
 
-    if direction == "RU_TR":
+    if direction in (
+        "RU_TR",
+        "RU_EN"
+    ):
 
         correct = (
             current_word["lemma"]
