@@ -1,7 +1,11 @@
 from db.database import SessionLocal
 from db.models import (
     User,
-    PendingWord
+    PendingWord,
+    Word,
+    EnglishWord,
+    UserWord,
+    UserEnglishWord
 )
 
 
@@ -125,6 +129,152 @@ def get_pending_word(
                 PendingWord.id == pending_word_id
             )
             .first()
+        )
+
+    finally:
+
+        db.close()
+
+def add_pending_word_to_dictionary(
+    pending_word_id: int,
+    card: dict
+):
+
+    db = SessionLocal()
+
+    try:
+
+        pending_word = (
+            db.query(PendingWord)
+            .filter(
+                PendingWord.id == pending_word_id
+            )
+            .first()
+        )
+
+        if not pending_word:
+
+            return (
+                False,
+                "PendingWord not found"
+            )
+
+        if pending_word.language == "tr":
+
+            word = (
+                db.query(Word)
+                .filter(
+                    Word.lemma == card["lemma"]
+                )
+                .first()
+            )
+
+            if not word:
+
+                word = Word(
+                    lemma=card["lemma"],
+                    translation=card["translation"],
+                    level=card["level"],
+                    topic=card["topic"],
+                    example_tr=card.get(
+                        "example_foreign"
+                    ),
+                    example_ru=card.get(
+                        "example_ru"
+                    ),
+                    priority=100
+                )
+
+                db.add(word)
+                db.flush()
+
+            existing_user_word = (
+                db.query(UserWord)
+                .filter(
+                    UserWord.user_id == pending_word.user_id,
+                    UserWord.word_id == word.id
+                )
+                .first()
+            )
+
+            if not existing_user_word:
+
+                db.add(
+                    UserWord(
+                        user_id=pending_word.user_id,
+                        word_id=word.id
+                    )
+                )
+
+        else:
+
+            word = (
+                db.query(EnglishWord)
+                .filter(
+                    EnglishWord.lemma == card["lemma"]
+                )
+                .first()
+            )
+
+            if not word:
+
+                word = EnglishWord(
+                    lemma=card["lemma"],
+                    translation=card["translation"],
+                    level=card["level"],
+                    topic=card["topic"],
+                    example_en=card.get(
+                        "example_foreign"
+                    ),
+                    example_ru=card.get(
+                        "example_ru"
+                    ),
+                    priority=100
+                )
+
+                db.add(word)
+                db.flush()
+
+            existing_user_word = (
+                db.query(UserEnglishWord)
+                .filter(
+                    UserEnglishWord.user_id == pending_word.user_id,
+                    UserEnglishWord.word_id == word.id
+                )
+                .first()
+            )
+
+            if not existing_user_word:
+
+                db.add(
+                    UserEnglishWord(
+                        user_id=pending_word.user_id,
+                        word_id=word.id
+                    )
+                )
+
+        db.delete(
+            pending_word
+        )
+
+        db.commit()
+
+        return (
+            True,
+            card["lemma"]
+        )
+
+    except Exception as e:
+
+        db.rollback()
+
+        print(
+            f"ADD WORD ERROR: {e}"
+        )
+
+        return (
+            False,
+            str(e)
         )
 
     finally:
