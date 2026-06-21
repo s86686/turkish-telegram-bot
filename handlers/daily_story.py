@@ -69,6 +69,26 @@ def build_pending_words_keyboard(
         inline_keyboard=keyboard
     )
 
+def build_word_confirm_keyboard(
+    pending_word_id: int
+):
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="✅ Добавить в словарь",
+                    callback_data=f"confirm_word_{pending_word_id}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text="❌ Отмена",
+                    callback_data="cancel_word"
+                )
+            ]
+        ]
+    )
 
 @router.message(
     lambda m: m.text == "📖 История дня"
@@ -226,10 +246,6 @@ async def pending_word_clicked(
         topic=word.topic,
         language=word.language
     )
-    
-    await callback.message.answer(
-        f"DEBUG CARD:\n\n{card}"
-    )
 
     if not card:
 
@@ -246,17 +262,103 @@ async def pending_word_clicked(
         or ""
     )
 
+    language_flag = (
+        "🇹🇷"
+        if word.language == "tr"
+        else "🇬🇧"
+    )
+
     text = (
         f"📖 <b>{card['lemma']}</b>\n\n"
         f"🇷🇺 {card['translation']}\n"
         f"🏷 Тема: {card['topic']}\n"
         f"📊 Уровень: {card['level']}\n\n"
         f"📌 <b>Пример</b>\n\n"
-        f"🇹🇷 {example}\n\n"
+        f"{language_flag} {example}\n\n"
         f"🇷🇺 {card['example_ru']}"
     )
 
     await callback.message.answer(
         text,
+        reply_markup=build_word_confirm_keyboard(
+            pending_word_id
+        ),
         parse_mode=ParseMode.HTML
     )
+
+
+@router.callback_query(
+    lambda c: c.data.startswith(
+        "confirm_word_"
+    )
+)
+async def confirm_word(
+    callback: CallbackQuery
+):
+
+    pending_word_id = int(
+        callback.data.replace(
+            "confirm_word_",
+            ""
+        )
+    )
+
+    word = get_pending_word(
+        pending_word_id
+    )
+
+    if not word:
+
+        await callback.answer(
+            "Слово не найдено",
+            show_alert=True
+        )
+
+        return
+
+    await callback.message.answer(
+        f"DEBUG ADD WORD\n\n"
+        f"id={word.id}\n"
+        f"lemma={word.lemma}\n"
+        f"language={word.language}"
+    )
+
+    await callback.answer(
+        "Добавление пока в разработке"
+    )
+
+
+@router.callback_query(
+    lambda c: c.data == "cancel_word"
+)
+async def cancel_word(
+    callback: CallbackQuery
+):
+
+    try:
+
+        await callback.message.delete()
+
+    except Exception:
+
+        pass
+
+    await callback.answer()
+
+
+@router.callback_query(
+    lambda c: c.data == "close_story"
+)
+async def close_story(
+    callback: CallbackQuery
+):
+
+    try:
+
+        await callback.message.delete()
+
+    except Exception:
+
+        pass
+
+    await callback.answer()
