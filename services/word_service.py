@@ -22,6 +22,7 @@ def build_word_result(
 
     result = {
         "id": word.id,
+        "language": "tr",
         "lemma": word.lemma,
         "translation": word.translation,
         "examples": [
