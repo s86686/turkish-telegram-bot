@@ -17,6 +17,9 @@ from keyboards.menu import (
     main_menu
 )
 
+from db.database import SessionLocal
+from db.models import User
+
 router = Router()
 
 
@@ -106,3 +109,66 @@ async def eng_test(
     await message.answer(
         text
     )
+
+@router.message(Command("english"))
+async def switch_english(
+    message: Message
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == message.from_user.id
+            )
+            .first()
+        )
+
+        if user:
+
+            user.learning_language = "en"
+
+            db.commit()
+
+        await message.answer(
+            "🇬🇧 English C2 activated"
+        )
+
+    finally:
+
+        db.close()
+
+
+@router.message(Command("turkish"))
+async def switch_turkish(
+    message: Message
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == message.from_user.id
+            )
+            .first()
+        )
+
+        if user:
+
+            user.learning_language = "tr"
+
+            db.commit()
+
+        await message.answer(
+            "🇹🇷 Turkish activated"
+        )
+
+    finally:
+
+        db.close()
