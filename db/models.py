@@ -62,6 +62,11 @@ class User(Base):
         String(10),
         default="tr"
     )
+
+    english_quiz_direction: Mapped[str] = mapped_column(
+        String(10),
+        default="EN_RU"
+    )
     
     created_at: Mapped[datetime] = mapped_column(
         DateTime,
