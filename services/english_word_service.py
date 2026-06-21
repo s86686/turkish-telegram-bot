@@ -23,6 +23,7 @@ def build_word_result(
 
     result = {
         "id": word.id,
+        "language": "en",
         "lemma": word.lemma,
         "translation": word.translation,
         "examples": [
@@ -124,6 +125,86 @@ def get_new_english_word(
         word = random.choice(
             candidates
         )
+
+        all_words = [
+            {
+                "id": row.id,
+                "lemma": row.lemma,
+                "translation": row.translation
+            }
+            for row in (
+                db.query(
+                    EnglishWord.id,
+                    EnglishWord.lemma,
+                    EnglishWord.translation
+                )
+                .all()
+            )
+        ]
+
+        return build_word_result(
+            word,
+            all_words,
+            "EN_RU"
+        )
+
+    finally:
+
+        db.close()
+
+def get_review_english_word(
+    telegram_id: int
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id == telegram_id
+            )
+            .first()
+        )
+
+        if not user:
+            return None
+
+        review = (
+            db.query(UserEnglishWord)
+            .filter(
+                UserEnglishWord.user_id == user.id,
+                UserEnglishWord.next_review <= datetime.utcnow()
+            )
+            .order_by(
+                UserEnglishWord.next_review
+            )
+            .first()
+        )
+
+        if not review:
+            return None
+
+        word = (
+            db.query(EnglishWord)
+            .filter(
+                EnglishWord.id == review.word_id
+            )
+            .first()
+        )
+
+        if not word:
+
+            db.delete(
+                review
+            )
+
+            db.commit()
+
+            return get_review_english_word(
+                telegram_id
+            )
 
         all_words = [
             {
