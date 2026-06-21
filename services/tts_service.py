@@ -5,7 +5,8 @@ import edge_tts
 
 
 async def generate_tts(
-    text: str
+    text: str,
+    language: str = "tr"
 ):
 
     filename = (
@@ -17,9 +18,17 @@ async def generate_tts(
         exist_ok=True
     )
 
+    if language == "en":
+
+        voice = "en-US-GuyNeural"
+
+    else:
+
+        voice = "tr-TR-AhmetNeural"
+
     communicate = edge_tts.Communicate(
         text,
-        voice="tr-TR-AhmetNeural"
+        voice=voice
     )
 
     await communicate.save(
