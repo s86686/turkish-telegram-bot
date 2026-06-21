@@ -411,12 +411,12 @@ async def next_word(
             word = get_review_word(
                 callback.from_user.id
             )
-
-    else:
-
-        word = get_new_word(
-            callback.from_user.id
-        )
+    
+        else:
+    
+            word = get_new_word(
+                callback.from_user.id
+            )
 
     if mode == "new" and word == "LIMIT_REACHED":
 
