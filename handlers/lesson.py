@@ -337,10 +337,19 @@ async def speak_word(
 
     example = word["examples"][0]
 
-    text = (
-        f"{word['lemma']}. "
-        f"{example['tr']}"
-    )
+    if word.get("language") == "en":
+    
+        text = (
+            f"{word['lemma']}. "
+            f"{example['en']}"
+        )
+    
+    else:
+    
+        text = (
+            f"{word['lemma']}. "
+            f"{example['tr']}"
+        )
 
     import os
 
