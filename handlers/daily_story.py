@@ -23,7 +23,8 @@ from services.pending_words_service import (
     save_pending_words,
     get_pending_words,
     get_pending_word,
-    add_pending_word_to_dictionary
+    add_pending_word_to_dictionary,
+    save_pending_word_card
 )
 
 router = Router()
@@ -247,15 +248,19 @@ async def pending_word_clicked(
         topic=word.topic,
         language=word.language
     )
-
+    
     if not card:
-
+    
         await callback.message.answer(
             "⚠️ Не удалось создать карточку слова."
         )
-
+    
         return
-
+    
+    save_pending_word_card(
+        pending_word_id,
+        card
+    )
     example = (
         card.get("example_foreign")
         or card.get("example_tr")
@@ -317,19 +322,36 @@ async def confirm_word(
 
         return
 
-    card = generate_word_card(
-        lemma=word.lemma,
-        translation=word.translation,
-        topic=word.topic,
-        language=word.language
-    )
-
-    if not card:
+    if not word.card_json:
 
         await callback.message.answer(
-            "⚠️ Не удалось получить карточку слова."
+            "⚠️ Карточка слова не найдена."
         )
 
+        return
+
+    try:
+
+        import json
+    
+        card = json.loads(
+            word.card_json or "{}"
+        )
+    
+    except Exception:
+    
+        await callback.message.answer(
+            "⚠️ Ошибка чтения карточки слова."
+        )
+    
+        return
+    
+    if not card:
+    
+        await callback.message.answer(
+            "⚠️ Карточка слова пуста."
+        )
+    
         return
 
     success, result = (
