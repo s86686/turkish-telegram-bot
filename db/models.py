@@ -288,3 +288,23 @@ class UserEnglishWord(Base):
         Integer,
         default=0
     )
+
+    interval_days: Mapped[int] = mapped_column(
+        Integer,
+        default=1
+    )
+
+    next_review: Mapped[datetime | None] = mapped_column(
+        DateTime,
+        nullable=True
+    )
+
+    correct_count: Mapped[int] = mapped_column(
+        Integer,
+        default=0
+    )
+
+    wrong_count: Mapped[int] = mapped_column(
+        Integer,
+        default=0
+    )
