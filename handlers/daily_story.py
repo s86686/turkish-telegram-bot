@@ -15,7 +15,8 @@ from services.daily_story_service import (
 )
 
 from services.gemini_service import (
-    extract_new_words
+    extract_new_words,
+    generate_word_card
 )
 
 from services.pending_words_service import (
@@ -215,36 +216,42 @@ async def pending_word_clicked(
 
         return
 
-    debug_text = (
-        "DEBUG WORD\n\n"
-        f"id: {word.id}\n"
-        f"language: {word.language}\n"
-        f"lemma: {word.lemma}\n"
-        f"translation: {word.translation}\n"
-        f"topic: {word.topic}"
+    await callback.answer(
+        "Генерирую карточку..."
+    )
+
+    card = generate_word_card(
+        lemma=word.lemma,
+        translation=word.translation,
+        topic=word.topic,
+        language=word.language
+    )
+
+    if not card:
+
+        await callback.message.answer(
+            "⚠️ Не удалось создать карточку слова."
+        )
+
+        return
+
+    example = (
+        card.get("example_tr")
+        or card.get("example_en")
+        or ""
+    )
+
+    text = (
+        f"📖 <b>{card['lemma']}</b>\n\n"
+        f"🇷🇺 {card['translation']}\n"
+        f"🏷 Тема: {card['topic']}\n"
+        f"📊 Уровень: {card['level']}\n\n"
+        f"📌 <b>Пример</b>\n\n"
+        f"{example}\n\n"
+        f"🇷🇺 {card['example_ru']}"
     )
 
     await callback.message.answer(
-        debug_text
+        text,
+        parse_mode=ParseMode.HTML
     )
-
-    await callback.answer()
-
-
-@router.callback_query(
-    lambda c: c.data == "close_story"
-)
-async def close_story(
-    callback: CallbackQuery
-):
-
-    try:
-
-        await callback.message.delete()
-
-    except Exception:
-
-        pass
-
-    await callback.answer()
-
