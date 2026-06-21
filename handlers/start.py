@@ -54,3 +54,55 @@ async def test_ai(
     await message.answer(
         result
     )
+
+from services.english_word_service import (
+    get_new_english_word
+)
+
+
+@router.message(
+    Command("engtest")
+)
+async def eng_test(
+    message: Message
+):
+
+    word = get_new_english_word(
+        message.from_user.id
+    )
+
+    if not word:
+
+        await message.answer(
+            "Нет английских слов для изучения."
+        )
+
+        return
+
+    quiz = word["quiz"]
+
+    text = (
+        f"🇬🇧 {word['lemma']}\n\n"
+        f"🇷🇺 {word['translation']}\n\n"
+        f"Question:\n"
+        f"{quiz['question']}\n\n"
+        f"Options:\n"
+    )
+
+    for i, option in enumerate(
+        quiz["options"],
+        start=1
+    ):
+
+        text += (
+            f"{i}. {option}\n"
+        )
+
+    text += (
+        f"\nCorrect: "
+        f"{quiz['correct'] + 1}"
+    )
+
+    await message.answer(
+        text
+    )
