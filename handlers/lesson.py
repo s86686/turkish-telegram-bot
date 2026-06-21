@@ -325,19 +325,9 @@ async def speak_word(
     )
 
     if not word:
-
-        await callback.message.answer(
-            "DEBUG: word not found"
-        )
-
         return
 
     if user_id in SPEAK_IN_PROGRESS:
-
-        await callback.message.answer(
-            "DEBUG: already in progress"
-        )
-
         return
 
     SPEAK_IN_PROGRESS.add(
@@ -345,10 +335,6 @@ async def speak_word(
     )
 
     try:
-
-        await callback.message.answer(
-            f"DEBUG 1\nLanguage: {word.get('language')}"
-        )
 
         example = word["examples"][0]
 
@@ -366,20 +352,12 @@ async def speak_word(
                 f"{example['tr']}"
             )
 
-        await callback.message.answer(
-            f"DEBUG 2\n{text}"
-        )
-
         filename = await generate_tts(
             text,
             language=word.get(
                 "language",
                 "tr"
             )
-        )
-
-        await callback.message.answer(
-            f"DEBUG 3\nFile: {filename}"
         )
 
         audio = FSInputFile(
@@ -390,10 +368,6 @@ async def speak_word(
             audio
         )
 
-        await callback.message.answer(
-            "DEBUG 4\nVoice sent"
-        )
-
         VOICE_MESSAGES[
             callback.from_user.id
         ] = voice_msg.message_id
@@ -401,7 +375,7 @@ async def speak_word(
     except Exception as e:
 
         await callback.message.answer(
-            f"❌ TTS ERROR:\n{e}"
+            f"❌ Ошибка озвучки:\n{e}"
         )
 
     finally:
