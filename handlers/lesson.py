@@ -12,6 +12,19 @@ from services.word_service import (
     get_review_word
 )
 
+from services.english_word_service import (
+    get_new_english_word,
+    get_review_english_word
+)
+
+from services.language_service import (
+    get_learning_language
+)
+
+from services.english_review_service import (
+    save_english_review
+)
+
 from services.review_service import (
     save_review
 )
@@ -39,14 +52,27 @@ def build_question_text(
 
     question = word["quiz"]["question"]
 
+    flag = (
+        "🇬🇧"
+        if word.get("language") == "en"
+        else "🇹🇷"
+    )
+
     if question == word["lemma"]:
 
         title = "Что означает?"
-        text = f"🇹🇷 {question}"
+        text = f"{flag} {question}"
 
     else:
 
-        title = "Как будет по-турецки?"
+        if word.get("language") == "en":
+
+            title = "Как будет по-английски?"
+
+        else:
+
+            title = "Как будет по-турецки?"
+
         text = f"🇷🇺 {question}"
 
     return f"{title}\n\n{text}"
@@ -59,9 +85,21 @@ async def new_words(
     message: Message
 ):
 
-    word = get_new_word(
+    language = get_learning_language(
         message.from_user.id
     )
+    
+    if language == "en":
+    
+        word = get_new_english_word(
+            message.from_user.id
+        )
+    
+    else:
+    
+        word = get_new_word(
+            message.from_user.id
+        )
 
     if word == "LIMIT_REACHED":
 
@@ -112,9 +150,21 @@ async def reviews(
     message: Message
 ):
 
-    word = get_review_word(
+    language = get_learning_language(
         message.from_user.id
     )
+    
+    if language == "en":
+    
+        word = get_review_english_word(
+            message.from_user.id
+        )
+    
+    else:
+    
+        word = get_review_word(
+            message.from_user.id
+        )
 
     if not word:
 
@@ -207,11 +257,25 @@ async def rate_word(
     if not word:
         return
 
-    interval = save_review(
-        telegram_id=callback.from_user.id,
-        word_id=word["id"],
-        quality=quality
+    language = get_learning_language(
+        callback.from_user.id
     )
+    
+    if language == "en":
+    
+        interval = save_english_review(
+            telegram_id=callback.from_user.id,
+            word_id=word["id"],
+            quality=quality
+        )
+    
+    else:
+    
+        interval = save_review(
+            telegram_id=callback.from_user.id,
+            word_id=word["id"],
+            quality=quality
+        )
 
     await callback.message.edit_text(
         f"✅ Ответ сохранён\n\n"
@@ -322,11 +386,31 @@ async def next_word(
 
     mode = callback.data.split("_")[1]
 
-    if mode == "review":
-
-        word = get_review_word(
-            callback.from_user.id
-        )
+    language = get_learning_language(
+        callback.from_user.id
+    )
+    
+    if language == "en":
+    
+        if mode == "review":
+    
+            word = get_review_english_word(
+                callback.from_user.id
+            )
+    
+        else:
+    
+            word = get_new_english_word(
+                callback.from_user.id
+            )
+    
+    else:
+    
+        if mode == "review":
+    
+            word = get_review_word(
+                callback.from_user.id
+            )
 
     else:
 
