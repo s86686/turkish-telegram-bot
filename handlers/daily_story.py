@@ -10,6 +10,12 @@ from aiogram.enums import ParseMode
 from services.gemini_service import (
     extract_new_words
 )
+
+from services.pending_words_service import (
+    save_pending_words,
+    get_pending_words
+)
+
 router = Router()
 
 daily_story_keyboard = InlineKeyboardMarkup(
@@ -79,6 +85,17 @@ async def show_daily_story(message: Message):
     
     new_words = filter_unknown_words(
         new_words
+    )
+
+    saved_words = save_pending_words(
+        telegram_id=user_id,
+        language="tr",
+        words=new_words
+    )
+    
+    story.story_text += (
+        f"\n\nDEBUG PENDING SAVED: "
+        f"{saved_words}"
     )
     
     story.story_text += (
