@@ -8,6 +8,7 @@ from db.models import (
     UserEnglishWord
 )
 
+import json
 
 def save_pending_words(
     telegram_id: int,
@@ -276,6 +277,49 @@ def add_pending_word_to_dictionary(
             False,
             str(e)
         )
+
+    finally:
+
+        db.close()
+
+def save_pending_word_card(
+    pending_word_id: int,
+    card: dict
+):
+
+    db = SessionLocal()
+
+    try:
+
+        pending_word = (
+            db.query(PendingWord)
+            .filter(
+                PendingWord.id == pending_word_id
+            )
+            .first()
+        )
+
+        if not pending_word:
+            return False
+
+        pending_word.card_json = json.dumps(
+            card,
+            ensure_ascii=False
+        )
+
+        db.commit()
+
+        return True
+
+    except Exception as e:
+
+        db.rollback()
+
+        print(
+            f"SAVE CARD ERROR: {e}"
+        )
+
+        return False
 
     finally:
 
