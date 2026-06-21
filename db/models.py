@@ -318,3 +318,38 @@ class UserEnglishWord(Base):
         Integer,
         default=0
     )
+
+class PendingWord(Base):
+
+    __tablename__ = "pending_words"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id")
+    )
+
+    language: Mapped[str] = mapped_column(
+        String(10)
+    )
+
+    lemma: Mapped[str] = mapped_column(
+        String(100)
+    )
+
+    translation: Mapped[str] = mapped_column(
+        String(200)
+    )
+
+    topic: Mapped[str] = mapped_column(
+        String(50),
+        default="general"
+    )
+
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow
+    )
