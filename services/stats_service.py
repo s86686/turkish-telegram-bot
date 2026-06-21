@@ -5,7 +5,9 @@ from db.database import SessionLocal
 from db.models import (
     User,
     UserWord,
-    Word
+    Word,
+    UserEnglishWord,
+    EnglishWord
 )
 
 
@@ -29,7 +31,7 @@ def get_stats(
         if not user:
             return None
 
-        words = (
+        tr_words = (
             db.query(UserWord)
             .filter(
                 UserWord.user_id
@@ -38,29 +40,45 @@ def get_stats(
             .all()
         )
 
-        learned = len(words)
+        en_words = (
+            db.query(UserEnglishWord)
+            .filter(
+                UserEnglishWord.user_id
+                == user.id
+            )
+            .all()
+        )
+
+        all_words = (
+            tr_words
+            + en_words
+        )
+
+        learned = len(
+            all_words
+        )
 
         correct = sum(
             (w.correct_count or 0)
-            for w in words
+            for w in all_words
         )
 
         wrong = sum(
             (w.wrong_count or 0)
-            for w in words
+            for w in all_words
         )
 
         review_today = len(
             [
-                w for w in words
+                w for w in all_words
                 if w.next_review
                 and w.next_review <= datetime.utcnow()
             ]
         )
 
         total_words = (
-            db.query(Word)
-            .count()
+            db.query(Word).count()
+            + db.query(EnglishWord).count()
         )
 
         new_words = (
@@ -72,20 +90,36 @@ def get_stats(
 
         learned_today = len(
             [
-                w for w in words
+                w for w in all_words
                 if w.learned_at
                 and w.learned_at.date() == today
             ]
         )
 
         return {
+
             "learned": learned,
+
             "correct": correct,
+
             "wrong": wrong,
+
             "review_today": review_today,
+
             "new_words": new_words,
+
             "learned_today": learned_today,
-            "daily_limit": user.daily_new_words
+
+            "daily_limit": user.daily_new_words,
+
+            "turkish_learned": len(
+                tr_words
+            ),
+
+            "english_learned": len(
+                en_words
+            )
+
         }
 
     finally:
