@@ -172,3 +172,64 @@ async def switch_turkish(
     finally:
 
         db.close()
+
+@router.message(Command("en_ru"))
+async def set_en_ru(
+    message: Message
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id ==
+                message.from_user.id
+            )
+            .first()
+        )
+
+        user.english_quiz_direction = "EN_RU"
+
+        db.commit()
+
+        await message.answer(
+            "🇬🇧 EN → RU activated"
+        )
+
+    finally:
+
+        db.close()
+
+
+@router.message(Command("ru_en"))
+async def set_ru_en(
+    message: Message
+):
+
+    db = SessionLocal()
+
+    try:
+
+        user = (
+            db.query(User)
+            .filter(
+                User.telegram_id ==
+                message.from_user.id
+            )
+            .first()
+        )
+
+        user.english_quiz_direction = "RU_EN"
+
+        db.commit()
+
+        await message.answer(
+            "🇬🇧 RU → EN activated"
+        )
+
+    finally:
+
+        db.close()
