@@ -22,8 +22,7 @@ def get_stats(
         user = (
             db.query(User)
             .filter(
-                User.telegram_id
-                == telegram_id
+                User.telegram_id == telegram_id
             )
             .first()
         )
@@ -31,54 +30,56 @@ def get_stats(
         if not user:
             return None
 
-        tr_words = (
-            db.query(UserWord)
-            .filter(
-                UserWord.user_id
-                == user.id
+        if user.learning_language == "en":
+
+            words = (
+                db.query(UserEnglishWord)
+                .filter(
+                    UserEnglishWord.user_id
+                    == user.id
+                )
+                .all()
             )
-            .all()
-        )
 
-        en_words = (
-            db.query(UserEnglishWord)
-            .filter(
-                UserEnglishWord.user_id
-                == user.id
+            total_words = (
+                db.query(EnglishWord)
+                .count()
             )
-            .all()
-        )
 
-        all_words = (
-            tr_words
-            + en_words
-        )
+        else:
 
-        learned = len(
-            all_words
-        )
+            words = (
+                db.query(UserWord)
+                .filter(
+                    UserWord.user_id
+                    == user.id
+                )
+                .all()
+            )
+
+            total_words = (
+                db.query(Word)
+                .count()
+            )
+
+        learned = len(words)
 
         correct = sum(
             (w.correct_count or 0)
-            for w in all_words
+            for w in words
         )
 
         wrong = sum(
             (w.wrong_count or 0)
-            for w in all_words
+            for w in words
         )
 
         review_today = len(
             [
-                w for w in all_words
+                w for w in words
                 if w.next_review
                 and w.next_review <= datetime.utcnow()
             ]
-        )
-
-        total_words = (
-            db.query(Word).count()
-            + db.query(EnglishWord).count()
         )
 
         new_words = (
@@ -90,36 +91,20 @@ def get_stats(
 
         learned_today = len(
             [
-                w for w in all_words
+                w for w in words
                 if w.learned_at
                 and w.learned_at.date() == today
             ]
         )
 
         return {
-
             "learned": learned,
-
             "correct": correct,
-
             "wrong": wrong,
-
             "review_today": review_today,
-
             "new_words": new_words,
-
             "learned_today": learned_today,
-
-            "daily_limit": user.daily_new_words,
-
-            "turkish_learned": len(
-                tr_words
-            ),
-
-            "english_learned": len(
-                en_words
-            )
-
+            "daily_limit": user.daily_new_words
         }
 
     finally:
