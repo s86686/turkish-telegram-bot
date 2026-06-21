@@ -240,7 +240,8 @@ async def pending_word_clicked(
         return
 
     example = (
-        card.get("example_tr")
+        card.get("example_foreign")
+        or card.get("example_tr")
         or card.get("example_en")
         or ""
     )
@@ -251,7 +252,7 @@ async def pending_word_clicked(
         f"🏷 Тема: {card['topic']}\n"
         f"📊 Уровень: {card['level']}\n\n"
         f"📌 <b>Пример</b>\n\n"
-        f"{example}\n\n"
+        f"🇹🇷 {example}\n\n"
         f"🇷🇺 {card['example_ru']}"
     )
 
