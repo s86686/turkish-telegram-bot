@@ -216,23 +216,40 @@ async def process_quiz(
     example = word["examples"][0]
 
     if selected == correct:
-
+    
         result = "✅ Верно"
-
+    
     else:
-
+    
         result = (
             "❌ Неверно\n\n"
             f"Правильный ответ:\n"
             f"{word['translation']}"
         )
-
+    
+    if word.get("language") == "en":
+    
+        flag = "🇬🇧"
+    
+        example_text = (
+            f"{example['en']}\n"
+            f"{example['ru']}"
+        )
+    
+    else:
+    
+        flag = "🇹🇷"
+    
+        example_text = (
+            f"{example['tr']}\n"
+            f"{example['ru']}"
+        )
+    
     await callback.message.edit_text(
         f"{result}\n\n"
-        f"🇹🇷 {word['lemma']}\n"
+        f"{flag} {word['lemma']}\n"
         f"🇷🇺 {word['translation']}\n\n"
-        f"{example['tr']}\n"
-        f"{example['ru']}",
+        f"{example_text}",
         reply_markup=quality_keyboard()
     )
 
