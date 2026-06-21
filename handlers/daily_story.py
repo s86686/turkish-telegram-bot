@@ -226,6 +226,10 @@ async def pending_word_clicked(
         topic=word.topic,
         language=word.language
     )
+    
+    await callback.message.answer(
+        f"DEBUG CARD:\n\n{card}"
+    )
 
     if not card:
 
