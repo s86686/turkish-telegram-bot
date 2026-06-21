@@ -312,7 +312,6 @@ async def rate_word(
 @router.callback_query(
     F.data == "speak"
 )
-
 async def speak_word(
     callback: CallbackQuery
 ):
@@ -321,47 +320,67 @@ async def speak_word(
 
     user_id = callback.from_user.id
 
-    if user_id in SPEAK_IN_PROGRESS:
-        return
-
-    SPEAK_IN_PROGRESS.add(
-        user_id
-    )
-    
     word = CURRENT_WORDS.get(
         callback.from_user.id
     )
 
     if not word:
+
+        await callback.message.answer(
+            "DEBUG: word not found"
+        )
+
         return
 
-    example = word["examples"][0]
+    if user_id in SPEAK_IN_PROGRESS:
 
-    if word.get("language") == "en":
-    
-        text = (
-            f"{word['lemma']}. "
-            f"{example['en']}"
-        )
-    
-    else:
-    
-        text = (
-            f"{word['lemma']}. "
-            f"{example['tr']}"
+        await callback.message.answer(
+            "DEBUG: already in progress"
         )
 
-    import os
+        return
 
-    filename = await generate_tts(
-        text,
-        language=word.get(
-            "language",
-            "tr"
-        )
+    SPEAK_IN_PROGRESS.add(
+        user_id
     )
 
     try:
+
+        await callback.message.answer(
+            f"DEBUG 1\nLanguage: {word.get('language')}"
+        )
+
+        example = word["examples"][0]
+
+        if word.get("language") == "en":
+
+            text = (
+                f"{word['lemma']}. "
+                f"{example['en']}"
+            )
+
+        else:
+
+            text = (
+                f"{word['lemma']}. "
+                f"{example['tr']}"
+            )
+
+        await callback.message.answer(
+            f"DEBUG 2\n{text}"
+        )
+
+        filename = await generate_tts(
+            text,
+            language=word.get(
+                "language",
+                "tr"
+            )
+        )
+
+        await callback.message.answer(
+            f"DEBUG 3\nFile: {filename}"
+        )
 
         audio = FSInputFile(
             filename
@@ -371,14 +390,32 @@ async def speak_word(
             audio
         )
 
+        await callback.message.answer(
+            "DEBUG 4\nVoice sent"
+        )
+
         VOICE_MESSAGES[
             callback.from_user.id
         ] = voice_msg.message_id
 
+    except Exception as e:
+
+        await callback.message.answer(
+            f"❌ TTS ERROR:\n{e}"
+        )
+
     finally:
 
-        if os.path.exists(filename):
-            os.remove(filename)
+        try:
+
+            if (
+                'filename' in locals()
+                and os.path.exists(filename)
+            ):
+                os.remove(filename)
+
+        except Exception:
+            pass
 
         SPEAK_IN_PROGRESS.discard(
             user_id
