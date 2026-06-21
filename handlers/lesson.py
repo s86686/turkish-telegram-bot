@@ -354,7 +354,11 @@ async def speak_word(
     import os
 
     filename = await generate_tts(
-        text
+        text,
+        language=word.get(
+            "language",
+            "tr"
+        )
     )
 
     try:
