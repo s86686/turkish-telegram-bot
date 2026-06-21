@@ -1,19 +1,27 @@
-from aiogram import Router, F
-from aiogram.types import Message
-from services.daily_story_service import get_daily_story, get_user_words_for_story, create_daily_story, filter_unknown_words
+from aiogram import Router
 from aiogram.types import (
+    Message,
     InlineKeyboardMarkup,
     InlineKeyboardButton,
     CallbackQuery
 )
 from aiogram.enums import ParseMode
+
+from services.daily_story_service import (
+    get_daily_story,
+    get_user_words_for_story,
+    create_daily_story,
+    filter_unknown_words
+)
+
 from services.gemini_service import (
     extract_new_words
 )
 
 from services.pending_words_service import (
     save_pending_words,
-    get_pending_words
+    get_pending_words,
+    get_pending_word
 )
 
 router = Router()
@@ -29,25 +37,71 @@ daily_story_keyboard = InlineKeyboardMarkup(
     ]
 )
 
-@router.message(lambda m: m.text == "📖 История дня")
-async def show_daily_story(message: Message):
+
+def build_pending_words_keyboard(
+    pending_words
+):
+
+    keyboard = []
+
+    for word in pending_words:
+
+        keyboard.append(
+            [
+                InlineKeyboardButton(
+                    text=f"➕ {word.lemma}",
+                    callback_data=f"pending_word_{word.id}"
+                )
+            ]
+        )
+
+    keyboard.append(
+        [
+            InlineKeyboardButton(
+                text="❌ Закрыть",
+                callback_data="close_story"
+            )
+        ]
+    )
+
+    return InlineKeyboardMarkup(
+        inline_keyboard=keyboard
+    )
+
+
+@router.message(
+    lambda m: m.text == "📖 История дня"
+)
+async def show_daily_story(
+    message: Message
+):
 
     user_id = message.from_user.id
 
-    # Сначала пробуем получить готовую историю
-    story = get_daily_story(user_id)
+    # История уже существует
+    story = get_daily_story(
+        user_id
+    )
 
     if story:
 
+        pending_words = get_pending_words(
+            user_id
+        )
+
+        keyboard = build_pending_words_keyboard(
+            pending_words
+        )
+
         await message.answer(
             story.story_text,
-            reply_markup=daily_story_keyboard,
+            reply_markup=keyboard,
             parse_mode=ParseMode.HTML
         )
 
         return
 
-    # Если истории нет — создаем по изученным словам
+    # Создаем новую историю
     topic, words = get_user_words_for_story(
         user_id
     )
@@ -78,13 +132,17 @@ async def show_daily_story(message: Message):
         story.story_text,
         words
     )
-    
+
     story.story_text += (
         f"\n\nDEBUG BEFORE FILTER:\n{new_words}"
     )
-    
+
     new_words = filter_unknown_words(
         new_words
+    )
+
+    story.story_text += (
+        f"\n\nDEBUG AFTER FILTER:\n{new_words}"
     )
 
     saved_words = save_pending_words(
@@ -92,42 +150,101 @@ async def show_daily_story(message: Message):
         language="tr",
         words=new_words
     )
-    
+
     story.story_text += (
         f"\n\nDEBUG PENDING SAVED: "
         f"{saved_words}"
     )
-    
-    story.story_text += (
-        f"\n\nDEBUG AFTER FILTER:\n{new_words}"
+
+    pending_words = get_pending_words(
+        user_id
     )
 
-    if new_words:
+    if pending_words:
 
-        debug_text = "\n\n🆕 Найдено новых слов:\n\n"
+        words_text = (
+            "\n\n🆕 Новые слова из истории:\n\n"
+        )
 
-        for word in new_words:
+        for word in pending_words:
 
-            debug_text += (
-                f"• {word['lemma']} — "
-                f"{word['translation']} "
-                f"({word['topic']})\n"
+            words_text += (
+                f"• {word.lemma} — "
+                f"{word.translation}\n"
             )
 
-        story.story_text += debug_text
+        story.story_text += words_text
+
+    keyboard = build_pending_words_keyboard(
+        pending_words
+    )
 
     await message.answer(
         story.story_text,
-        reply_markup=daily_story_keyboard,
+        reply_markup=keyboard,
         parse_mode=ParseMode.HTML
     )
 
 
-    
-@router.callback_query(lambda c: c.data == "close_story")
-async def close_story(callback: CallbackQuery):
-    try:
-        await callback.message.delete()
-    except Exception:
-        pass
+@router.callback_query(
+    lambda c: c.data.startswith(
+        "pending_word_"
+    )
+)
+async def pending_word_clicked(
+    callback: CallbackQuery
+):
+
+    pending_word_id = int(
+        callback.data.replace(
+            "pending_word_",
+            ""
+        )
+    )
+
+    word = get_pending_word(
+        pending_word_id
+    )
+
+    if not word:
+
+        await callback.answer(
+            "Слово не найдено",
+            show_alert=True
+        )
+
+        return
+
+    debug_text = (
+        "DEBUG WORD\n\n"
+        f"id: {word.id}\n"
+        f"language: {word.language}\n"
+        f"lemma: {word.lemma}\n"
+        f"translation: {word.translation}\n"
+        f"topic: {word.topic}"
+    )
+
+    await callback.message.answer(
+        debug_text
+    )
+
     await callback.answer()
+
+
+@router.callback_query(
+    lambda c: c.data == "close_story"
+)
+async def close_story(
+    callback: CallbackQuery
+):
+
+    try:
+
+        await callback.message.delete()
+
+    except Exception:
+
+        pass
+
+    await callback.answer()
+
