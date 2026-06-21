@@ -22,7 +22,8 @@ from services.gemini_service import (
 from services.pending_words_service import (
     save_pending_words,
     get_pending_words,
-    get_pending_word
+    get_pending_word,
+    add_pending_word_to_dictionary
 )
 
 router = Router()
@@ -316,17 +317,42 @@ async def confirm_word(
 
         return
 
-    await callback.message.answer(
-        f"DEBUG ADD WORD\n\n"
-        f"id={word.id}\n"
-        f"lemma={word.lemma}\n"
-        f"language={word.language}"
+    card = generate_word_card(
+        lemma=word.lemma,
+        translation=word.translation,
+        topic=word.topic,
+        language=word.language
     )
 
-    await callback.answer(
-        "Добавление пока в разработке"
+    if not card:
+
+        await callback.message.answer(
+            "⚠️ Не удалось получить карточку слова."
+        )
+
+        return
+
+    success, result = (
+        add_pending_word_to_dictionary(
+            pending_word_id,
+            card
+        )
     )
 
+    if success:
+
+        await callback.message.answer(
+            f"✅ Слово добавлено в словарь\n\n"
+            f"📖 {result}"
+        )
+
+    else:
+
+        await callback.message.answer(
+            f"❌ Ошибка\n\n{result}"
+        )
+
+    await callback.answer()
 
 @router.callback_query(
     lambda c: c.data == "cancel_word"
