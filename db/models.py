@@ -219,3 +219,72 @@ class DailyStory(Base):
     story_date: Mapped[Date] = mapped_column(Date, default=func.current_date())
     story_text: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+class EnglishWord(Base):
+
+    __tablename__ = "english_words"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    lemma: Mapped[str] = mapped_column(
+        String(100)
+    )
+
+    translation: Mapped[str] = mapped_column(
+        String(200)
+    )
+
+    level: Mapped[str] = mapped_column(
+        String(10),
+        default="C2"
+    )
+
+    topic: Mapped[str] = mapped_column(
+        String(50),
+        default="general"
+    )
+
+    example_en: Mapped[str | None] = mapped_column(
+        String,
+        nullable=True
+    )
+
+    example_ru: Mapped[str | None] = mapped_column(
+        String,
+        nullable=True
+    )
+
+    priority: Mapped[int] = mapped_column(
+        Integer,
+        default=100
+    )
+
+class UserEnglishWord(Base):
+
+    __tablename__ = "user_english_words"
+
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+    )
+
+    user_id: Mapped[int] = mapped_column(
+        Integer
+    )
+
+    word_id: Mapped[int] = mapped_column(
+        Integer
+    )
+
+    learned_at: Mapped[datetime | None] = mapped_column(
+        DateTime,
+        nullable=True
+    )
+
+    repetitions: Mapped[int] = mapped_column(
+        Integer,
+        default=0
+    )
