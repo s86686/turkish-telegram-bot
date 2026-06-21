@@ -145,7 +145,7 @@ def get_new_english_word(
         return build_word_result(
             word,
             all_words,
-            "EN_RU"
+            user.english_quiz_direction
         )
 
     finally:
@@ -225,7 +225,7 @@ def get_review_english_word(
         return build_word_result(
             word,
             all_words,
-            "EN_RU"
+            user.english_quiz_direction
         )
 
     finally:
