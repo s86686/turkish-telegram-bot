@@ -360,3 +360,118 @@ general
             continue
 
     return []
+
+def generate_word_card(
+    lemma: str,
+    translation: str,
+    topic: str,
+    language: str
+) -> dict:
+
+    if language == "tr":
+
+        language_name = "турецкого"
+
+        example_field = (
+            "example_foreign"
+        )
+
+    else:
+
+        language_name = "английского"
+
+        example_field = (
+            "example_foreign"
+        )
+
+    prompt = f"""
+Ты опытный преподаватель {language_name} языка.
+
+Для следующего слова подготовь карточку слова.
+
+Слово:
+
+{lemma}
+
+Перевод:
+
+{translation}
+
+Тема:
+
+{topic}
+
+Определи уровень слова по CEFR.
+
+Разрешены только значения:
+
+A1
+A2
+B1
+B2
+C1
+C2
+
+Составь одно естественное предложение,
+в котором используется это слово.
+
+Предложение должно:
+
+- соответствовать уровню слова
+- быть коротким
+- быть естественным
+- содержать слово {lemma}
+
+Верни ТОЛЬКО JSON.
+
+Формат:
+
+{{
+    "lemma": "{lemma}",
+    "translation": "{translation}",
+    "topic": "{topic}",
+    "level": "A1",
+    "{example_field}": "Пример предложения",
+    "example_ru": "Перевод предложения"
+}}
+
+Никакого текста до JSON.
+Никакого текста после JSON.
+"""
+
+    for model in MODELS:
+
+        try:
+
+            response = client.models.generate_content(
+                model=model,
+                contents=prompt
+            )
+
+            text = response.text.strip()
+
+            text = re.sub(
+                r"^```json\s*",
+                "",
+                text
+            )
+
+            text = re.sub(
+                r"\s*```$",
+                "",
+                text
+            )
+
+            return json.loads(
+                text
+            )
+
+        except Exception as e:
+
+            print(
+                f"WORD CARD ERROR ({model}): {e}"
+            )
+
+            continue
+
+    return {}
