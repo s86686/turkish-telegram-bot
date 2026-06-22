@@ -33,7 +33,7 @@ from services.users import (
 
 from services.access_service import (
     is_feature_available,
-    FEATURE_NOT_AVAILABLE_MESSAGE
+    get_feature_message
 )
 
 router = Router()
@@ -128,7 +128,9 @@ async def show_daily_story(
     ):
 
         await message.answer(
-            FEATURE_NOT_AVAILABLE_MESSAGE
+            get_feature_message(
+                "daily_story"
+            )
         )
 
         return
