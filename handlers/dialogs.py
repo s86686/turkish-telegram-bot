@@ -20,6 +20,15 @@ from services.gemini_service import (
     explain_phrase
 )
 
+from services.users import (
+    get_user_by_telegram_id
+)
+
+from services.access_service import (
+    is_feature_available,
+    get_feature_message
+)
+
 router = Router()
 
 VOICE_MESSAGES = {}
@@ -265,6 +274,26 @@ async def dialogs_menu(
     message: Message
 ):
 
+    user = get_user_by_telegram_id(
+        message.from_user.id
+    )
+
+    if (
+        user
+        and not is_feature_available(
+            user,
+            "dialogs"
+        )
+    ):
+
+        await message.answer(
+            get_feature_message(
+                "dialogs"
+            )
+        )
+
+        return
+        
     await message.answer(
         "🎭 Выберите тему:",
         reply_markup=topics_keyboard
