@@ -27,7 +27,7 @@ from services.pending_words_service import (
     save_pending_word_card
 )
 
-from services.user_service import (
+from services.users import (
     get_user_by_telegram_id
 )
 
