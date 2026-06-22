@@ -31,6 +31,11 @@ from services.users import (
     get_user_by_telegram_id
 )
 
+from services.access_service import (
+    is_feature_available,
+    FEATURE_NOT_AVAILABLE_MESSAGE
+)
+
 router = Router()
 
 daily_story_keyboard = InlineKeyboardMarkup(
