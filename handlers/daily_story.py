@@ -27,6 +27,10 @@ from services.pending_words_service import (
     save_pending_word_card
 )
 
+from services.user_service import (
+    get_user_by_telegram_id
+)
+
 router = Router()
 
 daily_story_keyboard = InlineKeyboardMarkup(
