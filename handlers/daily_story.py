@@ -101,6 +101,29 @@ async def show_daily_story(
 
     user_id = message.from_user.id
 
+    user = get_user_by_telegram_id(
+        user_id
+    )
+
+    if not user:
+
+        await message.answer(
+            "Пользователь не найден."
+        )
+
+        return
+
+    if not is_feature_available(
+        user,
+        "daily_story"
+    ):
+
+        await message.answer(
+            FEATURE_NOT_AVAILABLE_MESSAGE
+        )
+
+        return
+
     # История уже существует
     story = get_daily_story(
         user_id
