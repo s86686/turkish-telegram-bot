@@ -1,11 +1,13 @@
-FEATURE_NOT_AVAILABLE_MESSAGE = (
-    "🔒 История дня пока доступна только "
-    "для турецкого языка.\n\n"
-    "Для английского языка сейчас доступны:\n"
-    "• Новые слова\n"
-    "• Повторение слов\n"
-    "• Викторина"
-)
+FEATURE_NOT_AVAILABLE_MESSAGE = {
+    "daily_story": (
+        "🔒 История дня пока доступна только "
+        "для турецкого языка."
+    ),
+    "dialogs": (
+        "🔒 Диалоги пока доступны "
+        "только для турецкого языка."
+    )
+}
 
 
 def is_feature_available(
@@ -15,8 +17,21 @@ def is_feature_available(
 
     if (
         user.learning_language == "en"
-        and feature == "daily_story"
+        and feature in {
+            "daily_story",
+            "dialogs"
+        }
     ):
         return False
 
     return True
+
+
+def get_feature_message(
+    feature: str
+) -> str:
+
+    return FEATURE_NOT_AVAILABLE_MESSAGE.get(
+        feature,
+        "🔒 Функция недоступна."
+    )
